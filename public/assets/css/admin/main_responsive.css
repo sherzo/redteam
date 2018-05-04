@@ -1,0 +1,1219 @@
+
+@media only screen and (max-width: 415px) {
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>.notficiActivitie {
+        display: block;
+        position: relative;
+        float: left;
+        padding-top: 2%;
+        padding-bottom: 3%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+        margin-top: 2%;
+        margin-bottom: 6%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>h3 {
+        padding-top: 3%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div>div {
+        float: left;
+        position: relative;
+    }
+
+    .captionPromos>img {
+        width: 48%;
+        float: left;
+        margin-right: 1%;
+    }
+
+    .captionPromos {
+        float: left;
+        width: 100%;
+        margin-right: 1%;
+        margin-bottom: 0;
+        margin-bottom: 3%;
+    }
+
+    .captionRecientesMobie{
+        display: block;
+    }
+
+    .col-md-12.typeAvisosPost {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>.col-xs-12.col-sm-6.col-md-6.col-lg-6>div {
+        width: 100%;
+    }
+
+    .captionPromos>img {
+        margin-bottom: 4%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionCalendar{
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionAddEvento{
+        display: none;
+    }
+
+    div#carousel-example-genericRan>.carousel-inner>div.item>div {
+        width: 48%;
+        float: left;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitrados.columnChatss.captionLikechatsFlotante>.col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitradosPorBloque {
+        width: 16%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.chatVentanan {
+        width: 40%;
+    }
+
+    .captionReciennoneMobi {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo {
+        margin-bottom: 2%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes.captionReciennoneMobi {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile{
+      display: block;
+    }
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        padding-right: 0.8%;
+        z-index: 200;
+        position: relative;
+        width: 64%;
+        float: right;
+        text-align: right;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght>li {
+        float: left;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 40%;
+        float: right;
+        text-align: right;
+    }
+
+    .noneMobile{
+        display: none !important;
+    }
+
+    ul#gn-menu {
+        display: none;
+    }
+
+    .blockMobileMen{
+      display: block;
+    }
+
+    .centerNameUserMenu {
+        position: relative;
+    }
+
+    li.bloquesMarca {
+        margin-bottom: 0%;
+    }
+
+    li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+    }
+
+    div.collapseMenuUser>img {
+        float: none;
+        display: block;
+    }
+
+    li.bloquesMarca.accionesPerfil {
+        margin-bottom: 0;
+        line-height: 30px;
+    }
+
+    li.bloquesMarca.marEntrada>a, li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+        font-weight: 100;
+        font-family: 'MyrianPro-Regular';
+        color: #000000 !important;
+    }
+
+    li.bloquesMarca.accionesPerfil.accionesBussines>a {
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        z-index: 1000;
+        margin-bottom: 1%;
+    }
+
+    .modal-dialog.contPusblishDialogo {
+        width: 99%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div {
+        padding: 0;
+        width: 100%;
+        margin-right: 3%;
+    }
+
+    .ui.feed.uifeedComnetUser>.event>div.dataPrubeIm {
+        width: 8%;
+    }
+
+    .captionPostGuardadosText>p {
+        color: #000000;
+        font-size: 31px;
+        line-height: 69px;
+        margin-top: 10%;
+    }
+
+
+    div#app>nav {
+        width: 6%;
+        margin-left: 0%;
+    }
+
+    div#app-navbar-collapse {
+        display: block;
+    }
+
+    button.navbar-toggle.collapsed {
+        display: none;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos {
+        border-right: 1px solid #e6e6e6;
+        padding-right: 0%;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .content>.summary.postPosss>div.date>img.alertPost {
+        width: 22%;
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 2%;
+    }
+
+    #sidebar3 {
+        left: -30px;
+    }
+
+    .navbar-collapse {
+        border-top: 0px solid transparent;
+    }
+
+    #sidebar {
+        left: -280px;
+    }
+
+    #sidebar {
+        width: 280px;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 40%;
+        margin-bottom: 3%;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght>li {
+        margin-right: 15%;
+    }
+
+    .captionRecientesMobie {
+        padding-left: 10%;
+        padding-right: 7%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno>ul>li {
+        width: 25%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 3%;
+    }
+
+    form.ui.form.formComentUser>a {
+        display: block;
+        float: left;
+        width: 100%;
+        text-align: center;
+        padding-left: 0%;
+        padding-bottom: 5%;
+    }
+
+    form.ui.form.formComentUser>div {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile {
+        display: block;
+    }
+
+
+}
+
+@media only screen and (max-width: 380px) {
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 3.5%;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 40%;
+        margin-bottom: 8%;
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+}
+
+@media only screen and (max-width: 340px) {
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 4.3%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno>ul>li {
+        width: 30%;
+    }
+    
+}
+
+@media only screen and (max-width: 330px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+
+
+}
+
+@media only screen and (max-width: 549px) and (min-width: 416px) {
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>.notficiActivitie {
+        display: block;
+        position: relative;
+        float: left;
+        padding-top: 2%;
+        padding-bottom: 3%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+        margin-top: 2%;
+        margin-bottom: 6%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>h3 {
+        padding-top: 3%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div>div {
+        float: left;
+        position: relative;
+    }
+
+    .captionPromos>img {
+        width: 48%;
+        float: left;
+        margin-right: 1%;
+    }
+
+    .captionPromos {
+        float: left;
+        width: 100%;
+        margin-right: 1%;
+        margin-bottom: 0;
+        margin-bottom: 3%;
+    }
+
+    .captionRecientesMobie{
+        display: block;
+    }
+
+    .col-md-12.typeAvisosPost {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>.col-xs-12.col-sm-6.col-md-6.col-lg-6>div {
+        width: 100%;
+    }
+
+    .captionPromos>img {
+        margin-bottom: 4%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionCalendar{
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionAddEvento{
+        display: none;
+    }
+
+    div#carousel-example-genericRan>.carousel-inner>div.item>div {
+        width: 48%;
+        float: left;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitrados.columnChatss.captionLikechatsFlotante>.col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitradosPorBloque {
+        width: 11%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.chatVentanan {
+        width: 40%;
+    }
+
+    .captionReciennoneMobi {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo {
+        margin-bottom: 2%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes.captionReciennoneMobi {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile{
+      display: block;
+    }
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        padding-right: 0.8%;
+        z-index: 200;
+        position: relative;
+        width: 34%;
+        float: right;
+        text-align: right;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght>li {
+        float: left;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 25%;
+        float: right;
+        text-align: right;
+    }
+
+    .noneMobile{
+        display: none !important;
+    }
+
+    ul#gn-menu {
+        display: none;
+    }
+
+    .blockMobileMen{
+      display: block;
+    }
+
+    .centerNameUserMenu {
+        position: relative;
+    }
+
+    li.bloquesMarca {
+        margin-bottom: 0%;
+    }
+
+    li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+    }
+
+    div.collapseMenuUser>img {
+        float: none;
+        display: block;
+    }
+
+    li.bloquesMarca.accionesPerfil {
+        margin-bottom: 0;
+        line-height: 30px;
+    }
+
+    li.bloquesMarca.marEntrada>a, li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+        font-weight: 100;
+        font-family: 'MyrianPro-Regular';
+        color: #000000 !important;
+    }
+
+    li.bloquesMarca.accionesPerfil.accionesBussines>a {
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        z-index: 1000;
+        margin-bottom: 1%;
+    }
+
+    .modal-dialog.contPusblishDialogo {
+        width: 99%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div {
+        padding: 0;
+        width: 100%;
+        margin-right: 3%;
+    }
+
+    .ui.feed.uifeedComnetUser>.event>div.dataPrubeIm {
+        width: 8%;
+    }
+
+
+    div#app>nav {
+        width: 6%;
+        margin-left: 0%;
+    }
+
+    div#app-navbar-collapse {
+        display: block;
+    }
+
+    button.navbar-toggle.collapsed {
+        display: none;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos {
+        border-right: 1px solid #e6e6e6;
+        padding-right: 0%;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .content>.summary.postPosss>div.date>img.alertPost {
+        width: 22%;
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 2%;
+    }
+
+    #sidebar3 {
+        left: -30px;
+    }
+
+    .navbar-collapse {
+        border-top: 0px solid transparent;
+    }
+
+    #sidebar {
+        left: -280px;
+    }
+
+    #sidebar {
+        width: 280px;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 35%;
+        margin-bottom: 3%;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght>li {
+        margin-right: 15%;
+    }
+
+    .captionRecientesMobie {
+        padding-left: 10%;
+        padding-right: 7%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno>ul>li {
+        width: 25%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile {
+        display: block;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 515px) and (min-width: 416px) {
+ 
+}
+
+
+@media only screen and (max-width: 470px) and (min-width: 416px) {
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 2.5%;
+    }
+    
+
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 550px) {
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>.notficiActivitie {
+        display: block;
+        position: relative;
+        float: left;
+        padding-top: 2%;
+        padding-bottom: 3%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes {
+        height: auto;
+        margin-top: 2%;
+        margin-bottom: 6%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes>h3 {
+        padding-top: 3%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div>div {
+        float: left;
+        position: relative;
+    }
+
+    .captionPromos>img {
+        width: 48%;
+        float: left;
+        margin-right: 1%;
+    }
+
+    .captionPromos {
+        float: left;
+        width: 100%;
+        margin-right: 1%;
+        margin-bottom: 0;
+        margin-bottom: 3%;
+    }
+
+    .captionRecientesMobie {
+        display: block;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .col-md-12.typeAvisosPost {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>.col-xs-12.col-sm-6.col-md-6.col-lg-6>div {
+        width: 100%;
+    }
+
+    .captionPromos>img {
+        margin-bottom: 4%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionCalendar{
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo>.captionAddEvento{
+        display: none;
+    }
+
+    div#carousel-example-genericRan>.carousel-inner>div.item>div {
+        width: 25%;
+        float: left;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitrados.columnChatss.captionLikechatsFlotante>.col-xs-12.col-sm-12.col-md-12.col-lg-12.AlluserReegitradosPorBloque {
+        width: 8%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.chatVentanan {
+        width: 40%;
+    }
+
+    .captionReciennoneMobi {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6.datCalendarMo {
+        margin-bottom: 2%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie>.captionActivitiesRecientes.captionReciennoneMobi {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile{
+      display: block;
+    }
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        padding-right: 0.8%;
+        z-index: 200;
+        position: relative;
+        width: 34%;
+        float: right;
+        text-align: right;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght>li {
+        float: left;
+        margin-right: 10%;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile>ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 29%;
+        float: right;
+        text-align: right;
+    }
+
+    .noneMobile{
+        display: none !important;
+    }
+
+    ul#gn-menu {
+        display: none;
+    }
+
+    .blockMobileMen{
+      display: block;
+    }
+
+    .centerNameUserMenu {
+        position: relative;
+    }
+
+    li.bloquesMarca {
+        margin-bottom: 0%;
+    }
+
+    li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+    }
+
+    div.collapseMenuUser>img {
+        float: none;
+        display: block;
+    }
+
+    li.bloquesMarca.accionesPerfil {
+        margin-bottom: 0;
+        line-height: 30px;
+    }
+
+    li.bloquesMarca.marEntrada>a, li.bloquesMarca>a {
+        line-height: 30px;
+        font-size: 17px;
+        font-weight: 100;
+        font-family: 'MyrianPro-Regular';
+        color: #000000 !important;
+    }
+
+    li.bloquesMarca.accionesPerfil.accionesBussines>a {
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        z-index: 1000;
+        margin-bottom: 1%;
+    }
+
+    .modal-dialog.contPusblishDialogo {
+        width: 99%;
+    }
+
+
+
+    div#app>nav {
+        width: 6%;
+        margin-left: 0%;
+    }
+
+    div#app-navbar-collapse {
+        display: block;
+    }
+
+    button.navbar-toggle.collapsed {
+        display: none;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos {
+        border-right: 1px solid #e6e6e6;
+        padding-right: 0%;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .content>.summary.postPosss>div.date>img.alertPost {
+        width: 22%;
+        height: auto;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+       padding: 1%;
+    }
+
+    #sidebar3 {
+        left: -30px;
+    }
+
+    .navbar-collapse {
+        border-top: 0px solid transparent;
+    }
+
+    #sidebar {
+        left: -280px;
+    }
+
+    #sidebar {
+        width: 280px;
+    }
+
+    .col-xs-12.col-sm-12.col-md-12.captionRecientesMobie {
+        display: block;
+    }
+
+    .col-xs-12.col-sm-12.notifisMobile {
+        display: block;
+    }
+
+
+
+
+}
+
+
+
+
+@media only screen and (max-width: 680px) and (min-width: 550px) { 
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.sectionMenuInterno {
+        padding: 1.5%;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 640px) and (min-width: 550px) {
+
+
+}
+
+
+@media only screen and (max-width: 600px) and (min-width: 550px) { 
+
+}
+
+@media only screen and (max-width: 998px) and (min-width: 768px) {
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 31% !important;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div>div {
+        float: left;
+        width: 100%;
+    }
+
+    
+}
+
+
+
+@media only screen and (max-width: 900px) and (min-width: 768px) {
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 27%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>div.captionRankingUser>div>a>div.ui>i {
+        /* width: 2% !important; */
+        font-size: 11px;
+    }
+
+    .captionRankingUser>div {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData {
+        width: 57%;
+        border: 0;
+        padding-left: 0;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData.fechType {
+        bottom: 0;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    p.typEEvento {
+        text-align: center;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos {
+        width: 100%;
+        border: 0;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>.captionCalendar {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>.captionAddEvento {
+        display: none;
+    }
+
+    .container.continerWithSite {
+        width: 100%;
+        margin-bottom: 6%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 36% !important;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos>div>div {
+        float: left;
+        width: 100%;
+    }
+
+    .centerNameUserMenu {
+        width: 90%;
+    }
+
+    .gn-menu-wrapper.gn-open-all {
+        width: 22%;
+    }
+
+    .modal-dialog.contPusblishDialogo {
+        width: 62%;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 860px) and (min-width: 768px) {
+
+
+}
+
+
+@media only screen and (max-width: 810px) and (min-width: 768px) {
+
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 901px) { 
+
+}
+
+@media only screen and (max-width: 1098px) and (min-width: 900px) { 
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 27%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>div.captionRankingUser>div>a>div.ui>i {
+        /* width: 2% !important; */
+        font-size: 11px;
+    }
+
+    .captionRankingUser>div {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData {
+        width: 57%;
+        border: 0;
+        padding-left: 0;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData.fechType {
+        bottom: 0;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    p.typEEvento {
+        text-align: center;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas {
+        width: 100%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-7.col-lg-7.captionPosteos {
+        width: 100%;
+        border: 0;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>.captionCalendar {
+        display: none;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>.captionAddEvento {
+        display: none;
+    }
+
+    .container.continerWithSite {
+        width: 100%;
+        margin-bottom: 6%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+
+}
+
+
+
+@media only screen and (max-width: 1400px) and (min-width: 1200px) { 
+        
+}
+
+@media screen and (min-width: 1100px) {
+
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 1099px) {
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 27%;
+    }
+
+    .col-xs-12.col-sm-6.col-md-5.col-lg-5.captionRecordNotas>div>div.captionRankingUser>div>a>div.ui>i {
+        /* width: 2% !important; */
+        font-size: 11px;
+    }
+
+    .captionRankingUser>div {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData {
+        width: 57%;
+        border: 0;
+        padding-left: 0;
+    }
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6.fechaData.fechType {
+        bottom: 0;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    p.typEEvento {
+        text-align: center;
+    }
+
+
+}
+
+@media only screen and (max-width: 1290px) and (min-width: 1200px) { 
+
+    ul.nav.navbar-nav.navbar-right.navulRIght {
+        width: 27%;
+    }
+
+        
+}
+
+
+@media only screen and (max-width: 1600px) and (min-width: 1301px) { 
+        
+}
+
+@media only screen and (max-width: 1450px) and (min-width: 1301px){
+
+}
+
+
+@media only screen and (max-width: 1599px) and (min-width: 1400px){
+
+
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 1301px) { 
+        
+}
+
+
+@media only screen and (max-width: 1799px) and (min-width: 1601px) { 
+
+
+}
+
+@media only screen and (max-width: 1990px) and (min-width: 1800px) {
+
+}
+
+
+
+
+@media only screen and (max-width: 1799px) and (min-width: 1700px) {
+
+
+}
+
+@media only screen and (max-width: 1699px) and (min-width: 1600px) {
+
+
+        
+}
+
+@media only screen and (max-width: 1599px) and (min-width: 1500px) {
+
+}
+
+
+
+@media only screen and (max-width: 1399px) and (min-width: 1300px) {
+
+}
+
+@media only screen and (max-width: 1499px) and (min-width: 1380px) {
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow>div.container {
+        width: 100%;
+        padding-left: 3%;
+        padding-right: 8%;
+    }
+
+    .container.continerWithSite {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 7%;
+    }
+
+    .centerNameUserMenu {
+        padding-top: 0.9%;
+        padding-right: 12%;
+    }
+
+    .daysNumberCalendar>div {
+        width: 13%;
+    }
+
+    .daysCalendar>div {
+        width: 13%;
+    }
+}
+
+@media only screen and (max-width: 2000px) and (min-width: 1500px) {
+    nav.navbar.navbar-default.navbar-static-top.navbarHome.BgYellow>div.container {
+        width: 100%;
+        padding-left: 6%;
+        padding-right: 11%;
+    }
+
+    .container.continerWithSite {
+        width: 100%;
+        padding-left: 6%;
+        padding-right: 11%;
+    }
+
+    .centerNameUserMenu {
+        padding-top: 0.9%;
+        padding-right: 12%;
+    }
+
+    .daysNumberCalendar>div {
+        width: 13%;
+    }
+
+    .daysCalendar>div {
+        width: 13%;
+    }
+
+
+}
+
+@media only screen and (max-width: 1799px) and (min-width: 1700px) {
+
+}
+
+@media only screen and (max-width: 1699px) and (min-width: 1600px) {
+
+}
+
+
+
+@media only screen and (max-width: 2100px) and (min-width: 1800px) { 
+
+}

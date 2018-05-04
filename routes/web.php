@@ -1,0 +1,356 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/hom', function () {
+    return view('welcome');
+});
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| llamar routas de login y registro
+|--------------------------------------------------------------------------
+|
+*/
+	Route::get('/registers', function () {
+	    return view('welcome');
+	});
+	Route::get('/', function () {
+	    return view('auth.login');
+	});
+	
+	Auth::routes();
+
+	// Route::get('/chat', function () {
+	//     return view('chat');
+	// });
+
+	// Route::get('/chatdemo', 'ChatController@index');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Home Users
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/home', 'HomeController@index');
+
+
+/*
+|--------------------------------------------------------------------------
+| Profile Users
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/profile', 'HomeController@profile');
+
+/*
+|--------------------------------------------------------------------------
+| Profile Del usuario
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/profile-users/{id}', 'HomeController@profileOfUser');
+
+/*
+|--------------------------------------------------------------------------
+| Ranking de Empleados
+|--------------------------------------------------------------------------
+|
+*/
+// PENDIENTE
+Route::get('/ranking-empleados', 'HomeController@RankingEmpleados');
+
+
+/*
+|--------------------------------------------------------------------------
+| Chat entre Empleados
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/chatUsers', 'HomeController@ChatEmpleados');
+
+/*
+|--------------------------------------------------------------------------
+| Calendario
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/calendario', 'HomeController@Calendar');
+
+/*
+|--------------------------------------------------------------------------
+| Solicitud de permiso
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/solicitud-permiso', 'HomeController@SolicitudPermiso');
+
+/*
+|--------------------------------------------------------------------------
+| Permiso Emergencia
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/emergencia', 'HomeController@SolicitudPermisoEmergencia');
+
+/*
+|--------------------------------------------------------------------------
+| Buzon Sugerencias
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/buzon-sugerencias', 'HomeController@BuzonSugerencias');
+
+
+/*
+|--------------------------------------------------------------------------
+| Detalles de solicitudes enviadas
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/solicitudes-proceso', 'HomeController@DetallsSolicitudesInProceso');
+
+/*
+|--------------------------------------------------------------------------
+| Evaluacion a personal
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/evaluacion-a-personal', 'HomeController@EvaluationToPersonal');
+
+
+/*
+|--------------------------------------------------------------------------
+| Evaluacion a personal detall
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/evaluacion-a-personal/1/1', 'HomeController@EvaluationToPersonalDetall');
+
+/*
+|--------------------------------------------------------------------------
+| Evaluacion a personal evaluados
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/evaluacion-a-personal-evaluados', 'HomeController@EvaluationToPersonalEvaluados');
+
+
+/*
+|--------------------------------------------------------------------------
+| Route Logout
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMMINISTRADOR GENERAL
+|--------------------------------------------------------------------------
+| Si el usuario no es Admin no puede accesder a las siguiente rutas
+|
+*/
+
+    Route::get('/admin/home', 'Admin\AdminController@Home');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route Board admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/board', 'Admin\AdminController@Board');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route chat admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/chat', 'Admin\AdminController@ChatAdmin');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route Sugerencias admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/sugerencias', 'Admin\AdminController@Sugerencias');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route EMergencias admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/emergencias', 'Admin\AdminController@Emergencias');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route solicitud permisos admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+
+    Route::get('/admin/solicitud-permisos', 'Admin\AdminController@SolicitudPermisos');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Busqueda se solicitudes del usuario
+        |--------------------------------------------------------------------------
+        |
+        */
+        Route::get('/admin/search_solicitudes', 'Admin\AdminController@SearchSolicitudPermiso');
+        Route::post('/admin/search_solicitudes', 'Admin\AdminController@SearchSolicitudPermiso');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Busqueda se solicitudes de emergencias del usuario
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        Route::get('/admin/search_solicitudes_emergencias', 'Admin\AdminController@SearchEmergencias');
+        Route::post('/admin/search_solicitudes_emergencias', 'Admin\AdminController@SearchEmergencias');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Busqueda se solicitudes de sugerencias del usuario
+        |--------------------------------------------------------------------------
+        |
+        */
+        Route::get('/admin/search_solicitudes_suegerencias', 'Admin\AdminController@SearchSugerencias');
+        Route::post('/admin/search_solicitudes_suegerencias', 'Admin\AdminController@SearchSugerencias');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ruta calendario
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/calendario', 'Admin\AdminController@Calendar');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ruta documentos
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/documentos', 'Admin\AdminController@Documentos');
+
+
+    /*
+   |--------------------------------------------------------------------------
+   | Ruta Ranking
+   |--------------------------------------------------------------------------
+   |
+   */
+    Route::get('/admin/ranking', 'Admin\AdminController@Ranking');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ruta historial de llegada admin
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/history', 'Admin\AdminController@HistoryUsers');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ruta historial de llegada por usuario admin
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/history/{id}', 'Admin\AdminController@HistoryEntradaSalidaUsers');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ruta historial de llegadas de todos los usuarios admin
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/historys/data/allUsers', 'Admin\AdminController@HistoryEntradaSalidaUsersAlls');
+
+    /*
+   |--------------------------------------------------------------------------
+   | Historial de llegadas Fechas
+   |--------------------------------------------------------------------------
+   |
+   */
+    Route::get('/admin/HistoryLlegadas/histo/Asist/{fecha}', 'Admin\AdminController@HistoryUsersFechas');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Agregar usuario
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    Route::get('/admin/addUsers', 'Admin\AdminController@AddUsers');
+
+    /*
+    |--------------------------------------------------------------------------
+    | All usuario
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/usuarios', 'Admin\AdminController@UsersAll');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Editar usuario
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/usuarios/edit/{id}', 'Admin\AdminController@EditUser');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Editar Horario
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/usuarios/editHorario/{id}', 'Admin\AdminController@EditUserHorario');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Editando por grupos
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('/admin/usuarios/grupos/edit', 'Admin\AdminController@EditUserGrupos');
+
+    
