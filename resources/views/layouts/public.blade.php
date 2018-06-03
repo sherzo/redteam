@@ -236,11 +236,9 @@
 <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
-
 <script>
     new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
-
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 
@@ -249,7 +247,6 @@
         .dropdown({
             transition: 'drop'
         });
-
 </script>
 <script>
     $('.button')

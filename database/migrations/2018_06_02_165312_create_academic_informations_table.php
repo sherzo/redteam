@@ -15,6 +15,20 @@ class CreateAcademicInformationsTable extends Migration
     {
         Schema::create('academic_informations', function (Blueprint $table) {
             $table->increments('id');
+            
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->string('school');
+            $table->string('technical')->nullable();
+            $table->string('university')->nullable();
+            $table->string('postgraduate')->nullable();
+            $table->string('diplomat')->nullable();
+            $table->text('others')->nullable();
+            $table->text('abilities');
             $table->timestamps();
         });
     }

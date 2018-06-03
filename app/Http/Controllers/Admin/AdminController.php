@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request as facedesrequest;
-
+use Auth;
 
 
 class AdminController extends Controller
@@ -29,7 +29,12 @@ class AdminController extends Controller
 
     public function Home()
     {
-        return view('back-end.home');
+        $user = Auth::user();
+        if($user->hasRole('admin')) {
+            return view('back-end.board');
+        } else {
+            return view('back-end.home');
+        }   
     }
 
     public function Board()

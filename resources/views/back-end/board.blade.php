@@ -1,4 +1,4 @@
-@extends('layouts.Template-admin')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -6,9 +6,9 @@
 <section class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionMenuInterno menuInernoBoard">
         <ul>
-            <li><a href="">Home</a></li>
-            <li class="active"><a href="">Board</a></li>
-            <li><a href="">Usuarios</a></li>
+            <li><a href="{{ url('home') }}">Home</a></li>
+            <li class="active"><a href="{{ url('admin/home') }}">Board</a></li>
+            <li><a href="{{ url('admin/users') }}">Usuarios</a></li>
         </ul>
     </div>
 </section>

@@ -10,7 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS-->
@@ -26,17 +25,12 @@
     <link href="{{ asset('assets/css/datePicker/bootstrap-datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 
-    <!-- ClockPicker -->
-    <link href="{{ asset('assets/css/clock/bootstrap-clockpicker.min.css') }}" rel="stylesheet">
-
     <!-- ColorPicker -->
     <link href="{{ asset('assets/css/admin/colorpicker/spectrum.css') }}" rel="stylesheet">
 
     <!-- Main style -->
     <link href="{{ asset('assets/css/admin/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/admin/main_responsive.css') }}" rel="stylesheet">
-
-    <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -60,9 +54,9 @@
                 </button>
 
                 <!-- Branding Image -->
-                {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> --}}
+            <!-- <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>  -->
             </div>
 
             <div class="collapse navbar-collapse collapseMenuUser menuAdmin" id="app-navbar-collapse">
@@ -71,45 +65,45 @@
                     <ul>
                         <li id='titleAdmin'><a href="#">Administrador</a></li>
                         <li>
-                            <a href="#" class="dashico"> Dashboards</a>
+                            <a href="home" class="dashico"> Dashboards</a>
                         </li>
                         <li>
-                            <a href="#" class="mensageIco">  Mensajes</a>
+                            <a href="chat" class="mensageIco">  Mensajes</a>
                         </li>
                         <li>
-                            <a href="#" class="usgerenIco"> Sugerencias</a>
+                            <a href="sugerencias" class="usgerenIco"> Sugerencias</a>
                         </li>
                         <li>
-                            <a href="#" class="emergenciasIco"> Emergencias</a>
+                            <a href="emergencias" class="emergenciasIco"> Emergencias</a>
                         </li>
                         <li>
-                            <a href="#" class="permisoIco">  Permisos</a>
+                            <a href="solicitud-permisos" class="permisoIco">  Permisos</a>
                         </li>
                         <li>
-                            <a href="#" class="calendarIco"> Calendario</a>
+                            <a href="calendario" class="calendarIco"> Calendario</a>
                         </li>
                         <li>
-                            <a href="#" class="documentIco">  Documentos</a>
+                            <a href="documentos" class="documentIco">  Documentos</a>
                         </li>
 
-                        <!-- BLOQUE SUBmENU -->
+                        <!-- 2 BLOQUE SUBmENU -->
                         <li class="lineDivide">
-                            <a href="#"></a>
+                            <a href="#!"></a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="EditUseIco"> Editar Usuarios</a>
+                            <a href="usuarios" class="EditUseIco"> Editar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="AddUseIco"> Agregar Usuarios</a>
+                            <a href="{{ route('users.create') }}" class="AddUseIco"> Agregar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="UseIco"> Usuarios</a>
+                            <a href="{{ route('users.index') }}" class="UseIco"> Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="rannkingIco"> Ranking</a>
+                            <a href="ranking" class="rannkingIco"> Ranking</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="evalucionIco"> Evaluaciones</a>
+                            <a href="evaluaciones-mensuales" class="evalucionIco"> Evaluaciones</a>
                         </li>
                     </ul>
                 </div>
@@ -165,12 +159,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="usuarios">
+                                <a href="{{ route('users.create') }}">
                                     <img src="{{ asset('assets/images/icons/add-user.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
-                                <a href="addUsers">
+                                <a href="{{ route('users.index') }}">
                                     <img src="{{ asset('assets/images/icons/users.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
@@ -230,15 +224,18 @@
     @yield('content')
 </div>
 
-{{--<span class="lnvmodal lnvmodal-loader" style="opacity: 0.9;">
-      <p>
-      <span>Cargando...</span>
-      </p>
-      <aside role="dialog">
-       <div>Loading....</div>
-      </aside>
-    </span>
+{{--
+ 
+    <span class="lnvmodal lnvmodal-loader" style="opacity: 0.9;">
+          <p>
+          <span>Cargando...</span>
+          </p>
+          <aside role="dialog">
+           <div>Loading....</div>
+          </aside>
+        </span>
 --}}
+
 <!-- Scripts -->
 <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
@@ -252,15 +249,38 @@
     new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
 
+<script>
+    $(window).bind("beforeunload", function() {
+        // return confirm("deseas cerrar la ventana?");
+    });
+</script>
 
-<!-- Semantic Ui js -->
+<!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-
 <script>
     $('.dropdownSemantic')
         .dropdown({
             transition: 'drop'
         });
+
+</script>
+
+<script>
+    $('.button')
+        .popup({
+            inline: true
+        });
+    $('.dropdownSemantic')
+        .dropdown({
+            transition: 'drop'
+        });
+    $('.accordion')
+        .accordion({
+            selector: {
+                trigger: '.title div .fa-angle-down'
+            }
+        })
+    ;
 
     $('.max.example .ui.fluid.dropdown')
         .dropdown({
@@ -279,7 +299,6 @@
             maxRating: 5,
             disable: false,
         });
-
     $('.rating')
         .rating('disable')
     ;
@@ -294,26 +313,6 @@
 
 </script>
 
-<!-- ClockPicker -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/clock/bootstrap-clockpicker.min.js') }}" type="text/javascript" ></script>
-
-<script type="text/javascript">
-    $('.clockpicker').clockpicker()
-        .find('input').change(function() {
-        console.log(this.value);
-    });
-    var input = $('#single-input').clockpicker({
-        placement: 'bottom',
-        align: 'left',
-        autoclose: true,
-        'default': 'now'
-    });
-    if (/mobile/i.test(navigator.userAgent)) {
-        $('input').prop('readOnly', true);
-    }
-</script>
-<!-- End ClockPicker -->
 
 <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
@@ -374,12 +373,6 @@
     });
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
-
 <script src="{{ asset('assets/js/admin/main.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/admin/main_horarios.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/admin/main_horarios_edit.js') }}" type="text/javascript" ></script>
-
 </body>
 </html>

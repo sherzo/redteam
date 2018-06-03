@@ -15,31 +15,41 @@ Route::get('/hom', function () {
     return view('welcome');
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 /*
 |--------------------------------------------------------------------------
 | llamar routas de login y registro
 |--------------------------------------------------------------------------
 |
 */
-	Route::get('/registers', function () {
-	    return view('welcome');
-	});
-	Route::get('/', function () {
-	    return view('auth.login');
-	});
-	
-	Auth::routes();
+    Route::get('/registers', function () {
+        return view('welcome');
+    });
 
-	// Route::get('/chat', function () {
-	//     return view('chat');
-	// });
+    Route::get('/', function () {
+        return view('auth.login');
+    });
+    
+    Auth::routes();
 
-	// Route::get('/chatdemo', 'ChatController@index');
+/*
+|--------------------------------------------------------------------------
+| Groups routes for Admin
+|--------------------------------------------------------------------------
+|
+*/
+Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
 
-
+    Route::get('home', 'Admin\AdminController@Home');
+    /*
+    |--------------------------------------------------------------------------
+    | Routes resources (index, create, edit and delete) 
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::resources([
+        'users' => 'UserController',
+    ]);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +58,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 |
 */
 Route::get('/home', 'HomeController@index');
-
 
 /*
 |--------------------------------------------------------------------------
