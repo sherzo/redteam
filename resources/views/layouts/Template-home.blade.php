@@ -202,10 +202,11 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        Salir
                                     </a>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -219,7 +220,10 @@
             </div>
         </div>
     </nav>
-
+    
+    <div class="col-md-12">
+        @include('flash::message')
+    </div>
     @yield('content')
 </div>
 
@@ -245,6 +249,7 @@
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 
 <script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     $('.dropdownSemantic')
         .dropdown({
             transition: 'drop'
@@ -310,5 +315,6 @@
 
 <script src="{{ asset('assets/js/main_chat.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
+@yield('js')
 </body>
 </html>

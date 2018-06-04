@@ -23,10 +23,10 @@
                 @endforeach                
             </div>
 
+            {{ Form::model(['route' => ['users.update', $user->id], 'method' => 'PUT']) }}
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido sectionCenEdituser">
                 {{--<form action="2/saveEdition" method="post" accept-charset="utf-8" class="formEditUser">
                     --}}
-                    {{ Form::model(['route' => ['users.update', $user->id]]) }}
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataBloquesForEdit">
                         <h3 class="editAs">Editar a {{ $user->full_name }}</h3>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataImgAndranking">
@@ -39,13 +39,26 @@
                                 <div class="contEditDatRanking">
                                     <div class="ui star rating disabled" data-rating="4"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon"></i></div>
                                 </div>
-                                <a href="#!" id="fileuploader"><div class="ajax-upload-dragdrop" style="vertical-align: top; width: 400px;"><div class="ajax-file-upload" style="position: relative; overflow: hidden; cursor: default;">Upload<form method="POST" action="2/uploadFotoProfile" enctype="multipart/form-data" style="margin: 0px; padding: 0px;"><input type="file" id="ajax-upload-id-1523511476755" name="myfile[]" accept="image/*" multiple="" style="position: absolute; cursor: pointer; top: 0px; width: 100%; height: 100%; left: 0px; z-index: 100; opacity: 0;"></form></div><span style="display: none;"><b>Drag &amp; Drop Files</b></span></div><div></div></a><div class="ajax-file-upload-container"></div>
+                                <a href="#!" id="fileuploader">
+                                    <div class="ajax-upload-dragdrop" style="vertical-align: top; width: 400px;">
+                                        <div class="ajax-file-upload" style="position: relative; overflow: hidden; cursor: default;">Upload
+                                        {{--<form method="POST" action="2/uploadFotoProfile" enctype="multipart/form-data" style="margin: 0px; padding: 0px;">
+                                            --}}
+                                            <input type="file" id="ajax-upload-id-1523511476755" name="avatar" style="position: absolute; cursor: pointer; top: 0px; width: 100%; height: 100%; left: 0px; z-index: 100; opacity: 0;">
+                                        {{--</form>--}}
+                                        </div>
+                                        <span style="display: none;"><b>Drag &amp; Drop Files</b>
+                                     
+                                        </span>
+                                    </div>
+                                <div></div>
+                                </a><div class="ajax-file-upload-container"></div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DataformPersonales">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                                 <label for="">Departamento al que pertenece</label>
-                                <select name="data_departamento_edit">
+                                <select name="area_id">
                                     @foreach($areas as $key => $area)
                                         <option value="{{ $key }}" {{ $user->work->area_id == $key ? 'selected' : '' }}>{{ $area }}</option>
                                     @endforeach
@@ -53,7 +66,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                                 <label for="">Cargo</label>
-                                {{ Form::text('position', null, ['value' => $user->work->postion]) }}
+                                <input type="text" name="position" value="{{ $user->work->position }}">
                             </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
@@ -88,25 +101,25 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                                 <label for="">Cumpleaños</label>
-                                <input type="text" name="data_cumple_edit" value="{{ $user->birthdate }}">
+                                <input type="date" name="birthdate" value="{{ $user->personal->birthdate }}">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                                 <label for="">Correo</label>
-                                <input type="text" name="data_correo_corpo_edit" value="administrador@admin.com">
+                                <input type="email" name="personal_email" value="{{ $user->personal->personal_email }}">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps inputSaDbdi">
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 datTwoBliuqye">
                                         <label for="">Celular</label>
-                                        <input type="text" name="data_celular_edit" value="78797888">
+                                        <input type="text" name="phone" value="{{ $user->work->phone }}">
                                     </div>
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 datTwoBliuqye inputEditDatps">
                                         <label for="">Extención</label>
-                                        <input type="text" name="data_extencion_edit" value="12">
+                                        <input type="text" name="extension" value="{{ $user->work->extension }}" required="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                                 <label for="">Dirección</label>
-                                <input type="text" name="data_direccion_edit" value="Merliot">
+                                <input type="text" name="address" value="{{ $user->personal->address }}" required="">
                             </div>
                         </div>
                     </div>
@@ -369,8 +382,8 @@
                         <input type="submit" value="Aceptar">
                     </div>
                 {{--</form>--}}
-                {{ Form::close() }}
             </div>
+            {{ Form::close() }}
         </div>
     </section>
 
@@ -379,3 +392,28 @@
     @include('front-end.partials.field-public-post')
 
 @endsection
+
+@section('js')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/clock/bootstrap-clockpicker.min.js') }}" type="text/javascript" ></script>
+<script type="text/javascript">
+    $('.clockpicker').clockpicker()
+        .find('input').change(function() {
+        console.log(this.value);
+    });
+    var input = $('#single-input').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+    if (/mobile/i.test(navigator.userAgent)) {
+        $('input').prop('readOnly', true);
+    }
+</script>
+<script src="{{ asset('assets/js/admin/main_horarios.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/admin/main_horarios_edit.js') }}" type="text/javascript"></script>
+@endsection
+
+

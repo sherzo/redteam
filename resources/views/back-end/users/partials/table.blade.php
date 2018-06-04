@@ -48,7 +48,10 @@
                 </div>
 
                 <input type="checkbox" class="datSelectEdit" value="3">
-                <div class="label dataPrubeIm dataProfileAllUsers" style="background-image: url('{{ $user->avatar }}')"></div>
+                <a href="{{ url('profile', $user->username)}}">
+                    <div class="label dataPrubeIm dataProfileAllUsers" style="background-image: url('{{ $user->avatar }}')"></div>
+                    
+                </a>
                 <p class="fontMiriamProSemiBold">{{ $user->full_name }}</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 EmailUser topDatasUser">

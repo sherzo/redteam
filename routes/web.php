@@ -65,7 +65,15 @@ Route::get('/home', 'HomeController@index');
 |--------------------------------------------------------------------------
 |
 */
-Route::get('/profile', 'HomeController@profile');
+Route::get('/profile/{username}', 'ProfileController@index');
+
+/*
+|--------------------------------------------------------------------------
+| Profile Users update
+|--------------------------------------------------------------------------
+|
+*/
+Route::post('profile', 'ProfileController@update')->name('profile.update');
 
 /*
 |--------------------------------------------------------------------------

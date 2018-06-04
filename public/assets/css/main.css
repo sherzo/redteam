@@ -481,12 +481,11 @@ li.dropdown.uSerLogue.colorBlackSuave {
   background-position: center;
   width: 18%;
   padding: 0;
-  border-radius: 62px;
-  height: 131px;
+  border-radius: 100px;
   margin: 0 auto;
 }
 
-.col-xs-12.col-sm-12.col-md-12.col-lg-12.ColumnsDataText>input.profileEidtars{
+.col-xs-12.col-sm-12.col-md-12.col-lg-12.ColumnsDataText>input.profileEidtars , select.profileEidtars{
   background: white;
   border: 1px solid #e8e4e4;
   padding-left: 3%;
@@ -1757,6 +1756,11 @@ input.detallInformation {
 input.detallInformation:disabled {
   background: transparent;
 }
+
+select.detallInformation:disabled {
+  background: transparent !important;
+  border: 0;
+} 
 
 .col-xs-12.col-sm-12.col-md-12.col-lg-12.DataEditar>a>p {
   color: #999999;

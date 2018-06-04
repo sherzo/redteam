@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -26,9 +27,11 @@ class HomeController extends Controller
         return view('front-end.home');
     }
 
-    public function profile()
+    public function profile($username)
     {
-        return view('front-end.profile');
+        $user = User::where('username', $usersname)->first();
+
+        return view('front-end.profile', ['user' => $user]);
     }
 
     public function profileOfUser($id)

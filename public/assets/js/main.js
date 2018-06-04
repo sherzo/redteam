@@ -686,15 +686,6 @@ $(".continerChatVent>.bg-bar-name").click(function(){
     $(this).parent().parent().toggleClass("heightMinCHatFloat");
 });
 
-// select edit profile
-jQuery(document).ready(function($) {
-	$('.dataeditarProfile').click(function(event) {
-		$('.col-xs-12.col-sm-12.col-md-12.col-lg-12.InformacionEmpleado>form>div.dataEmpleados>div.ColumnsData>div.ColumnsDataText>input.dtaYesEdit').prop( "disabled", false );
-		$('.col-xs-12.col-sm-12.col-md-12.col-lg-12.InformacionEmpleado>form>div.dataEmpleados>div.ColumnsData>div.ColumnsDataText>input.dtaYesEdit').toggleClass("profileEidtars");
-		$('.dataSaveChanges').addClass('dataSaveChangesActive');
-		$('.activeEditar').addClass('disabelBOtEdit');
-	});
-});
 
 // Save Change edit profile
 jQuery(document).ready(function($) {

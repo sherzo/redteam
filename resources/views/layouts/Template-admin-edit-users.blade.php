@@ -94,22 +94,22 @@
 
                         <!-- BLOQUE SUBmENU -->
                         <li class="lineDivide">
-                            <a href="#"></a>
+                            <a href="#!"></a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="EditUseIco"> Editar Usuarios</a>
+                            <a href="{{ route('users.edit', 1) }}" class="EditUseIco"> Editar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="AddUseIco"> Agregar Usuarios</a>
+                            <a href="{{ route('users.create') }}" class="AddUseIco"> Agregar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="UseIco"> Usuarios</a>
+                            <a href="{{ route('users.index') }}" class="UseIco"> Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="rannkingIco"> Ranking</a>
+                            <a href="ranking" class="rannkingIco"> Ranking</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="#" class="evalucionIco"> Evaluaciones</a>
+                            <a href="evaluaciones-mensuales" class="evalucionIco"> Evaluaciones</a>
                         </li>
                     </ul>
                 </div>
@@ -160,17 +160,17 @@
 
                             <!-- 2 SECTION -->
                             <li class="top2Bloque">
-                                <a href="#!">
+                                <a href="{{ route('users.edit', 1) }}">
                                     <img src="{{ asset('assets/images/icons/edit-user.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
-                                <a href="usuarios">
+                                <a href="{{ route('users.create') }}">
                                     <img src="{{ asset('assets/images/icons/add-user.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
-                                <a href="addUsers">
+                                <a href="{{ route('users.index') }}">
                                     <img src="{{ asset('assets/images/icons/users.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>

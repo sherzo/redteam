@@ -79,6 +79,7 @@ class UserController extends Controller
             'username' => $username,
             'gender' => $request->gender,
             'avatar' => $avatar->store('avatars', 'public'),
+            'user_id' => $request->boss_id
         ]);
 
         $user->attachRole($request->role_id);
@@ -132,7 +133,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        
+        dd($request->all);
     }
 
     /**

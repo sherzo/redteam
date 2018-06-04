@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->hasOne(AcademicInformation::class);
     }
 
+    public function boss()
+    {
+        return $this->belongsTo('App\User', 'boss_id');
+    }
+
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->lastname; 
@@ -57,5 +62,26 @@ class User extends Authenticatable
         }
 
         return Storage::disk('public')->url($avatar); 
+    }
+
+    public function getShowGenderAttribute()
+    {
+        return $this->gender ? 'Hombre' : 'Mujer';
+    }
+
+    public function getShowMaritalAttribute()
+    {
+        $status = ['Soltero(a)', 'Casado(a)', 'Divorciado(a)', 'Viudo(a)'];
+
+        return $status[$this->personal->marital];
+    }
+
+    public function getBossNameAttribute()
+    {
+        if($this->boss) {
+            return $this->boss->full_name;
+        }
+
+        return '';
     }
 }
