@@ -7,8 +7,10 @@
         'placeholder' => 'Buscar usuarios por su nombre'
     ])
 
+<div id="publications">
+    
     <!-- SECTION MENU INTERNO HOME -->
-    <section class="container-fluid">
+    <section class="container-fluid" >
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionMenuInterno">
             <ul class="listActionDocuemntps">
                 <li ><a href="{{ url('admin/home') }}">Home</a></li>
@@ -62,16 +64,60 @@
                 <img class="img-responsive" src="{{ asset('assets/images/avatar/AnuncioPublicAdmin.png') }}" alt=""  data-toggle="modal" data-target="#myModalNotifications">
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog contPusblishDialogo" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
+                                <form class="sectionPublichUser" accept-charset="utf-8" @submit.prevent="addPublication" enctype="multipart/form-data">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <textarea name="" v-model="description" placeholder="Escribe un comentario"></textarea>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
+                                        <div class="col-md-6 actionpuBlish">
+                                            
+                                            <div class="col-md-2 Adjuntar">
+                                                <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInput').click()">
+                                                <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getFile">
+                                            </div>
+
+                                            <div class="col-md-2 AdjuntarFoto" onclick="document.getElementById('imageInput').click()">
+                                                <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
+                                                <input type="file" id="imageInput" ref="myImage" style="display: none" @change="getImage">
+                                            </div>
+                                            
+                                            <div class="col-md-2 DestacarPuslish" @click="selectFeatured" >
+                                                <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">
+                                            </div>
+                                            <div class="col-md-2 AlertPublish" @click="selectEmergency">
+                                                <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ButtinPublish">
+                                            <input type="submit" value="Enviar"></input>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
+</div>
 
-
-    <!-- Modal -->
-    @include('front-end.partials.field-public-post')
-
+    {{--@include('front-end.partials.field-public-post')
+--}}
     <!-- Modal NOTIFICACIONES -->
     @include('back-end.partials.fields-modal-notificaciones')
 
 
     <div class="alert alert-info dataClMoPosPEr" role="alert">¡Publicacion Agregada!</div>
 
+@endsection
+
+@section('js')
+ <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/src/publication_admin.js') }}"></script>
 @endsection
