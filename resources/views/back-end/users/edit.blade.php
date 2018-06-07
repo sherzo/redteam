@@ -3,13 +3,13 @@
 @section('content')
 
     @include('components.header-admin', [
-        'title' => 'Editar empleados',
+        'title' => 'Editar usuarios',
         'placeholder' => 'Buscar por nombre de usuario'
     ])
     <!-- SECTION BLOQUE NOTIFICACION Y MENSAJES -->
     <section class="container-fluid sectionAdminNotifiMensa">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-            {{-- <p class="alert alert-success">Los datos del usuario se han actualizado</p> --}}
+            @include('flash::message')
 
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 OtherUserEdit">
                 @foreach($users as $usr)
@@ -23,14 +23,13 @@
                 @endforeach                
             </div>
 
-            {{ Form::model(['route' => ['users.update', $user->id], 'method' => 'PUT']) }}
+            {{ Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT', 'files' => true]) }}
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido sectionCenEdituser">
                 {{--<form action="2/saveEdition" method="post" accept-charset="utf-8" class="formEditUser">
                     --}}
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataBloquesForEdit">
                         <h3 class="editAs">Editar a {{ $user->full_name }}</h3>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataImgAndranking">
-                            <input type="hidden" class="idUserEdits" value="2">
                             <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 imgProfiEdit">
                                 <div class="label dataPrubeIm dataProfileEditUsers" style="background-image: url('{{ $user->avatar }}')"></div>
                             </div>
@@ -124,16 +123,17 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 databLoquOclock">
+                        <h3>Horario</h3>
+                        <h4>Días completos</h4>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 databLoquOclockDetallDiasCompleto dayCOmpleTop">
-                            <h3>Horario</h3>
-                            <h4>Días completos</h4>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos bloOONes block1Edit">
+                            @foreach($completes as $k => $complete)
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos bloOONes block{{$k+1}}Edit">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataEntrada">
                                     <div class="form-group">
                                         <h4>Entrada</h4>
                                         <div class="clearfix">
                                             <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="08:10">
+                                                <input type="text" class="form-control" value="{{ $complete->entry }}">
                                                 <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -146,7 +146,7 @@
                                         <h4>Salida</h4>
                                         <div class="clearfix">
                                             <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="15:15">
+                                                <input type="text" class="form-control" value="{{ $complete->exit }}">
                                                 <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -160,101 +160,34 @@
                                         <p class="gasper">2</p>
                                         <h4 class="repetah4">Repetir</h4>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                                            <div class="DayForDayEdit domin DaySelectActiveEdit    " data-time="" data-day="Domingo">
-                                                d
-                                            </div>
-                                            <div class="DayForDayEdit lune DaySelectActiveEdit  " data-time="" data-day="Lunes">
-                                                l
-                                            </div>
-                                            <div class="DayForDayEdit marte" data-time="" data-day="Martes">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit mierco" data-time="" data-day="Miercoles">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit jueve" data-time="" data-day="Jueves">
-                                                j
-                                            </div>
-                                            <div class="DayForDayEdit vierne" data-time="" data-day="Viernes">
-                                                v
-                                            </div>
-                                            <div class="DayForDayEdit saba" data-time="" data-day="Sabado">
-                                                s
-                                            </div>
+                                            @foreach($days as $key => $day) 
+                                                <div class="DayForDayEdit domin 
+                                                    @foreach($complete->days as $d)
+                                                        @if($d->day == $key)    
+                                                            DaySelectActiveEdit
+                                                        @endif
+                                                    @endforeach
+                                                    " data-time="" data-day="{{ $daysShow[$key] }}">
+                                                    {{ $day }}
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 databLoquOclockDetallDiasCompleto dayCOmpleTop">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos bloOONes block2Edit">
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataEntrada">
-                                    <div class="form-group">
-                                        <h4>Entrada</h4>
-                                        <div class="clearfix">
-                                            <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="08:00">
-                                                <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataSalida">
-                                    <div class="form-group">
-                                        <h4>Salida</h4>
-                                        <div class="clearfix">
-                                            <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="18:00">
-                                                <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mnsAlertVacio">Debes seleccionar hora de entrada y salida</p>
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DaysOfSelect">
-                                    <div class="form-group formSelectDays formseledDiasCOmple">
-                                        <p class="gasper">1</p>
-                                        <h4 class="repetah4">Repetir</h4>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                                            <div class="DayForDayEdit domin    " data-time="" data-day="Domingo">
-                                                d
-                                            </div>
-                                            <div class="DayForDayEdit lune" data-time="" data-day="Lunes">
-                                                l
-                                            </div>
-                                            <div class="DayForDayEdit marte DaySelectActiveEdit  " data-time="" data-day="Martes">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit mierco" data-time="" data-day="Miercoles">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit jueve" data-time="" data-day="Jueves">
-                                                j
-                                            </div>
-                                            <div class="DayForDayEdit vierne" data-time="" data-day="Viernes">
-                                                v
-                                            </div>
-                                            <div class="DayForDayEdit saba" data-time="" data-day="Sabado">
-                                                s
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <h4>Medio día</h4>
+                        @foreach($midday as $k => $mid)
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 databLoquOclockDetallMedioDia">
-                            <h4>Medio día</h4>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos blockMedio1Edit">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos blockMedio{{$k+1}}Edit">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataEntrada">
                                     <div class="form-group">
                                         <h4>Entrada</h4>
                                         <div class="clearfix">
                                             <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="12:00">
+                                                <input type="text" class="form-control" value="{{ $mid->entry }}">
                                                 <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -267,7 +200,7 @@
                                         <h4>Salida</h4>
                                         <div class="clearfix">
                                             <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="18:00">
+                                                <input type="text" class="form-control" value="{{ $mid->exit }}">
                                                 <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -281,93 +214,56 @@
                                         <p class="gasper">2</p>
                                         <h4 class="repetah4">Repetir</h4>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                                            <div class="DayForDayEdit domin" data-time="" data-day="Domingo">
-                                                d
-                                            </div>
-                                            <div class="DayForDayEdit lune" data-time="" data-day="Lunes">
-                                                l
-                                            </div>
-                                            <div class="DayForDayEdit marte" data-time="" data-day="Martes">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit mierco DaySelectActiveEdit " data-time="" data-day="Miercoles">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit jueve DaySelectActiveEdit  " data-time="" data-day="Jueves">
-                                                j
-                                            </div>
-                                            <div class="DayForDayEdit vierne " data-time="" data-day="Viernes">
-                                                v
-                                            </div>
-                                            <div class="DayForDayEdit saba " data-time="" data-day="Sabado">
-                                                s
-                                            </div>
+                                            @foreach($days as $key => $day) 
+                                                <div class="DayForDayEdit domin 
+                                                    @foreach($mid->days as $d)
+                                                        @if($d->day == $key)    
+                                                            DaySelectActiveEdit
+                                                        @endif
+                                                    @endforeach
+                                                    " data-time="" data-day="{{ $daysShow[$key] }}">
+                                                    {{ $day }}
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 databLoquOclockDetallMedioDia">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueHorarioCompletos blockMedio2Edit ">
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataEntrada">
-                                    <div class="form-group">
-                                        <h4>Entrada</h4>
-                                        <div class="clearfix">
-                                            <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="08:00">
-                                                <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 daataSalida">
-                                    <div class="form-group">
-                                        <h4>Salida</h4>
-                                        <div class="clearfix">
-                                            <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-                                                <input type="text" class="form-control" value="13:00">
-                                                <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mnsAlertVacio">Debes seleccionar hora de entrada y salida</p>
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DaysOfSelect">
-                                    <div class="form-group formSelectDays formseledDiasCOmple">
-                                        <p class="gasper">2</p>
-                                        <h4 class="repetah4">Repetir</h4>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                                            <div class="DayForDayEdit domin" data-time="" data-day="Domingo">
-                                                d
-                                            </div>
-                                            <div class="DayForDayEdit lune" data-time="" data-day="Lunes">
-                                                l
-                                            </div>
-                                            <div class="DayForDayEdit marte" data-time="" data-day="Martes">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit mierco" data-time="" data-day="Miercoles">
-                                                m
-                                            </div>
-                                            <div class="DayForDayEdit jueve" data-time="" data-day="Jueves">
-                                                j
-                                            </div>
-                                            <div class="DayForDayEdit vierne DaySelectActiveEdit" data-time="" data-day="Viernes">
-                                                v
-                                            </div>
-                                            <div class="DayForDayEdit saba DaySelectActiveEdit  " data-time="" data-day="Sabado">
-                                                s
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueAddHorarios">
+                            @foreach($completes as $k => $complete)
+                                @php
+                                    $dayss = '';
+                                    foreach($complete->days as $ke => $day){
+                                       $dayss .= $daysShow[$day->day];
+                                       if($ke < ($mid->days->count()-1)) {
+                                        $dayss .= ',';
+                                       }
+                                    }                                    
+                                @endphp
+                                <input type="hidden" class="repeatBloqOneEdit{{$k+1}}" name="get_horariosc{{$k+1}}" 
+                                value="{{ $dayss }}">
+                                <input type="hidden" class="repeatBloqOneEdit{{$k+1}}Time" name="get_horariosc{{$k+1}}_time" value="{{ $complete->entry }},{{ $complete->exit }}">
+                            @endforeach
+
+                            @foreach($midday as $k => $mid)
+                                @php
+                                    $dayss = '';
+                                    foreach($mid->days as $ke => $day){
+                                       $dayss .= $daysShow[$day->day]; 
+                                       if($ke < ($mid->days->count()-1)) {
+                                        $dayss .= ',';
+                                       }
+                                    }                                    
+                                @endphp
+                                <input type="hidden" class="repeatBloqOneEdit{{$k+1}}Medio" name="get_horarios_medioc{{$k+1}}" 
+                                value="{{ $dayss }}">
+                                <input type="hidden" class="repeatBloqOneEdit{{$k+1}}TimeMedio" name="get_horariosc{{$k+1}}_time_medio" value="{{ $mid->entry }},{{ $mid->exit }}">
+                            @endforeach
+{{--
+
+
                             <input type="hidden" class="repeatBloqOneEdit" name="get_horariosc1" value="Domingo,Lunes">
                             <input type="hidden" class="repeatBloqOneEditTime" name="get_horariosc1_time" value="08:10,15:15">
                             <input type="hidden" class="repeatBloqOneEdit2" name="get_horariosc2" value="Martes">
@@ -377,6 +273,7 @@
                             <input type="hidden" class="repeatBloqOneEdit2Medio" name="get_horarios_medioc2" value="Viernes,Sabado">
                             <input type="hidden" class="repeatBloqOneEdit2TimeMedio" name="get_horariosc2_time_medio" value="08:00,13:00">
                         </div>
+--}}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 submitEditU">
                         <input type="submit" value="Aceptar">

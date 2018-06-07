@@ -35,14 +35,12 @@
                             <a href="{{ route('users.edit', $user->id) }}">Editar información</a>
                         </li>
                         <li>
-                            <a href="usuarios/editHorario/3">Editar horario</a>
+                            <a href="{{ route('users.schedule', $user->id) }}">Editar horario</a>
                         </li>
                         <li>
-                            <form action="Desactive_Users" method="post" accept-charset="utf-8" class="removeUsers">
-                                <input type="hidden" name="_token" value="Kx5bELaAPKRB5Hmk44pe8A5subMyEml7y2663sGH">
-                                <input type="hidden" name="ide_user" value="3">
+                            {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'DELETE'])}}
                                 <input type="submit" value="Eliminar">
-                            </form>
+                            {{ Form::close() }}
                         </li>
                     </ul>
                 </div>

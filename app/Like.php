@@ -4,20 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class Like extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'entry', 'exit', 'midday'
+        'user_id', 'publication_id'
     ];
 
-    public function days()
+    /*
+    *   Relationships
+    */
+    public function user()
     {
-    	return $this->hasMany(ScheduleDay::class);
+        return $this->belongsTo(User::class);
     }
-
 }

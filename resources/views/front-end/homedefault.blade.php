@@ -1,21 +1,10 @@
-@extends('layouts.public')
-
-@section('css')
-<style>
-  [v-cloak] > * {
-    display: none;
-  }
-</style>
-@endsection
+@extends('layouts.Template-home')
 
 @section('content')
-<div id="publications"> 
-    <div class="container continerWithSite" v-cloak>
+    <div class="container continerWithSite">
         <div class="row">
-            <p class="alert alert-success" v-show="success">Evento creado con exitos</p>
-        
+            <p class="alert alert-success">Evento creado con exito</p>
 
-                {{--
             <div class="col-xs-12 col-sm-12 notifisMobile">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right navulRIght">
@@ -44,256 +33,7 @@
                 </ul>
 
             </div>
-                    --}}
-            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos" >
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    {{-- BLOCK TEXT --}}
-
-{{--     INICIO DE V-FOR--}}           
-                    <div class="col-md-12" v-for="(p, i) in publications">
-                        <div class="ui feed uifeedAvatar">
-                            <div class="event">
-                                <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            @{{ p.user.name }}
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave">
-                                            @{{ p.created_at | humanize }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
-                            @{{ p.description }}
-                        </p>
-                        <a href="" class="dataDpcuCl" download="" v-show="p.file">
-                            <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
-                        </a>
-                        <img src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
-                        <div class="ui feed uifeedActions">
-                            <div class="event">
-                                <div class="label">
-                                    <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
-                                </div>
-                                <div class="content contLike">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                            @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
-                                        </a>
-                                        <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
-                                            <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="ui feed uifeedComnetUser" v-if="p.comments.length > 0">
-                            <div class="event" v-for="c in p.comments">
-                                <div class="label dataPrubeIm" :style="{ 'background-image': 'url(' + c.user.avatar + ')' }">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            @{{ c.user.avatar }}
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
-                                            @{{ c.description }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="ui form formComentUser" @submit.prevent="addComment(p.id)">
-                            <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required v-model="comment"></textarea>
-                            </div>
-                            <a href="" class="dataComenyt" @click.prevent="addComment(p.id)"><p>Comentar</p></a>
-                        </form>
-                    </div>
-{{--    FIN DE V-FOR --}}
-
-                    <div class="col-md-12">
-                        <div class="ui feed uifeedAvatar">
-                            <div class="event">
-                                <div class="label dataPrubeIm" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            Leonardo
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave">
-                                            1 Hour
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <img class="img-responsive" src="{{ asset('assets/images/bg-post.jpg') }}" alt="post-user">
-                        <div class="ui feed uifeedActions">
-                            <div class="event">
-                                <div class="label">
-                                    <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
-                                </div>
-                                <div class="content contLike">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            45 Likes
-                                        </a>
-                                        <div class="date datePint fontMiriamProRegular colorGrisMediumSuave">
-                                            <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ui feed uifeedComnetUser">
-                            <div class="event">
-                                <div class="label dataPrubeIm" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            Leonardo
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
-                                            Awww que bonito
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="ui form formComentUser">
-                            <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required></textarea>
-                                <input type="hidden" class="iduserComent" name="coment_action_id" value="{{ Auth::user()->id }}">
-                                <input type="hidden" class="idDataPost" name="data_id_post" value="">
-                            </div>
-                            <a href="" class="dataComenyt"><p>Comentar</p></a>
-                        </form>
-                    </div>
-
-                    {{-- 2BLOQUE VACIONES --}}
-
-                    <div class="col-md-12 typeEventEspecial">
-                        <img class="img-responsive" src="{{ asset('assets/images/ico-vacaciones.jpg') }}">
-                        <h4 class="fontCovered">¡Felices vacaciones!</h4>
-                        <h5 class="fontMiriamProRegular">Te desea Valdez Mobile</h5>
-                        <div class="ui feed uifeedActions">
-                            <div class="event">
-                                <div class="label">
-                                    <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
-                                </div>
-                                <div class="content contLike">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            45 Likes
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui feed uifeedComnetUser">
-                            <div class="event">
-                                <div class="label dataPrubeIm" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            Leonardo
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
-                                            Hey que genial por fin se vienen las vaciones. Vamos todos a la playa!!
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="" class="removeComent">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <form class="ui form formComentUser">
-                            <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required></textarea>
-                                <input type="hidden" class="iduserComent" name="coment_action_id" value="{{ Auth::user()->id }}">
-                                <input type="hidden" class="idDataPost" name="data_id_post" value="">
-                            </div>
-                            <a href="" class="dataComenyt"><p>Comentar</p></a>
-                        </form>
-                    </div>
-
-                    
-                    <div class="col-md-12">
-                        <div class="ui feed uifeedAvatar">
-                            <div class="event">
-                                <div class="label dataPrubeIm" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            Leonardo
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave">
-                                            1 Hour
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">Awww que bonito loremp imsum loremp imsum loremp imsum loremp imsum</p>
-                        <a href="" class="dataDpcuCl" download="">
-                            <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
-                        </a>
-                        <div class="ui feed uifeedActions">
-                            <div class="event">
-                                <div class="label">
-                                    <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
-                                </div>
-                                <div class="content contLike">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            45 Likes
-                                        </a>
-                                        <div class="date datePint fontMiriamProRegular colorGrisMediumSuave">
-                                            <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ui feed uifeedComnetUser">
-                            <div class="event">
-                                <div class="label dataPrubeIm" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            Leonardo
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
-                                            Awww que bonito
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="ui form formComentUser">
-                            <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required></textarea>
-                                <input type="hidden" class="iduserComent" name="coment_action_id" value="{{ Auth::user()->id }}">
-                                <input type="hidden" class="idDataPost" name="data_id_post" value="">
-                            </div>
-                            <a href="" class="dataComenyt"><p>Comentar</p></a>
-                        </form>
-                    </div>
-                </div>    
-            
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <div class="col-md-12">
                         <div class="ui feed uifeedAvatar">
@@ -818,7 +558,7 @@
 
 
                     <div class="captionRankingUser">
-                        <h3 class="fontMiriamProSemiBold">Ranking de empleados</h3>
+                        <h3 class="fontMiriamProSemiBold"">Ranking de empleados</h3>
                         <div id="carousel-example-genericRan" class="carousel slide" data-ride="carousel" data-interval="false">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
@@ -949,9 +689,7 @@
                             </div>
                         </div>
                     </div>
-                    {{--
 
-                        --}}
                     <div class="captionActivitiesRecientes">
                         <h3 class="fontMiriamProSemiBold">Actividades recientes</h3>
                         <div class="notficiActivitie">
@@ -999,57 +737,43 @@
             <img class="img-responsive" src="{{ asset('assets/images/avatar/IcoPublich.png') }}" alt="" data-toggle="modal" data-target="#myModal">
         </div>
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog contPusblishDialogo" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
-                            <form class="sectionPublichUser" accept-charset="utf-8" @submit.prevent="addPublication" enctype="multipart/form-data">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <textarea name="" v-model="description" placeholder="Escribe un comentario"></textarea>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
-                                    <div class="col-md-6 actionpuBlish">
-                                        
-                                        <div class="col-md-2 Adjuntar">
-                                            <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInput').click()">
-                                            <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getFile">
-                                        </div>
+    </div>
 
-                                        <div class="col-md-2 AdjuntarFoto" onclick="document.getElementById('imageInput').click()">
-                                            <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
-                                            <input type="file" id="imageInput" ref="myImage" style="display: none" @change="getImage">
-                                        </div>
-                                        
-                                        <div class="col-md-2 DestacarPuslish" @click="featured" >
-                                            <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">
-                                        </div>
-                                        <div class="col-md-2 AlertPublish" @click="emergency">
-                                            <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
-                                        </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog contPusblishDialogo" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
+                        <form action="home_submit" method="get" class="sectionPublichUser" accept-charset="utf-8">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <textarea name="" placeholder="Escribe un comentario"></textarea>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
+                                <div class="col-md-6 actionpuBlish">
+                                    <div class="col-md-2 Adjuntar">
+                                        <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
                                     </div>
-                                    <div class="col-md-6 ButtinPublish">
-                                        <input type="submit" value="Enviar"></input>
+                                    <div class="col-md-2 AdjuntarFoto">
+                                        <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
+                                    </div>
+                                    <div class="col-md-2 DestacarPuslish">
+                                        <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">
+                                    </div>
+                                    <div class="col-md-2 AlertPublish">
+                                        <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="col-md-6 ButtinPublish">
+                                    <input type="submit" value="Enviar"></input>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-        <!-- Modal -->
-</div>
-@endsection
-
-@section('js')
- <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
-<!-- BS JavaScript -->
-<script src="{{ asset('assets/js/src/publication.js') }}"></script>
-<script>
-    publication.getUser({{Auth::user()->id}})
-</script>
+    </div>
 @endsection

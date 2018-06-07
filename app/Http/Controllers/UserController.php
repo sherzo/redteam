@@ -10,6 +10,8 @@ use App\Mark;
 use App\Role;
 use App\PersonalInformation;
 use App\AcademicInformation;
+use App\Schedule;
+use App\ScheduleDay;
 use App\WorkInformation;
 use Carbon\Carbon;
 
@@ -59,15 +61,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $username = $this->generateUsername($request->all(), 1);
         /*
-        $username = $request->name . $request->lastname . $now->format('ymd');
+        *   Se genera el username único
+        */
+        $username = $this->generateUsername($request->all());
 
-
-        $username = strtolower($username);
-
-        $username = $this->removeAccents($username); */
         $avatar = $request->file('avatar');
 
         $user = User::create([
@@ -82,16 +80,113 @@ class UserController extends Controller
             'user_id' => $request->boss_id
         ]);
 
+        /*
+        *   Se asigna el rol del usuario
+        */
         $user->attachRole($request->role_id);
 
         $data = $request->all();
         $data['user_id'] = $user->id;
 
+        /*
+        *   Se registra información extra del usuario
+        */
         $personal = PersonalInformation::create($data);
         $academic = AcademicInformation::create($data);
         $academic = WorkInformation::create($data);
 
-        return redirect('admin/users')->withSuccess('Se registro el empleado correctamente');
+        /*
+        *   Horarios tiempo completo
+        */
+        if($request->get_horariosc1_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosc1, 
+                $request->get_horariosc1_time
+            );
+        }
+
+        if($request->get_horariosc2_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosc2, 
+                $request->get_horariosc2_time
+            );
+        }
+
+        if($request->get_horariosc3_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosc3, 
+                $request->get_horariosc3_time
+            );
+        }
+
+
+        /*
+        *   Horaios medio día
+        */
+        $midday = true;
+
+        if($request->get_horariosm1_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosm1, 
+                $request->get_horariosm1_time,
+                $midday
+            );
+        }
+
+        if($request->get_horariosm2_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosm2, 
+                $request->get_horariosm2_time,
+                $midday
+            );
+        }
+
+        if($request->get_horariosm3_time) {
+            $this->createSchedule(
+                $user->id,
+                $request->get_horariosm3, 
+                $request->get_horariosm3_time,
+                $midday
+            );
+        }
+
+        flash()->success('Se registro el usuario correctamente');
+
+        return redirect('admin/users');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $user_id
+     * @param  string $days
+     * @param  string $times
+     * @param  boolean $midday default false   
+     * 
+     */
+    public function createSchedule($user_id, $days, $times, $midday = false)
+    {
+        list($entry, $exit) = explode(',', $times);
+            
+        $schedule = Schedule::create([
+            'user_id' => $user_id,
+            'entry' => $entry,
+            'exit' => $exit,
+            'midday' => $midday
+        ]);
+        
+        $days = explode(',', $days);
+        
+        foreach ($days as $day) {
+            $schedule->days()->create([
+                'day' => $day
+            ]);
+        }
     }
 
     /**
@@ -116,11 +211,19 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $users = User::all();
         $areas = Area::pluck('name', 'id');
-        //dd($user);
+        $days = ['d', 'l', 'm', 'm', 'j', 'v', 's'];
+        $daysShow = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+        $completes = $user->schedulesComplete;
+        $midday = $user->schedulesMidday;
+
         return view('back-end.users.edit', [
             'user' => $user,
             'users' => $users,
-            'areas' => $areas
+            'areas' => $areas,
+            'days' => $days,
+            'completes' => $completes,
+            'daysShow' => $daysShow,
+            'midday' => $midday
         ]);
     }
 
@@ -133,10 +236,39 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $user = User::find($id);
 
+        if($request->avatar) {
+            $avatar = $request->file('avatar');
+            $user->avatar = $avatar->store('avatars', 'public');
+            $user->save();
+        }
+
+        $user->boss_id = $request->boss_id;
+        $user->save();
+        /*
+        *   Update personal information
+        */        
+        $personal = $user->personal;
+        $personal->personal_email = $request->personal_email;
+        $personal->address = $request->address;
+        $personal->birthdate = $request->birthdate;
+        $personal->marital = $request->marital;
+        $personal->save();
         
-        dd($request->all);
+        /*
+        *   Update work information
+        */
+        $work = $user->work;
+        $work->area_id = $request->area_id;
+        $work->phone = $request->phone;
+        $work->extension = $request->extension;
+        $work->save();
+        
+        flash()->success('Se actualizó el usuario correctamente');
+
+        return redirect()->back();
     }
 
     /**
@@ -148,11 +280,78 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
+        
         $user->delete();
+
+        flash()->success('Se elimino el usuario correctamente');
+        
+        return redirect()->back();
     }
 
-    private function generateUsername($data, $num) 
+    /**
+     * Edit schedule the users.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function schedule(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        $completes = $user->schedulesComplete;
+        $midday = $user->schedulesMidday;
+
+        $users = User::all();
+    
+        return view('back-end.users.schedule', [
+            'users' => $users,
+            'user' => $user,
+            'completes' => $completes,
+            'midday' => $midday
+        ]);
+    }
+
+    public function getSchedules($id)
+    {
+        $user = User::findOrFail($id);
+        $completes = $user->schedulesComplete;
+        $midday = $user->schedulesMidday;
+
+        $completes->load('days');
+        $midday->load('days');
+        
+            return [
+                'completes' => $completes,
+                'midday' => $midday
+            ];
+    }
+
+    /**
+     * Update schedule for users.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSchedule(Request $request)
+    {
+        $user = User::findOrFail($id);
+
+        $users = User::all();
+
+        return view('back-end.users.schedule', [
+            'users' => $users,
+            'user' => $user
+        ]);
+    }
+
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  array $data
+     * @return string $username
+     */
+    private function generateUsername($data) 
     {
         $now = Carbon::now();
 
@@ -163,12 +362,18 @@ class UserController extends Controller
         $exists = User::where('username', $username)->exists();
 
         if($exists) {
-            $this->generateUsername($data, $num);
+            $this->generateUsername($data);
         } 
 
         return $username;
     }
 
+    /**
+     * Remove accents string
+     *
+     * @param  string $text
+     * @return string $text
+     */
     private function removeAccents($text)
     {
         $text = htmlentities($text, ENT_QUOTES, 'UTF-8');
@@ -226,5 +431,7 @@ class UserController extends Controller
         $text = preg_replace(array_keys($patron),array_values($patron),$text);
         return $text;
     }
+
+    
 
 }

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('content')        
     
     @include('components.header-admin', [
         'title' => 'Usuarios',
@@ -39,6 +39,9 @@
 
     <!-- SECTION BLOQUE NOTIFICACION Y MENSAJES -->
     <section class="container-fluid sectionAdminNotifiMensa">
+        <div class="col-md-12">
+            @include('flash::message')
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido centerContentAllUSer">
                     

@@ -1,6 +1,6 @@
 
 <!-- BLOCK ADD USER USER  -->
-<input type="hidden" name="user_id">
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataBloquesForEdit">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DataformPersonales dataInformationPersonal">
         <h3>Información personal</h3>
@@ -209,8 +209,8 @@
                         <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
                             <input type="text" class="form-control" value="">
                             <span class="input-group-addon">
-           <span class="glyphicon glyphicon-time"></span>
-         </span>
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -222,25 +222,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>
@@ -285,25 +285,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>
@@ -347,25 +347,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>
@@ -419,25 +419,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>
@@ -482,25 +482,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>
@@ -545,25 +545,25 @@
                 <div class="form-group formSelectDays formseledDiasCOmple">
                     <h4>Repetir</h4>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  bloqueDayss">
-                        <div class='DayForDay domin' data-time="" data-day="Domingo">
+                        <div class='DayForDay domin' data-time="" data-day="0">
                             d
                         </div>
-                        <div class='DayForDay lune' data-time="" data-day="Lunes">
+                        <div class='DayForDay lune' data-time="" data-day="1">
                             l
                         </div>
-                        <div class='DayForDay marte' data-time="" data-day="Martes">
+                        <div class='DayForDay marte' data-time="" data-day="2">
                             m
                         </div>
-                        <div class='DayForDay mierco' data-time="" data-day="Miercoles">
+                        <div class='DayForDay mierco' data-time="" data-day="3">
                             m
                         </div>
-                        <div class='DayForDay jueve' data-time="" data-day="Jueves">
+                        <div class='DayForDay jueve' data-time="" data-day="4">
                             j
                         </div>
-                        <div class='DayForDay vierne' data-time="" data-day="Viernes">
+                        <div class='DayForDay vierne' data-time="" data-day="5">
                             v
                         </div>
-                        <div class='DayForDay saba' data-time="" data-day="Sabado">
+                        <div class='DayForDay saba' data-time="" data-day="6">
                             s
                         </div>
                     </div>

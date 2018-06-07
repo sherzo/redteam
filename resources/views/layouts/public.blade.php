@@ -28,7 +28,8 @@
     <!-- Main style -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main_responsive.css') }}" rel="stylesheet">
-
+    
+    @yield('css')
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript" ></script>
 
     <!-- Scripts -->
@@ -120,7 +121,9 @@
                                         </div>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
-                                        <a href="profile" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Editar perfil</a>
+                                        @auth
+                                        <a href="{{ url('profile', Auth::user()->username) }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Editar perfil</a>
+                                        @endauth
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                         <a href="chatUsers" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
@@ -180,7 +183,7 @@
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="icosMenus noneMobile">
-                            <a href="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/home">
+                            <a href="{{ url('home') }}">
                                 <img src="{{ asset('assets/images/house-ido.png') }}" class="img-responsive" alt="">
                             </a>
                         </li>
@@ -202,10 +205,11 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        Salir
                                     </a>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -219,7 +223,10 @@
             </div>
         </div>
     </nav>
-
+    
+    <div class="col-md-12">
+        @include('flash::message')
+    </div>
     @yield('content')
 </div>
 
@@ -236,17 +243,21 @@
 <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
+
 <script>
     new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
+
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 
 <script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     $('.dropdownSemantic')
         .dropdown({
             transition: 'drop'
         });
+
 </script>
 <script>
     $('.button')
@@ -305,7 +316,11 @@
     });
 </script>
 
+{{--
 <script src="{{ asset('assets/js/main_chat.js') }}" type="text/javascript" ></script>
+--}}
+
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
+@yield('js')
 </body>
 </html>

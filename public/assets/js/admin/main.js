@@ -1070,6 +1070,7 @@ $('.createCarpeta').click(function(event) {
 
 
 // GET UPDATE PHOTO PROFILE EDIT USER
+/*
 $(document).ready(function()
 {
 	 $.ajaxSetup({
@@ -1103,6 +1104,7 @@ $(document).ready(function()
 	     }
 	   }
 });
+*/
 
 // Select option Edit Group Users
 $('.selecEdit').click(function(event) {

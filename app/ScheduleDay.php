@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class ScheduleDay extends Model
 {
      /**
      * The attributes that are mass assignable.
@@ -12,12 +12,11 @@ class Schedule extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'entry', 'exit', 'midday'
+        'schedule_id', 'day'
     ];
 
     public function days()
     {
-    	return $this->hasMany(ScheduleDay::class);
+    	return $this->belongsTo(Schedule::class);
     }
-
 }

@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use LaratrustUserTrait;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -30,6 +32,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /*
+    *   Relationships
+    */
     public function personal()
     {
         return $this->hasOne(PersonalInformation::class);
@@ -50,6 +55,24 @@ class User extends Authenticatable
         return $this->belongsTo('App\User', 'boss_id');
     }
 
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function schedulesComplete()
+    {
+        return $this->schedules()->where('midday', false);
+    }
+
+    public function schedulesMidday()
+    {
+        return $this->schedules()->where('midday', true);
+    }
+
+    /*
+    *   Magis methods
+    */
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->lastname; 

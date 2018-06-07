@@ -120,7 +120,9 @@
                                         </div>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
-                                        <a href="profile" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Editar perfil</a>
+                                        @auth
+                                        <a href="{{ url('profile', Auth::user()->username) }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Editar perfil</a>
+                                        @endauth
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                         <a href="chatUsers" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>

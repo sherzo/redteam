@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOne');
@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOne');
@@ -100,7 +100,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -119,7 +119,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneTime" name="get_horariosc1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -158,7 +158,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -176,7 +176,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -194,7 +194,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -212,7 +212,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -230,7 +230,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOne2');
@@ -248,7 +248,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -267,7 +267,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne2Time" name="get_horariosc2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -306,7 +306,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -324,7 +324,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -342,7 +342,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -360,7 +360,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -378,7 +378,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOne3');
@@ -396,7 +396,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -415,7 +415,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOne3Time" name="get_horariosc3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -453,7 +453,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -471,7 +471,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -489,7 +489,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -507,7 +507,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -525,7 +525,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOneMedio1');
@@ -543,7 +543,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -562,7 +562,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio1Time" name="get_horariosm1_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -600,7 +600,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -618,7 +618,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -636,7 +636,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -654,7 +654,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -672,7 +672,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOneMedio2');
@@ -690,7 +690,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -709,7 +709,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio2Time" name="get_horariosm2_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -747,7 +747,7 @@ jQuery(document).ready(function($) {
 		if(FindEntrada != '' && FindSalida != ''){
 			$(FindAlert).fadeOut();
 			var selectDay = $(this).addClass('DaySelectActive');
-			if(getDay == 'Domingo'){
+			if(getDay == '0'){
 			   $('.domin').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -765,7 +765,7 @@ jQuery(document).ready(function($) {
 			   	$('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 			   }
 			   
-			}else if(getDay == 'Lunes'){
+			}else if(getDay == '1'){
 			   $('.lune').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -783,7 +783,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Martes'){
+			}else if(getDay == '2'){
 			   $('.marte').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -801,7 +801,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Miercoles'){
+			}else if(getDay == '3'){
 			   $('.mierco').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -819,7 +819,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           }
 
-			}else if(getDay == 'Jueves'){
+			}else if(getDay == '4'){
 			   $('.jueve').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 	           var finExsitElemnt = $('.bloqueAddHorarios').find('input.repeatBloqOneMedio3');
@@ -837,7 +837,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Viernes'){
+			}else if(getDay == '5'){
 			   $('.vierne').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 
@@ -856,7 +856,7 @@ jQuery(document).ready(function($) {
 	             $('.bloqueAddHorarios').append('<input type="hidden" class="repeatBloqOneMedio3Time" name="get_horariosm3_time" value="'+FindEntrada+','+FindSalida+'" />');
 	           	}
 
-			}else if(getDay == 'Sabado'){
+			}else if(getDay == '6'){
 			   $('.saba').addClass('disabledbutton')
 			   $(this).removeClass('disabledbutton');
 

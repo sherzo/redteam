@@ -2,7 +2,9 @@
 jQuery.fn.EditUserHorarios = function(ValInput,ValInputTime,BloqueHorarioOther,BloqueHorarioOther2,BloqueHorarioOther3,BloqueHorarioOther4,BloqueHorarioOther5,ValInputOther,ValInputOther2,ValInputOther3,ValInputOther4,ValInputOther5)  //damos nombre ala funcion
 {
    $(this).click(function(event) {
+
 	   var getDay = $(this).data('day');
+	   console.log(getDay)
 	   var element = $(this);
 	   var parent = $(this).parent().parent().parent().parent();
 	   var FindEntrada = $(parent).find('.daataEntrada>div>div>div>input').val();
@@ -15,6 +17,7 @@ jQuery.fn.EditUserHorarios = function(ValInput,ValInputTime,BloqueHorarioOther,B
 	      var VerifiDat = $(ValInput).val();
 	      	$('.DayForDayEdit').each(function(index, el) { 
 	      	    var nameDay = $(this).data('day');
+	      	    console.log(nameDay)
 	      	    if(nameDay == getDay){
 	      	    	$(this).addClass('disabledbutton');
 	      	    	$(this).removeClass('DaySelectActiveEdit');

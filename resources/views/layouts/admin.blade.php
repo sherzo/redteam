@@ -62,11 +62,17 @@
                  {{-- END SIDEBAR MENU --}}
             </div>
         </nav>
+    
+        
+        
         @yield('content')
     </div>
     
     {{-- SCRIPTS --}}
-    <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        $('#myModalSolicitudRespuestCorrect').modal('show');
+    </script>
     <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
@@ -77,7 +83,6 @@
             });
 
     </script>
-
     <script>
         $('.button')
             .popup({
@@ -167,6 +172,7 @@
     --}}
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript">
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         //<![CDATA[
         $(window).load(function(){
             $(".togleAdmin").click(function() {

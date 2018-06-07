@@ -49,6 +49,16 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::resources([
         'users' => 'UserController',
     ]);
+    Route::get('users/{id}/schedules', 'UserController@schedule')->name('users.schedule');
+    Route::get('users/{id}/get-schedules', 'UserController@getSchedules');
+    Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
+});
+
+Route::group(['middleware' =>  'auth'], function() {
+    Route::get('publications', 'PublicationController@index');
+    Route::post('publications', 'PublicationController@store');
+    Route::post('publications/like', 'PublicationController@like');
+    Route::post('publications/comment', 'PublicationController@comment');
 });
 
 /*
