@@ -13,9 +13,6 @@
     <div class="container continerWithSite" v-cloak>
         <div class="row">
             <p class="alert alert-success" v-show="success">Evento creado con exitos</p>
-        
-
-                {{--
             <div class="col-xs-12 col-sm-12 notifisMobile">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right navulRIght">
@@ -41,15 +38,13 @@
                             </div>
                         </div>
                     @endif
-                </ul>
-
+                 </ul>
             </div>
-                    --}}
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     {{-- BLOCK TEXT --}}
 
-{{--     INICIO DE V-FOR--}}           
+                    {{--     INICIO DE V-FOR--}}           
                     <div class="col-md-12" v-for="(p, i) in publications">
                         <div class="ui feed uifeedAvatar">
                             <div class="event">
@@ -70,10 +65,10 @@
                         <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
                             @{{ p.description }}
                         </p>
-                        <a href="" class="dataDpcuCl" download="" v-show="p.file">
+                        <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
                             <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
                         </a>
-                        <img src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
+                        <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
                         <div class="ui feed uifeedActions">
                             <div class="event">
                                 <div class="label">
@@ -98,7 +93,7 @@
                                 <div class="content">
                                     <div class="summary">
                                         <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            @{{ c.user.avatar }}
+                                            @{{ c.user.name }}
                                         </a>
                                         <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
                                             @{{ c.description }}
@@ -107,14 +102,14 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="ui form formComentUser" @submit.prevent="addComment(p.id)">
+                        <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i)">
                             <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required v-model="comment"></textarea>
+                                <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
                             </div>
-                            <a href="" class="dataComenyt" @click.prevent="addComment(p.id)"><p>Comentar</p></a>
+                            <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
                         </form>
                     </div>
-{{--    FIN DE V-FOR --}}
+                    {{--    FIN DE V-FOR --}}
 
                     <div class="col-md-12">
                         <div class="ui feed uifeedAvatar">
@@ -1021,10 +1016,10 @@
                                             <input type="file" id="imageInput" ref="myImage" style="display: none" @change="getImage">
                                         </div>
                                         
-                                        <div class="col-md-2 DestacarPuslish" @click="featured" >
+                                        <div class="col-md-2 DestacarPuslish" @click="selectFeatured" >
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">
                                         </div>
-                                        <div class="col-md-2 AlertPublish" @click="emergency">
+                                        <div class="col-md-2 AlertPublish" @click="selectEmergency">
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
                                         </div>
                                     </div>
@@ -1039,13 +1034,13 @@
             </div>
         </div>
     </div>
-
-
         <!-- Modal -->
 </div>
 @endsection
 
 @section('js')
+{{--
+--}}
  <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
 <!-- BS JavaScript -->
 <script src="{{ asset('assets/js/src/publication.js') }}"></script>

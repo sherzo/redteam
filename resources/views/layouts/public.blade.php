@@ -316,10 +316,7 @@
     });
 </script>
 
-{{--
 <script src="{{ asset('assets/js/main_chat.js') }}" type="text/javascript" ></script>
---}}
-
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
 @yield('js')
 </body>

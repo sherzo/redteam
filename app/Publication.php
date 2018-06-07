@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 class Publication extends Model
 {
@@ -44,6 +45,15 @@ class Publication extends Model
     /*
     *   Magic methods
     */
+    public function getFileAttribute($document)
+    {
+        if(!$document) {
+            return $document;
+        }
+
+        return Storage::disk('public')->url($document); 
+    }
+
     public function getImageAttribute($image)
     {
         if(!$image) {

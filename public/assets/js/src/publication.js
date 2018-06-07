@@ -13,7 +13,7 @@ const publication = new Vue({
    },
    filters: {
     humanize(d) {
-      moment().lang('es')
+      moment.locale('es')
       return moment(d).fromNow()
     }
    },
@@ -22,6 +22,9 @@ const publication = new Vue({
       axios.get('publications')
         .then(res => {
           this.publications = res.data
+          this.publications.forEach(e => {
+            Vue.set(e, 'comment', '')
+          })
         })
         .catch(err => {
           console.log(err)
@@ -34,7 +37,7 @@ const publication = new Vue({
       form.append('file', this.file)
       form.append('featured', this.featured)
       form.append('emergency', this.emergency)
-
+      this.description = ''
       $('#myModal').modal('hide')
       $('body').removeClass('modal-open');
       $('.modal-backdrop').remove();
@@ -50,12 +53,12 @@ const publication = new Vue({
           console.log(err)
         })
     },
-    addComment (publication_id) {
+    addComment (publication_id, i) {
       let comment = {
-        description: this.comment,
+        description: this.publications[i].comment,
         publication_id
       }
-
+      this.publications[i].comment = ''
       axios.post('publications/comment', comment)
         .then(res => {
           this.publications[i].comments.push(res.data)
@@ -66,7 +69,7 @@ const publication = new Vue({
     },
     like (publication) {
       publication_id = publication.id
-      console.log(publication)
+
       publication.likes.push({
         publication_id: publication_id,
         user_id: this.user_id
@@ -89,6 +92,7 @@ const publication = new Vue({
       this.image = this.$refs.myImage.files[0]
     },
     selectFeatured () {
+      console.log(this.featured)
       this.featured = !this.featured
 
       if (this.featured) {

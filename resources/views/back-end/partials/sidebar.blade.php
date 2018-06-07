@@ -1,6 +1,6 @@
 <div id="sidebar"> 
     <ul>
-        <li id='titleAdmin'><a href="#">Administrador</a></li>
+        <li id='titleAdmin'><a href="{{ url('home') }}">Administrador</a></li>
         <li>
             <a href="home" class="{{ url('admin/home') }}"> Dashboards</a>
         </li>

@@ -12,7 +12,7 @@ class PublicationController extends Controller
     {
     	$publications = Publication::orderBy('id', 'DESC')->get();
 
-    	$publications->load('user', 'likes', 'comments');
+    	$publications->load('user', 'likes', 'comments.user');
 
     	return $publications;
     }
@@ -36,9 +36,11 @@ class PublicationController extends Controller
     	if($request->image){
     		$image = $request->file('image');
     		$publication->image = $image->store('publications/images', 'public');
-    	}
+        }
 
-    	$publication->load('user');
+        $publication->save();
+
+    	$publication->load('user', 'comments', 'likes');
 
     	return $publication;
     }
@@ -53,7 +55,9 @@ class PublicationController extends Controller
     		'user_id' => $user->id
     	]);
 
-    	return $publication;
+        $publication->load('comments', 'likes');
+    	
+        return $publication;
     }
 
     public function comment(Request $request) 
@@ -68,7 +72,8 @@ class PublicationController extends Controller
         ]);
 
         $comments = $publication->comments;
-        
-        return $comments->last();
+        $comment = $comments->last();
+        $comment->load('user');
+        return $comment;
     } 
 }
