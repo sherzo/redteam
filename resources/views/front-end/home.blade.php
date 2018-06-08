@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="content">
                                     <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                        <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
                                             @{{ p.user.name }}
                                         </a>
                                         <div class="date fontMiriamProRegular colorGrisMediumSuave">
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="content">
                                     <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                        <a :href="c.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
                                             @{{ c.user.name }}
                                         </a>
                                         <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
@@ -1041,8 +1041,8 @@
 @section('js')
 {{--
 --}}
- <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
 <!-- BS JavaScript -->
+ <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/src/publication.js') }}"></script>
 <script>
     publication.getUser({{Auth::user()->id}})

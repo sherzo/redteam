@@ -148,7 +148,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="summary">
-                                                <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
                                                     @{{ p.user.name }}
                                                 </a>
                                                 <div class="date fontMiriamProRegular colorGrisMediumSuave">
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="summary">
-                                                <a class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
                                                     @{{ c.user.name }}
                                                 </a>
                                                 <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">

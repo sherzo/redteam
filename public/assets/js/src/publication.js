@@ -15,7 +15,10 @@ const publication = new Vue({
     humanize(d) {
       moment.locale('es')
       return moment(d).fromNow()
-    }
+    },
+    profileUrl(username) {
+      return axios.defaults.baseURL + '/profile/' + username
+    } 
    },
    methods: {
     getPublications () {
