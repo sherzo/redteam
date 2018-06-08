@@ -118,6 +118,8 @@
 @endsection
 
 @section('js')
+{{--
  <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
+--}}
 <script src="{{ asset('assets/js/src/publication_admin.js') }}"></script>
 @endsection
