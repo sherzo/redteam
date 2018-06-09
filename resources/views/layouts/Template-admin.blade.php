@@ -31,7 +31,7 @@
     <!-- Main style -->
     <link href="{{ asset('assets/css/admin/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/admin/main_responsive.css') }}" rel="stylesheet">
-
+    @yield('css')
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -90,14 +90,14 @@
                         <li class="lineDivide">
                             <a href="#!"></a>
                         </li>
-                        <li class="2TwoBlow">
-                            <a href="usuarios" class="EditUseIco"> Editar Usuarios</a>
+                         <li class="2TwoBlow">
+                            <a href="{{ route('users.edit', 1) }}" class="EditUseIco"> Editar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="addUsers" class="AddUseIco"> Agregar Usuarios</a>
+                            <a href="{{ route('users.create') }}" class="AddUseIco"> Agregar Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
-                            <a href="usuarios" class="UseIco"> Usuarios</a>
+                            <a href="{{ route('users.index') }}" class="UseIco"> Usuarios</a>
                         </li>
                         <li class="2TwoBlow">
                             <a href="ranking" class="rannkingIco"> Ranking</a>
@@ -154,23 +154,18 @@
 
                             <!-- 2 SECTION -->
                             <li class="top2Bloque">
-                                <a href="#!">
+                                <a href="{{ route('users.edit', 1) }}">
                                     <img src="{{ asset('assets/images/icons/edit-user.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
-                                <a href="usuarios">
+                                <a href="{{ route('users.create') }}">
                                     <img src="{{ asset('assets/images/icons/add-user.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
-                                <a href="addUsers">
+                                <a href="{{ route('users.index') }}">
                                     <img src="{{ asset('assets/images/icons/users.png') }}" class="img- responsive" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="usuarios">
-                                    <img src="{{ asset('assets/images/icons/ranking.png') }}" class="img- responsive" alt="">
                                 </a>
                             </li>
                             <li>
@@ -371,5 +366,6 @@
 </script>
 
 <script src="{{ asset('assets/js/admin/main.js') }}" type="text/javascript" ></script>
+@yield('js')
 </body>
 </html>

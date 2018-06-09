@@ -1,4 +1,4 @@
-@extends('layouts.Template-home')
+@extends('layouts.public')
 
 @section('content')
     <div class="container continerWithSite containBloquePro">

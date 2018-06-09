@@ -12,7 +12,7 @@ class ProfileController extends Controller
     {
         $user = User::where('username', $username)->first();
         $areas = Area::pluck('name', 'id');
-        $bosses = User::where('id', $user->id)->pluck('name', 'id');
+        $bosses = User::where('id', '!=', $user->id)->pluck('name', 'id');
 
         return view('front-end.profile.index', [
         	'user' => $user,

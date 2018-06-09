@@ -31,7 +31,9 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         if($user->hasRole('admin')) {
-            return view('back-end.board');
+
+            return view('back-end.home');
+        
         } else {
             return view('back-end.home');
         }   

@@ -8,7 +8,7 @@
             <a href="chat" class="mensageIco">  Mensajes</a>
         </li>
         <li>
-            <a href="sugerencias" class="usgerenIco"> Sugerencias</a>
+            <a href="{{ url('suggestions') }}" class="usgerenIco"> Sugerencias</a>
         </li>
         <li>
             <a href="emergencias" class="emergenciasIco"> Emergencias</a>
@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li>
-                <a href="sugerencias">
+                <a href="{{ url('admin/suggestions') }}">
                     <img src="{{ asset('assets/images/icons/sguerencias.png') }}" class="img- responsive" alt="">
                 </a>
             </li>

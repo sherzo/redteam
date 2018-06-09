@@ -48,7 +48,10 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     */
     Route::resources([
         'users' => 'UserController',
+        'suggestions' => 'SuggestionController',
     ]);
+    Route::get('all/suggestions', 'SuggestionController@all');
+    
     Route::get('users/{id}/schedules', 'UserController@schedule')->name('users.schedule');
     Route::get('users/{id}/get-schedules', 'UserController@getSchedules');
     Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
@@ -59,6 +62,15 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::post('publications', 'PublicationController@store');
     Route::post('publications/like', 'PublicationController@like');
     Route::post('publications/comment', 'PublicationController@comment');
+    
+    Route::post('suggestions/discussion', 'SuggestionController@discussion');
+    Route::post('suggestions/mark-all', 'SuggestionController@markAllAsRead');
+    Route::post('suggestions/mark-as-read', 'SuggestionController@markAsRead');
+    Route::resources([
+        'suggestions' => 'SuggestionController'
+    ]);
+    Route::get('buzon', 'SuggestionController@buzon');
+
 });
 
 /*

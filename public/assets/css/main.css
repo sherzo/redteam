@@ -1,4 +1,7 @@
     /* COVERED */
+   [v-cloak] > * {
+    display: none;
+  }
 @font-face {
   font-family: 'Covered';
   src: url('../fonts/covered/CoveredByYourGrace.eot');
