@@ -11,7 +11,7 @@
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 BuzonSgenerencias">
-    <a href="{{ url('permisess') }}">
+    <a href="{{ url('application') }}">
         <p>Solicitar permisos</p>
     </a>
 </div>
