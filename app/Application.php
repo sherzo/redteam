@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Suggestion extends Model
+class Application extends Model
 {
     use SoftDeletes;
     /**
@@ -14,7 +14,7 @@ class Suggestion extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'description'
+        'user_id', 'description', 'date', 'complete', 'discount'
     ];
 
     /*

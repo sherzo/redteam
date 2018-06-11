@@ -2,9 +2,10 @@
 
 @section('css')
 <style>
-    .fade-enter-active, .fade-leave-active {
+.fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
+
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
@@ -21,7 +22,7 @@
     <section class="container-fluid sectionAdminNotifiMensa containSugerencias" id="suggestions">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionSugerenciasData" v-cloak>
             
-            <p class="alert alert-success" v-show="success">Su comentario fue creado con exito</p>
+            <p class="alert alert-success" v-show="success">@{{ message }}</p>
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menssagesBloques">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 allTextMensages">
@@ -44,7 +45,7 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                                     <li>
-                                        <form action="" @submit.prevent="deleteSelected()" method="post" accept-charset="utf-8" class="formGrupoCheckData">
+                                        <form action="" @submit.prevent="deletes" method="post" accept-charset="utf-8" class="formGrupoCheckData">
                                             <input type="submit" value="Eliminar">
                                         </form>
                                     </li>
@@ -56,9 +57,8 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
-            </div>
+                </div>
 
                 <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="formGrupoCheck">
                 </form>
@@ -120,10 +120,13 @@
                                                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 submitSendSugerencia">
                                                             <input type="submit" value="Enviar">
                                                         </div>
+                                                        {{--
+
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueImageretu">
-                                                            <img class="img-responsive imImga" onclick="chooseFileImageSuAd();" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarFoto.png" alt="">
-                                                            <img class="img-responsive img1Do" onclick="chooseFileDocuSuAd()" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarIco.png" alt="">
+                                                            <img class="img-responsive imImga" onclick="" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarFoto.png" alt="">
+                                                            <img class="img-responsive img1Do" onclick="" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarIco.png" alt="">
                                                         </div>
+                                                            --}}
                                                     </div>
                                                     <input type="hidden" name="id_user_sugerencia" value="1">
                                                     <input type="hidden" name="id_solicitudse" value="7">
@@ -137,6 +140,9 @@
                         </div>
                     </div>
                 </div>
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages text-center" v-show="suggestions.length == 0" style="padding: 40px">
+                    <p>No hay sugerencias para mostrar</p>
+                </div>
 
             </div>
         </div>
@@ -145,16 +151,16 @@
             <img class="img-responsive" src="{{ asset('assets/images/avatar/addpubliImgae.png') }}" alt="" data-toggle="modal" data-target="#myModal">
             <img class="img-responsive" src="{{ asset('assets/images/avatar/AnuncioPublicAdmin.png') }}" alt=""  data-toggle="modal" data-target="#myModalNotifications">
         </div>
-    </section>
 
-    <!-- Modal -->
-    @include('components.publication')
-    <!-- Modal -->
+        <!-- Modal -->
+        @include('components.publication')
+        <!-- Modal -->
+    </section>
 
     <!-- Modal NOTIFICACIONES -->
     @include('back-end.partials.fields-modal-notificaciones')
 
-    <div class="alert alert-info dataClMoPosPEr" role="alert">ÂĄPublicacion Agregada!</div>
+    <div class="alert alert-info dataClMoPosPEr" role="alert">Publicacion Agregada!</div>
 
 @endsection
 

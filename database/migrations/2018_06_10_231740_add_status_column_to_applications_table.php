@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddReadColumnToSuggestionsTable extends Migration
+class AddStatusColumnToApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddReadColumnToSuggestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('suggestions', function (Blueprint $table) {
-            $table->boolean('read')->default(false);
+        Schema::table('applications', function (Blueprint $table) {
+            $table->boolean('status')->after('discount')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddReadColumnToSuggestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('suggestions', function (Blueprint $table) {
-            $table->dropColumn('read');
+        Schema::table('applications', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

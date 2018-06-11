@@ -1,3 +1,7 @@
+    /* COVERED */
+   [v-cloak] > * {
+    display: none;
+  }
 /* COVERED */
 @font-face {
 	font-family: 'Covered';

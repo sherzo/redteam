@@ -1,4 +1,4 @@
-@extends('layouts.Template-home')
+@extends('layouts.public')
 
 @section('content')
     <div class="container continerWithSite">
@@ -26,17 +26,18 @@
 
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest" v-cloak id="emergencies">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 motioEmergency">
                     <h3>Motivo de emergencia</h3>
                     <h5>Detalle cúal fue la emergencia (hora, día)</h5>
                     <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
-                        <form action="emergencia-send" method="post" class="sectionPublichUser emergenciSOlicitud" accept-charset="utf-8" enctype="multipart/form-data">
+                        <form action="emergencia-send" method="post" class="sectionPublichUser emergenciSOlicitud" accept-charset="utf-8" enctype="multipart/form-data" @submit.prevent="addEmergency">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <textarea name="motivo_emergencia" placeholder="Escribe un comentario"></textarea>
+                                <textarea name="motivo_emergencia" placeholder="Escribe un comentario" v-model="reason"></textarea>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions actionINEmergency">
+                                {{--
                                 <div class="contenMoreDocuments">
                                     <input type="file" class="fileInputEmergenci" name="file_inputemergencia_document[]" />
                                 </div>
@@ -49,13 +50,17 @@
                                 <div class="contenMoreDocuments">
                                     <input type="file" class="fileInputEmergenciImg2" name="file_inputemergenci_imga[]" />
                                 </div>
+                                    --}}
                                 <div class="col-md-6 actionpuBlish">
                                     <div class="col-md-2 Adjuntar adjunEmerImg">
-                                        <img class="img-responsive img1DoEmer" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt=""onclick="document.getElementById('fileInput').click()">
-                                        <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getEmergencyFile">
+                                        <img class="img-responsive img1DoEmer" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInputE').click()">
+
+                                        <input type="file" id="fileInputE" ref="emergencyFile" style="display: none" @change="getEmergencyFile">
                                     </div>
                                     <div class="col-md-2 AdjuntarFoto AdjuntarFotoEmergency">
-                                        <img class="img-responsive img1FotEmer" onclick="chooseFileIMGEmer()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="" onclick="document.getElementById('imageInput').click()">
+                                        <img class="img-responsive img1FotEmer" onclick="document.getElementById('imageInputE').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
+                                        <input type="file" id="imageInputE" ref="emergecyImage" style="display: none" @change="getEmergencyImage">
+
                                     </div>
                                     <p>Adjuntar foto o documentos que respalden tu imprevisto</p>
                                 </div>
@@ -68,7 +73,7 @@
                 </div>
 
                 <!-- MENSAJE SOLICTUD ENVIADA -->
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 SendSolicitud">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 SendSolicitud" v-show="success">
                     <h1>Fue enviado con exito</h1>
                     <h4>Recuerda notifcar tu llegada a recursos humanos</h4>
                 </div>
@@ -95,7 +100,8 @@
     </div>
 
     <!-- Modal -->
-    @include('front-end.partials.field-public-post')
+    @include('components.publication')
+    <!-- Modal -->
     </div>
 
     <div class="alert alert-info dataClMoPosPEr" role="alert">¡Publicacion Agregada!</div>
@@ -105,4 +111,8 @@
 
     @include('front-end.partials.fields-windows-chat')
 
+@endsection
+
+@section('js')
+<script src="{{ asset('assets/js/src/emergency.js') }}"></script>
 @endsection

@@ -46,11 +46,17 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     |--------------------------------------------------------------------------
     |
     */
+    Route::get('documents/all', 'DocumentController@all');
     Route::resources([
         'users' => 'UserController',
-        'suggestions' => 'SuggestionController',
+        'documents' => 'DocumentController'
     ]);
     Route::get('all/suggestions', 'SuggestionController@all');
+    Route::get('suggestions', 'SuggestionController@index');
+    Route::get('all/emergencies', 'EmergencyController@all');
+    Route::get('emergencies', 'EmergencyController@index');
+    Route::get('all/applications', 'ApplicationController@all');
+    Route::get('applications', 'ApplicationController@index');
     
     Route::get('users/{id}/schedules', 'UserController@schedule')->name('users.schedule');
     Route::get('users/{id}/get-schedules', 'UserController@getSchedules');
@@ -64,13 +70,24 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::post('publications/comment', 'PublicationController@comment');
     
     Route::post('suggestions/discussion', 'SuggestionController@discussion');
-    Route::post('suggestions/mark-all', 'SuggestionController@markAllAsRead');
     Route::post('suggestions/mark-as-read', 'SuggestionController@markAsRead');
+    Route::post('emergencies/discussion', 'EmergencyController@discussion');
+    Route::post('emergencies/mark-as-read', 'EmergencyController@markAsRead');
+    Route::post('applications/mark-as-read', 'ApplicationController@markAsRead');
+    Route::post('applications/discussion', 'ApplicationController@discussion');
+    Route::post('applications/acept-or-denied', 'ApplicationController@aceptOrDenied');
     Route::resources([
-        'suggestions' => 'SuggestionController'
+        'suggestions' => 'SuggestionController',
+        'emergencies' => 'EmergencyController',
+        'applications' => 'ApplicationController'
     ]);
     Route::get('buzon', 'SuggestionController@buzon');
-
+    Route::get('emergency', 'EmergencyController@emergency');
+    Route::get('application', 'ApplicationController@application');
+    Route::get('requests-process', 'ProfileController@process');
+    Route::get('get-applications', 'ProfileController@applications');
+    Route::get('get-suggestions', 'ProfileController@suggestions');
+    Route::get('get-emergencies', 'ProfileController@emergencies');
 });
 
 /*

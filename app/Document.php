@@ -3,18 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Suggestion extends Model
+class Document extends Model
 {
-    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'description'
+        'user_id', 'name', 'parent_id', 'type', 'path'
     ];
 
     /*
@@ -24,9 +22,9 @@ class Suggestion extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function discussions()
+
+    public function documents()
     {
-        return $this->morphMany('App\Discussion', 'discussable');
+    	return $this->hasMany('App\Document', 'parent_id');
     }
 }

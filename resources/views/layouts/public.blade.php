@@ -299,6 +299,8 @@
 <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
 
+{{--
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker12').datetimepicker({
@@ -307,6 +309,7 @@
         });
     });
 </script>
+    --}}
 
 <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
 <script type="text/javascript">

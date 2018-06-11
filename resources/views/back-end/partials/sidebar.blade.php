@@ -8,19 +8,19 @@
             <a href="chat" class="mensageIco">  Mensajes</a>
         </li>
         <li>
-            <a href="{{ url('suggestions') }}" class="usgerenIco"> Sugerencias</a>
+            <a href="{{ url('admin/suggestions') }}" class="usgerenIco"> Sugerencias</a>
         </li>
         <li>
-            <a href="emergencias" class="emergenciasIco"> Emergencias</a>
+            <a href="{{ url('admin/emergencies') }}" class="emergenciasIco"> Emergencias</a>
         </li>
         <li>
-            <a href="solicitud-permisos" class="permisoIco">  Permisos</a>
+            <a href="{{ url('admin/applications') }}" class="permisoIco">  Permisos</a>
         </li>
         <li>
             <a href="calendario" class="calendarIco"> Calendario</a>
         </li>
         <li>
-            <a href="documentos" class="documentIco">  Documentos</a>
+            <a href="{{ url('admin/documents') }}" class="documentIco">  Documentos</a>
         </li>
 
         <!-- 2 BLOQUE SUBmENU -->
@@ -69,12 +69,12 @@
                 </a>
             </li>
             <li>
-                <a href="emergencias">
+                <a href="{{ url('admin/emergencies') }}">
                     <img src="{{ asset('assets/images/icons/emergencias.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
             <li>
-                <a href="solicitud-permisos">
+                <a href="{{ url('admin/applications') }}">
                     <img src="{{ asset('assets/images/icons/permisos.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
@@ -84,7 +84,7 @@
                 </a>
             </li>
             <li>
-                <a href="documentos">
+                <a href="{{ url('admin/documents') }}">
                     <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
                 </a>
             </li>

@@ -2,6 +2,7 @@ const sugerency = new Vue({
    el: '#suggestions',
    data: {
       checkAll: false,
+      message: '',
       checkeds: [],
       sugerency: '',
       acordion: '',
@@ -36,15 +37,38 @@ const sugerency = new Vue({
     }
    },
    methods: {
-    markAsRead () {
+    deletes () {
+      this.message = 'Se eliminaron sugerencias correctamente'
+      this.success = true
       console.log(this.checkeds)
       let data = { 
-        suggestions_id: this.checkeds 
+        suggestions_ids: this.checkeds 
       }
+      axios.delete('suggestions', data)
+        .then(res => {
+          console.log(res)
+          this.getSuggestions()
 
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    markAsRead () {
+      this.message = 'Se marcaron las sugerencias como leidas'
+      this.success = true
+      console.log(this.checkeds)
+      let data = { 
+        suggestions_ids: this.checkeds 
+      }
       axios.post('suggestions/mark-as-read', data)
         .then(res => {
           console.log(res)
+          this.getSuggestions()
+          
+          setTimeout(() => {
+            this.success = false
+          }, 1800)
       })
       .catch(err => {
         console.log(err)
@@ -81,9 +105,6 @@ const sugerency = new Vue({
           console.log(err)
         })
     },
-    markAsRead () {
-
-    },
     addDiscussion (i) {
       let description = this.suggestions[i].discussion
 
@@ -109,9 +130,6 @@ const sugerency = new Vue({
     toggleAccordion (i) {
       this.suggestions[i].accordion = !this.suggestions[i].accordion
     },
-    deleteSelected () {
-
-    },
     addPublication () {
       let form = new FormData()
       form.append('description', this.description)
@@ -127,8 +145,7 @@ const sugerency = new Vue({
       */
       axios.post('publications', form)
         .then(res => {
-          this.success = true
-          window.location = axios.defaults.baseURL + '/admin/home';
+          window.location = axios.defaults.baseURL + '/admin/board';
          
         })
         .catch(err => {

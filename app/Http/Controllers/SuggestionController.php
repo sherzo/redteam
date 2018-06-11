@@ -21,7 +21,7 @@ class SuggestionController extends Controller
     {
         $user = Auth::user();
         
-        if($user->hasRole('empleado')) {
+        if($user->hasRole('employee')) {
             return redirect('/buzon');
         }
 
@@ -85,7 +85,7 @@ class SuggestionController extends Controller
     public function MarkAsRead(Request $request)
     {
         $suggestions = Suggestion::whereIn('id', $request->suggestions_ids)
-            ->update('read', true);
+            ->update(['read' => true]);
         
         return [
             'result' => true
@@ -161,8 +161,13 @@ class SuggestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $suggestions = Suggestion::whereIn('id', $request->suggestions_ids)
+            ->delete();
+        
+        return [
+            'result' => true
+        ]; 
     }
 }

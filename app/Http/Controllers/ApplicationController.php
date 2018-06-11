@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use Illuminate\Http\Request;
-use App\Emergency;
-use App\Discussion;
 use Auth;
 
-class EmergencyController extends Controller
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +18,15 @@ class EmergencyController extends Controller
         $user = Auth::user();
 
         if($user->hasRole('employee')) {
-            return redirect('/emergency');
+            return redirect('/application');
         }
 
-        return view('back-end.emergencies.index');
+        return view('back-end.applications.index');
     }
 
-    public function emergency()
+    public function application()
     {
-        return view('front-end.emergencies.emergency');
+        return view('front-end.applications.application');
     }
 
     /*
@@ -37,11 +36,14 @@ class EmergencyController extends Controller
      */
     public function all()
     {
-        $emergencies = Emergency::orderBy('id', 'desc')->where('read', false)->get();
+        $applications = Application::orderBy('id', 'desc')
+            ->where('read', false)
+            ->whereNull('status')
+            ->get();
 
-        $emergencies->load('user', 'discussions.user');
+        $applications->load('user', 'discussions.user');
 
-        return $emergencies;
+        return $applications;
     }
 
      /**
@@ -54,23 +56,23 @@ class EmergencyController extends Controller
         //return $request->all();
         $user = Auth::user();
 
-        $emergency = Emergency::find($request->emergency_id);
+        $application = Application::find($request->application_id);
 
-        $emergency->discussions()->create([
+        $application->discussions()->create([
             'description' => $request->description,
             'user_id' => $user->id
         ]);
         
-        $discussion = $emergency->discussions->last();
+        $discussion = $application->discussions->last();
 
         if($request->file) {
             $file = $request->file('file');
-            $discussion->file = $file->store('emergencies/discussions/files', 'public');
+            $discussion->file = $file->store('applications/discussions/files', 'public');
         }
 
         if($request->image){
             $image = $request->file('image');
-            $discussion->image = $image->store('emergencies/discussions/images', 'public');
+            $discussion->image = $image->store('applications/discussions/images', 'public');
         }
 
         $discussion->save();
@@ -87,13 +89,32 @@ class EmergencyController extends Controller
      */
     public function MarkAsRead(Request $request)
     {
-        $emergencies = Emergency::whereIn('id', $request->emergencies_ids)
+        $applications = Application::whereIn('id', $request->applications_ids)
             ->update(['read' => true]);
         
         return [
             'result' => true
         ]; 
     }
+
+     /**
+     * Mark 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function aceptOrDenied(Request $request)
+    {
+        $application = Application::find($request->id);
+
+        $application->status = $request->status;
+
+        $application->save();
+        
+        $application->load('user');
+
+        return $application; 
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -113,36 +134,27 @@ class EmergencyController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->all();
         $user = Auth::user();
 
-        $emergency = Emergency::create([
+        $application = Application::create([
             'user_id' => $user->id,
             'description' => $request->description,
-            'read' => false
+            'date' => $request->date,
+            'complete' => $request->complete,
+            'discount' => $request->discount
         ]);
 
-        if($request->file) {
-            $file = $request->file('file');
-            $emergency->file = $file->store('emergencies/files', 'public');
-        }
-
-        if($request->image){
-            $image = $request->file('image');
-            $emergency->image = $image->store('emergencies/images', 'public');
-        }
-
-        $emergency->save();
-
-        return $emergency->load('user');
+        return $application->load('user');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Emergency  $emergency
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function show(Emergency $emergency)
+    public function show(Application $application)
     {
         //
     }
@@ -150,10 +162,10 @@ class EmergencyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Emergency  $emergency
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function edit(Emergency $emergency)
+    public function edit(Application $application)
     {
         //
     }
@@ -162,10 +174,10 @@ class EmergencyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Emergency  $emergency
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emergency $emergency)
+    public function update(Request $request, Application $application)
     {
         //
     }
@@ -173,16 +185,11 @@ class EmergencyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Emergency  $emergency
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Application $application)
     {
-        $emergencies = Emergency::whereIn('id', $request->emergencies_ids)
-            ->delete();
-        
-        return [
-            'result' => true
-        ]; 
+        //
     }
 }

@@ -5,7 +5,7 @@
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 BuzonSgenerencias">
-    <a href="{{ url('emergencies') }}">
+    <a href="{{ url('emergency') }}">
         <p>Emergenica/ imprevisto</p>
     </a>
 </div>

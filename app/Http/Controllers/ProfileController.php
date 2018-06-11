@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Area;
+use App\Suggestion;
+use App\Application;
+use App\Emergency;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -55,5 +59,43 @@ class ProfileController extends Controller
     	flash()->success('Se actualizó su perfil correctamente');
 
     	return redirect('profile/' . $user->username);
+    }
+
+    public function process() 
+    {
+        return view('front-end.profile.process');
+    }
+
+    public function applications() 
+    {
+        $user = Auth::user();
+
+        $applications = Application::where('user_id', $user->id)->get();
+        
+        $applications->load('discussions.user', 'user');
+
+        return $applications;
+    }
+
+    public function suggestions() 
+    {
+        $user = Auth::user();
+
+        $suggestions = Suggestion::where('user_id', $user->id)->get();
+        
+        $suggestions->load('discussions.user', 'user');
+
+        return $suggestions;
+    }
+
+    public function emergencies() 
+    {
+        $user = Auth::user();
+
+        $emergencies = Emergency::where('user_id', $user->id)->get();
+        
+        $emergencies->load('discussions.user', 'user');
+
+        return $emergencies;
     }
 }
