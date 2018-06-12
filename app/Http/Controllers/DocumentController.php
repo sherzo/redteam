@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Document;
 use Illuminate\Http\Request;
 use Auth;
+use Storage;
 
 class DocumentController extends Controller
 {
@@ -55,7 +56,62 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        if($request->hasFile('file')) {
+
+            if($request->parent_id){
+                $parent = Document::find($request->parent_id);
+                $path = $parent->path  . '/';
+            }else {
+                $path = 'documents/'. $user->username . '/';
+            }
+
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            $name = substr($name, 0, 8);
+            $name = str_replace(' ', '_', $request->name);
+            $path = $file->store($path, 'local');
+        }
+
+        $document = Document::create([
+            'user_id' => $user->id,
+            'type' => true,
+            'name' => $name,
+            'path' => $path,
+            'parent_id' => $request->parent_id
+        ]);
+
+        $document->active = false;
+        return $document;
+    }
+
+    public function addFolder(Request $request) 
+    {
+        $user = Auth::user();
+
+        $name = str_replace(' ', '_', $request->name);
+
+        if($request->parent_id){
+            $parent = Document::find($request->parent_id);
+            $path = $parent->path  . '/' . $name;
+        }else {
+            $path = 'documents/'. $user->username . '/' .  $name;
+        }
+
+        $document = new Document([
+            'user_id' => $user->id,
+            'parent_id' => $request->parent_id,
+            'name' => $name,
+            'path' => $path
+        ]);
+        $document->save();
+
+        Storage::makeDirectory($document->path);
+
+        $document->active = false;
+
+        return $document;
     }
 
     /**

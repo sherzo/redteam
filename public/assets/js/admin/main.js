@@ -1035,13 +1035,14 @@ jQuery(document).ready(function($) {
 });
 
 // Dowload Document Submit form
-jQuery(document).ready(function($) {
+
+/*jQuery(document).ready(function($) {
 	$('.dataDowload >a').click(function(event) {
 	 var parentDowload = $(this).parent().find('form').submit();
 	});
 });
 
-
+*/
 // Upload new file section docuemnts
 
 function FileNewDocu() {

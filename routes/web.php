@@ -47,6 +47,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     |
     */
     Route::get('documents/all', 'DocumentController@all');
+    Route::post('documents/add-folder', 'DocumentController@addFolder');
     Route::resources([
         'users' => 'UserController',
         'documents' => 'DocumentController'
