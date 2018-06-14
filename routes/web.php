@@ -48,6 +48,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     */
     Route::get('documents/all', 'DocumentController@all');
     Route::post('documents/add-folder', 'DocumentController@addFolder');
+    Route::get('documents/{id}/subdocuments', 'DocumentController@getSubdocuments');
     Route::resources([
         'users' => 'UserController',
         'documents' => 'DocumentController'
@@ -89,6 +90,8 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('get-applications', 'ProfileController@applications');
     Route::get('get-suggestions', 'ProfileController@suggestions');
     Route::get('get-emergencies', 'ProfileController@emergencies');
+    Route::get('evaluations', 'EvaluationController@index');
+    Route::get('evaluations/employees', 'EvaluationController@employees');
 });
 
 /*

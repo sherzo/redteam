@@ -55,6 +55,16 @@ class User extends Authenticatable
         return $this->belongsTo('App\User', 'boss_id');
     }
 
+    public function employees()
+    {
+        return $this->hasMany('App\User', 'boss_id');
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class);

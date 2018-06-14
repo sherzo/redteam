@@ -23,7 +23,7 @@ class Document extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function documents()
+    public function subdocuments()
     {
     	return $this->hasMany('App\Document', 'parent_id');
     }

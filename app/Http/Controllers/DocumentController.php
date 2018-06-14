@@ -24,6 +24,7 @@ class DocumentController extends Controller
         $user = Auth::user();
 
         $documents = Document::where('user_id', $user->id)
+        ->whereNull('parent_id')
             ->get();
         
         return $documents;
@@ -33,9 +34,9 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);
 
-        $documents = $document->documents;
+        $subdocuments = $document->subdocuments;
 
-        return $documents;
+        return $subdocuments;
     }
 
     /**
@@ -62,15 +63,25 @@ class DocumentController extends Controller
 
             if($request->parent_id){
                 $parent = Document::find($request->parent_id);
-                $path = $parent->path  . '/';
+                $path = $parent->path;
             }else {
                 $path = 'documents/'. $user->username . '/';
             }
 
             $file = $request->file('file');
             $name = $file->getClientOriginalName();
-            $name = substr($name, 0, 8);
-            $name = str_replace(' ', '_', $request->name);
+
+            $name = str_replace(' ', '', $name);
+            $total = strlen($name);
+            
+            if($total > 10) {
+                $name = substr($name, 0, 8);
+            }else if (($total / 2) > 5) {   
+                $name = substr($name, 0, 5);
+            }
+
+            $name = $this->setFileName($name);
+
             $path = $file->store($path, 'local');
         }
 
@@ -84,6 +95,23 @@ class DocumentController extends Controller
 
         $document->active = false;
         return $document;
+    }
+
+    private function setFileName($name, $parent_id = null, $count = 0) 
+    {
+        $count++;
+        $exists = Document::where('name', $name)
+            ->where('parent_id', $parent_id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+        
+        if($exists) {
+            $name .= '('.$count.')'; 
+            $count++;
+            $this->setFileName($name, $parent_id, $count);
+        }
+
+        return $name;
     }
 
     public function addFolder(Request $request) 
@@ -105,6 +133,7 @@ class DocumentController extends Controller
             'name' => $name,
             'path' => $path
         ]);
+
         $document->save();
 
         Storage::makeDirectory($document->path);

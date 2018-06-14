@@ -6,61 +6,16 @@ const documents = new Vue({
     subdocuments: [],
     subdocumetsTwo: [],
     message: '',
-    breadcrumbs: [{name:'Inicio', id: 0}],
+    breadcrumbs: [{ id: 1, name: 'Documents'},{ id: 2, name: 'Imagnees'}],
     success: false,
     loading: false
   },
-  watch: {
-    selected (selected) {
-      if(selected) {
-        this.getSubdocuments(selected.id)
-      }
-    }
-  },
   methods: {
     open(d) {
-      if(!d.type) {
-        this.selected = d
-
-        this.breadcrumbs.push({ name: d.name, id: d.id })
-
-        this.documents.forEach(e => {
-          e.active = false
-        })
-      }
+      alert(d.name)
     },
-    getBreadcrumsSubdocuments(id) {
-      if(id != 0) { // Quitar breadcrums innecesarios
-        let indexDelete = 0
-        this.breadcrumbs.forEach((e, i) => {
-          if(e.id == id) {
-            indexDelete = i
-          } 
-        })
-        let last = this.breadcrumbs.length - 1
-        this.breadcrumbs.splice(indexDelete + 1, last)
-      }
-      
-      this.getSubdocuments(id) 
-    },
-    getSubdocuments (id) {
-      if(id == 0) {
-        this.getDocuments()
-        this.breadcrumbs = [{id: 0, name: 'Inicio'}]
-        return
-      }
+    create () {
 
-      axios.get(`admin/documents/${id}/subdocuments`)  
-        .then(res => {
-          this.documents = res.data
-          this.documents.forEach(e => {
-            Vue.set(e, 'active', false)
-            Vue.set(e, 'selected', false)
-          })
-        })
-        .catch(err => {
-          console.log(err)
-        })
     },
     selectDocument (d) {
       if(!d.type) {
@@ -73,6 +28,12 @@ const documents = new Vue({
           e.active = false
         })
       }
+    },
+    deletes () {
+
+    },
+    upload () {
+
     },
     uploadFile () {
       this.loading = true
@@ -94,22 +55,6 @@ const documents = new Vue({
           setTimeout(() => {
             this.success = false
           }, 2000)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    getAll (id) {
-      if(this.selected.id == id) {
-        return
-      }
-      axios.get(`admin/documents/${id}/all`)
-        .then(res => {
-          this.documents = res.data
-          this.documents.forEach(e => {
-            Vue.set(e, 'active', false)
-            Vue.set(e, 'selected', false)
-          })
         })
         .catch(err => {
           console.log(err)
