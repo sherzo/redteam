@@ -12,7 +12,36 @@ const evaluation = new Vue({
       employees: [],
       stars: [1,2,3,4,5],
       employee: {},
+      questions: [{ question: '¿Cómo califica el orden y limpieza del área de trabajo?'},
+                  { question: '¿Cómo califica el trabajo en equipo de %s?'},
+                  { question: '¿Cumple con los tiempos establecidos en la entrega de proyectos?'},
+                  { question: '¿Cómo considera la proactividad de %s?'},
+                  { question: '¿Cuál es el nivel de actitud de %s ante los problemas, estrés ó dificultades?'},
+                  { question: '¿Cómo califica la puntualidad en los horarios de entrada, almuerzo y salida?'},
+                  { question: '¿Cómo califica el nivel de evolución y desempeño de %s?'},
+                  { question: '¿Considera que tiene los conocimientos necesarios en cuanto a su área compete?'},
+                  { question: '¿Considera que la imagen personal y higiene de %s es la correcta?'},
+                  { question: '¿Cómo califica el lenguaje verbal de %s?'}],
+      answers: [0,0,0,0,0,0,0,0,0,0],
+      options: [{icon: 'images/icons/ico-excelent.png', display: 'EXCELENTE', value: 10}, 
+                {icon: 'images/icons/ico-muybueno.png', display: 'MUY BUENO', value: 7}, 
+                {icon: 'images/icons/ico-regular.png', display: 'REGULAR', value: 4}, 
+                {icon: 'images/icons/ico-malo.png', display: 'MALO', value: 0}],
+      selectedIcon: 'images/icons/selectActiveAdmin.png',
       inEvaluation: false
+   },
+   filters: {
+    urlImage (img) {
+      return axios.defaults.baseURL + '/assets/' + img
+    },
+    replaceName (question) {
+      if(this.employee) {
+
+      let name = this.employee.name
+      question.replace('%s', name)
+      }
+      return question
+    }
    },
    methods: {
     startEvaluation(e) {

@@ -30,13 +30,12 @@
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest sectionEvalutionToPersonal" v-cloak>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 EvaluationPersonal">
-                    <a><i class="fa fa-back"></i></a>
                     <h3>Encargado de área: <span> {{ Auth::user()->full_name }} </span> </h3>
                     <h3>Evaluar a:</h3>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts" v-show="!inEvaluation">
                          {{-- For --}}     
-
+            
                         <a href="" :class="{ 'UserYarealizo': e.evaluation }" v-for="(e,i) in employees" @click.prevent="startEvaluation(e)">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <div class="label dataPrubeIm dataProfileEvaluaciones" :style="{ 'background-image': 'url(' + e.avatar + ')' }"></div>
@@ -69,7 +68,25 @@
                                 <p>Contesta según nivel de desempeño, siendo malo el peor y excelente el mejor</p>
                             </div>
 
-                            @include('front-end.partials.preguntas-evaluacion')
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 textConesta bgQuesdtions" v-for="(q,i) in questions">
+                                <p>@{{ i+1 }}. @{{ q.question | replaceName }}</p>
+                               
+                                <ul class="Redconocistes">
+                                    <li class="cssIILim oneLi" v-for="o in options">
+                                        <a href="#!">
+                                            <img class="img-responsive excelenteSu" :src="o.icon | urlImage" alt="excelente">
+                                            <p>@{{ o.display }}</p>
+                                        </a>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 OnePregunt">
+                                            <img class="img-responsive activeSeleccionCarita" :src="selectedIcon | urlImage">
+                                            <input type="hidden" value="10" data-class='onePregu'>
+                                        </div>
+                                    </li>
+                                </ul>
+                               
+                            </div>
+
+                            {{--@include('front-end.partials.preguntas-evaluacion') --}}
 
                         </div>
 
