@@ -49,9 +49,12 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('documents/all', 'DocumentController@all');
     Route::post('documents/add-folder', 'DocumentController@addFolder');
     Route::get('documents/{id}/subdocuments', 'DocumentController@getSubdocuments');
+    Route::get('ranking/all', 'RankingController@all');
+    Route::post('ranking/add', 'RankingController@addADP');
     Route::resources([
         'users' => 'UserController',
-        'documents' => 'DocumentController'
+        'documents' => 'DocumentController',
+        'ranking' => 'RankingController'
     ]);
     Route::get('all/suggestions', 'SuggestionController@all');
     Route::get('suggestions', 'SuggestionController@index');
@@ -336,7 +339,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
    |--------------------------------------------------------------------------
    |
    */
-    Route::get('/admin/ranking', 'Admin\AdminController@Ranking');
+    // Route::get('/admin/ranking', 'Admin\AdminController@Ranking');
 
 
     /*

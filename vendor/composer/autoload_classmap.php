@@ -18,6 +18,7 @@ return array(
     'App\\Evaluation' => $baseDir . '/app/Evaluation.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
+    'App\\Http\\Controllers\\Admin\\RankingController' => $baseDir . '/app/Http/Controllers/Admin/RankingController.php',
     'App\\Http\\Controllers\\AppicationController' => $baseDir . '/app/Http/Controllers/AppicationController.php',
     'App\\Http\\Controllers\\ApplicationController' => $baseDir . '/app/Http/Controllers/ApplicationController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

@@ -347,6 +347,7 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'App\\Evaluation' => __DIR__ . '/../..' . '/app/Evaluation.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\RankingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RankingController.php',
         'App\\Http\\Controllers\\AppicationController' => __DIR__ . '/../..' . '/app/Http/Controllers/AppicationController.php',
         'App\\Http\\Controllers\\ApplicationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApplicationController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
