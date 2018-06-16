@@ -27,7 +27,7 @@ class RankingController extends Controller
         $employees = User::all();
         foreach ($employees as $employee) {
             $employee->select = "";
-
+            $employee->adp = $adps = Performance::where('user_id', $employee->id)->where('performance', 2)->count();
         }
         $count = $employees->count();
         
@@ -64,12 +64,16 @@ class RankingController extends Controller
         }
 
         $employee->score = $total;
-        $stars = round(100/$total);
+        $stars = round($total/20);
         if ($stars <= 0) {
-            $stars = 0;
+            $stars = null;
+        } else if ($stars >= 5) {
+            $stars = 5;
         }
         $employee->stars = $stars;
         $employee->save();
+
+        $employee->adp = Performance::where('user_id', $request->user_id)->where('performance', 2)->count();
 
         return $employee;
     }
