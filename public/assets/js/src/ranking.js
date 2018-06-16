@@ -36,7 +36,6 @@ const ranking = new Vue({
       }
       axios.post('admin/ranking/add', data)
         .then(res => {
-          alert('Se ha modificado la puntuacion')
           res.data.index = index
           res.data.select = ""
           if (select_user > 0) {
