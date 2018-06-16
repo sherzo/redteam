@@ -68,9 +68,14 @@ const evaluation = new Vue({
       console.log(data)
       axios.post('evaluations/store', data)
         .then(res => {
-          this.getEmployees()
-          this.inEvaluation = false
+          //this.getEmployees()
+          this.employees.forEach((e,i) => {
+            if(e.id == this.employee.id) {
+              this.employees.splice(i, 1)
+            }
+          })
           this.evaluated = res.data
+          this.inEvaluation = false
           this.employee = {}
         })
         .catch(err => {
@@ -97,6 +102,7 @@ const evaluation = new Vue({
     getEmployees () {
       axios.get('evaluations/employees')
         .then(res => {
+         
           this.employees = res.data
         })
         .catch(err => {

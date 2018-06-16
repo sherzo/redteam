@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Evaluation;
 use Auth;
-use User;
+use App\User;
 
 class EvaluationController extends Controller
 {

@@ -68,14 +68,14 @@
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts" v-show="!inEvaluation">
                          {{-- For --}}   
-                        <p v-show="evaluated.name">Seguir evaluando:</p>  
+                        <h4 v-show="evaluated.name">Seguir evaluando:</h4>  
                         <a href="" :class="{ 'UserYarealizo': e.evaluated }" v-for="(e,i) in employees" @click.prevent="startEvaluation(e)">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <div class="label dataPrubeIm dataProfileEvaluaciones" :style="{ 'background-image': 'url(' + e.avatar + ')' }"></div>
                                 <p class="colorBlack fontMiriamProSemiBold">@{{ e.name }}</p>
 
                                 <div class="ui star rating" :data-rating="e.stars">
-                                    <i class="icon" v-for="s in stars" :class="{ 'active': s <= e.stars }"></i>
+                                    <i class="icon" v-for="(s,j) in stars" :class="{ 'active': s <= e.stars }"></i>
                                 </div>
                             </div>
                         </a>

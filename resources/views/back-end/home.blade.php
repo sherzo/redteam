@@ -1,46 +1,19 @@
-@extends('layouts.Template-admin')
+@extends('layouts.admin')
 
-@section('content')
-    <div class="container continerWithSite">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionAdminContain">
-            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
-
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido">
-                <h1>Hola!</h1>
-                @include('back-end.partials.fields-name-admin-login')
-                @include('back-end.partials.fields-search-usuarios')
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <ul class="nav navbar-nav navbar-right navulRIght">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li>
-                            <a href="{{ url('/logout') }}"
-                               onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                                Salir
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </div>
+@section('content')        
+    
+    @include('components.header-admin', [
+        'title' => 'Usuarios',
+        'placeholder' => 'Buscar usuarios por su nombre'
+    ])
 
     <!-- SECTION MENU INTERNO HOME -->
     <section class="container-fluid">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionMenuInterno">
             <ul>
-                <li class="active"><a href="home">Home</a></li>
-                <li><a href="board">Board</a></li>
-                <li><a href="usuarios">Usuarios</a></li>
+                <li class="active"><a href="{{ url('admin/home') }}">Home</a></li>
+                <li><a href="{{ url('admin/board') }}">Board</a></li>
+                <li><a href="{{ url('admin/users') }}">Usuarios</a></li>
             </ul>
         </div>
     </section>
