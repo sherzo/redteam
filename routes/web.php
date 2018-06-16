@@ -95,6 +95,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('get-emergencies', 'ProfileController@emergencies');
     Route::get('evaluations', 'EvaluationController@index');
     Route::get('evaluations/employees', 'EvaluationController@employees');
+    Route::post('evaluations/store', 'EvaluationController@store');
 });
 
 /*

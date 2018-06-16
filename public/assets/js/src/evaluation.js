@@ -5,24 +5,26 @@ const evaluation = new Vue({
       emergency: false,
       featured: false,
       comment: '',
+      evaluated: {},
       file: [],
       image: '',
+      finalized: false,
+      error: false,
       success: false,
       user_id: 0,
       employees: [],
       stars: [1,2,3,4,5],
       employee: {},
-      questions: [{ question: '¿Cómo califica el orden y limpieza del área de trabajo?'},
-                  { question: '¿Cómo califica el trabajo en equipo de %s?'},
-                  { question: '¿Cumple con los tiempos establecidos en la entrega de proyectos?'},
-                  { question: '¿Cómo considera la proactividad de %s?'},
-                  { question: '¿Cuál es el nivel de actitud de %s ante los problemas, estrés ó dificultades?'},
-                  { question: '¿Cómo califica la puntualidad en los horarios de entrada, almuerzo y salida?'},
-                  { question: '¿Cómo califica el nivel de evolución y desempeño de %s?'},
-                  { question: '¿Considera que tiene los conocimientos necesarios en cuanto a su área compete?'},
-                  { question: '¿Considera que la imagen personal y higiene de %s es la correcta?'},
-                  { question: '¿Cómo califica el lenguaje verbal de %s?'}],
-      answers: [0,0,0,0,0,0,0,0,0,0],
+      questions: [{ question: '¿Cómo califica el orden y limpieza del área de trabajo?', answer: null},
+                  { question: '¿Cómo califica el trabajo en equipo de %s?', answer: null},
+                  { question: '¿Cumple con los tiempos establecidos en la entrega de proyectos?', answer: null},
+                  { question: '¿Cómo considera la proactividad de %s?', answer: null},
+                  { question: '¿Cuál es el nivel de actitud de %s ante los problemas, estrés ó dificultades?', answer: null},
+                  { question: '¿Cómo califica la puntualidad en los horarios de entrada, almuerzo y salida?', answer: null},
+                  { question: '¿Cómo califica el nivel de evolución y desempeño de %s?', answer: null},
+                  { question: '¿Considera que tiene los conocimientos necesarios en cuanto a su área compete?', answer: null},
+                  { question: '¿Considera que la imagen personal y higiene de %s es la correcta?', answer: null},
+                  { question: '¿Cómo califica el lenguaje verbal de %s?', answer: null}],
       options: [{icon: 'images/icons/ico-excelent.png', display: 'EXCELENTE', value: 10}, 
                 {icon: 'images/icons/ico-muybueno.png', display: 'MUY BUENO', value: 7}, 
                 {icon: 'images/icons/ico-regular.png', display: 'REGULAR', value: 4}, 
@@ -33,19 +35,63 @@ const evaluation = new Vue({
    filters: {
     urlImage (img) {
       return axios.defaults.baseURL + '/assets/' + img
-    },
-    replaceName (question) {
-      if(this.employee) {
-
-      let name = this.employee.name
-      question.replace('%s', name)
-      }
-      return question
     }
    },
    methods: {
+    saveEvaluation () {
+      let error = false
+      let answers = []
+      let score = 0
+      this.questions.forEach((e,i) => {
+        if(e.answer === null) {
+          error = true
+          return
+        }
+        answers.push(e.answer)
+        score += e.answer
+      })
+
+      this.error = error
+      if(this.error) {
+        setTimeout(() => {
+          this.error = false
+        }, 4000)
+        return
+      }
+      
+      let data = {
+        id: this.employee.id,
+        score,
+        answers
+      }
+
+      console.log(data)
+      axios.post('evaluations/store', data)
+        .then(res => {
+          this.getEmployees()
+          this.inEvaluation = false
+          this.evaluated = res.data
+          this.employee = {}
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    selectecAnswer (i, value) {
+      this.questions[i].answer = value
+    },
+    replaceName(question) {
+      let name = this.employee.name
+      let newQuestion = question.replace('%s', name)
+      return newQuestion
+    },
     startEvaluation(e) {
+      if(e.evaluated) {
+        return
+      }
+      this.evaluated = {}
       this.employee = e 
+      console.log(this.employee)
       this.inEvaluation = true
     },
     getEmployees () {
