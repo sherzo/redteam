@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido conteniRanking">
                 <p class="alert alert-success" v-show="adp_exito">Se ha colocado la ADP</p>
-
+                <p class="alert alert-success" v-show="puntos_exito">Modificacion exitosa</p>
                 <!-- rankings -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloquesRankins">
                     <!-- Bloque Subtitles sections -->
@@ -47,20 +47,20 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 CountADP">
-                                    <h3>@{{employee.select}}</h3>
+                                    <h3>@{{employee.adp}}</h3>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 editionAction">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 editerRabling">
                                         <form>
                                             <select v-model="employee.select" :key="employee.id">
                                                 <option value="" selected disabled>Colocar ADP</option>
-                                                <option value="1">Ascenso</option>
-                                                <option value="2">Aumento de Sueldo</option>
-                                                <option value="3">Trabajo Extraordinario</option>
-                                                <option value="4">Horas Extras</option>
-                                                <option value="-5">Falsedad material</option>
-                                                <option value="-6">Amonestación escrita</option>
-                                                <option value="-8">Ausencia sin permiso</option>
+                                                <option value="25">Ascenso</option>
+                                                <option value="20">Aumento de Sueldo</option>
+                                                <option value="15">Trabajo Extraordinario</option>
+                                                <option value="10">Horas Extras</option>
+                                                <option value="-15">Falsedad material</option>
+                                                <option value="-20">Amonestación escrita</option>
+                                                <option value="-25">Ausencia sin permiso</option>
                                             </select>
                                             <button type="button" class="btn btn-primary" @click="enviar(employee.id,employee.select,employee.index)" style="margin-left: 2vw;">Aceptar</button>
                                         </form>
