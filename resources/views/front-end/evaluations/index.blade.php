@@ -1,5 +1,20 @@
 @extends('layouts.public')
 
+@section('css')
+<style>
+    .active {
+        display: inline;
+    }
+    .inactive {
+        display: none;
+    }
+    .err {
+        background: #ffa4a4;
+        margin-top: 3%;
+    }
+</style>
+@endsection
+
 @section('content')
 <div id="evaluations">
     
@@ -31,12 +46,30 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest sectionEvalutionToPersonal" v-cloak>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 EvaluationPersonal">
                     <h3>Encargado de área: <span> {{ Auth::user()->full_name }} </span> </h3>
-                    <h3>Evaluar a:</h3>
+                    <h3 v-show="!finalized">Evaluar a:</h3>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts profilesUsersFinish" v-show="evaluated.name">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dataEvaluatioNFIna">
+                            <h3>La evaluación de @{{ evaluated.name }} ha finalizado</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 detallImgProfile profileSession">
+                            <div class="label dataPrubeIm dataProfileEvaluacionesDetallUser" :style="{ 'background-image': 'url(' + evaluated.avatar + ')' }"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 dataNamesUsers">
+                            <p class="colorBlack fontMiriamProSemiBold">@{{ evaluated.name }}</p>
+                            <div class="ui star rating" :data-rating="evaluated.stars">
+                                <i class="icon" v-for="s in stars" :class="{ 'active': s <= evaluated.stars }"></i>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts" v-show="!inEvaluation">
-                         {{-- For --}}     
-            
-                        <a href="" :class="{ 'UserYarealizo': e.evaluation }" v-for="(e,i) in employees" @click.prevent="startEvaluation(e)">
+                         {{-- For --}}   
+                        <p v-show="evaluated.name">Seguir evaluando:</p>  
+                        <a href="" :class="{ 'UserYarealizo': e.evaluated }" v-for="(e,i) in employees" @click.prevent="startEvaluation(e)">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <div class="label dataPrubeIm dataProfileEvaluaciones" :style="{ 'background-image': 'url(' + e.avatar + ')' }"></div>
                                 <p class="colorBlack fontMiriamProSemiBold">@{{ e.name }}</p>
@@ -50,7 +83,7 @@
                         {{-- End For --}}                    
                     </div>
 
-                    <form action="../../send_evaluacion" method="post" accept-charset="utf-8" class="formEvaliuacion" v-if="inEvaluation">
+                    <form action="" method="post" accept-charset="utf-8" class="formEvaliuacion" v-if="inEvaluation" @submit.prevent="saveEvaluation">
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts profilesForDetall">
                             <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 detallImgProfile">
@@ -69,28 +102,34 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 textConesta bgQuesdtions" v-for="(q,i) in questions">
-                                <p>@{{ i+1 }}. @{{ q.question | replaceName }}</p>
+                                <p>@{{ i+1 }}. @{{ replaceName(q.question) }}</p>
                                
                                 <ul class="Redconocistes">
-                                    <li class="cssIILim oneLi" v-for="o in options">
+                                    <li class="cssIILim oneLi" v-for="o in options" @click="selectecAnswer(i, o.value)">
                                         <a href="#!">
                                             <img class="img-responsive excelenteSu" :src="o.icon | urlImage" alt="excelente">
                                             <p>@{{ o.display }}</p>
                                         </a>
                                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 OnePregunt">
-                                            <img class="img-responsive activeSeleccionCarita" :src="selectedIcon | urlImage">
-                                            <input type="hidden" value="10" data-class='onePregu'>
+                                            <img class="img-responsive" :src="selectedIcon | urlImage" :class="o.value == q.answer ? 'active' : 'inactive'" >
                                         </div>
                                     </li>
                                 </ul>
                                
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 err" v-show="error">
+                                <p>Por favor responde todas la preguntas de la evaluación</p>
+                            </div>
 
                             {{--@include('front-end.partials.preguntas-evaluacion') --}}
-
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 SendFormDataRes">
+                                <input type="submit" value="Enviar evaluación" >
+                            </div>
                         </div>
-
+                    
                     </form>
+                
+
                 </div>
             </div>
 

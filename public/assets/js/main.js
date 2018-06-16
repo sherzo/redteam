@@ -1030,7 +1030,7 @@ jQuery.fn.SelecRespuestasEvaluaction = function(selectPregunta,getValueInput)  /
 	});
   
 };
-
+/*
 $('ul.Redconocistes>li.oneLi').SelecRespuestasEvaluaction('div.OnePregunt>img.activeSeleccionCarita','div.OnePregunt>input'); 
 $('ul.Redconocistes>li.twoLi').SelecRespuestasEvaluaction('div.TwoPregunt>img.activeSeleccionCarita','div.TwoPregunt>input'); 
 $('ul.Redconocistes>li.threLi').SelecRespuestasEvaluaction('div.ThreePregunt>img.activeSeleccionCarita','div.ThreePregunt>input'); 
@@ -1041,7 +1041,7 @@ $('ul.Redconocistes>li.seveLi').SelecRespuestasEvaluaction('div.SevenPregunt>img
 $('ul.Redconocistes>li.eigLi').SelecRespuestasEvaluaction('div.EightPregunt>img.activeSeleccionCarita','div.EightPregunt>input'); 
 $('ul.Redconocistes>li.nineLi').SelecRespuestasEvaluaction('div.NinePregunt>img.activeSeleccionCarita','div.NinePregunt>input'); 
 $('ul.Redconocistes>li.tenLi').SelecRespuestasEvaluaction('div.tenPregunt>img.activeSeleccionCarita','div.tenPregunt>input'); 
-
+*/
 
 // validacion de que todo las preguntas vayan contestadas
 $("form.formEvaliuacion").submit(function(e){	

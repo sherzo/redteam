@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(Schedule::class);
     }
 
+    public function performances()
+    {
+        return $this->hasMany(Performance::class);
+    }
+
     public function schedulesComplete()
     {
         return $this->schedules()->where('midday', false);
