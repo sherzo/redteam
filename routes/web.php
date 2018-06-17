@@ -96,6 +96,8 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('evaluations', 'EvaluationController@index');
     Route::get('evaluations/employees', 'EvaluationController@employees');
     Route::post('evaluations/store', 'EvaluationController@store');
+    Route::get('ranking', 'RankingController@ranking');
+    Route::get('ranking/employees', 'RankingController@employees');
 });
 
 /*

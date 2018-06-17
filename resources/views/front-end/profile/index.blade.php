@@ -32,7 +32,8 @@
                         <input type="file" style="display: none;" onchange="readURL(this)" id="inputPhoto" name="avatar" disabled="" class="dtaYesEdit">
                     </div>
                     <p class="colorBlack fontMiriamProSemiBold">{{ $user->full_name }}</p>
-                    <div class="ui star rating" data-rating="5"></div>
+                    <div class="ui star rating" data-rating="{{ $user->stars }}">
+                    </div>
                 </div>
                 <!-- Information empleado -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 InformacionEmpleado">

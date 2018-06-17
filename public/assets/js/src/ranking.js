@@ -2,6 +2,7 @@ const ranking = new Vue({
   el: '#ranking',
     data: {
     employees: [],
+    first: {},
     selected: {},
     count: 0,
     select_adp: 0,
@@ -10,6 +11,16 @@ const ranking = new Vue({
     stars: [1,2,3,4,5]
   },
   methods: {
+    ranking () { // METODO QUE SE USA EN EL RANKING PUBLICO
+      axios.get('ranking/all')
+        .then(res => {
+          this.employees = res.data.employees
+          this.first = res.data.first
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     getEmployees() {
       axios.get('admin/ranking/all')
         .then(res => {

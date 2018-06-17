@@ -62,15 +62,12 @@
                 <p>{{ $user->work->extension }}</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 RankinUsers topDatasUser">
-                <div class="ui star rating disabled" data-rating="5"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
+                <div class="ui star rating disabled" data-rating="{{ $user->stars }}"></div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 AdpUsers topDatasUser">
-                <p class="gasper">0</p>
-                <p class="gasper">1</p>
                 <p>0</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 NotUses topDatasUser">
-                <p class="gasper"> 0</p>
                 <p>0</p>
             </div>
         </div>

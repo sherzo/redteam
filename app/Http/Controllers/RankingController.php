@@ -57,25 +57,37 @@ class RankingController extends Controller
         /*
         * CALCULO DEL SCORE DE LOS USUARIOS
         */
+        if($employee->score == null) { // Si es nuevo y no tiene score
 
-        $performances_user = Performance::where('user_id', $request->user_id)->get();
-        foreach ($performances_user as $performance_user) {
-            $total = $total + $performance_user->operation;
-        }
+            $employee->score = $performance->operation;
 
-        $employee->score = $total;
-        $stars = round($total/20);
-        if ($stars <= 0) {
-            $stars = null;
-        } else if ($stars >= 5) {
-            $stars = 5;
+        }else {
+        
+            $employee->score += $performance->operation;                
+            
         }
-        $employee->stars = $stars;
+        $employee->stars = round($employee->score / 20);
         $employee->save();
-
+        
         $employee->adp = Performance::where('user_id', $request->user_id)->where('performance', 2)->count();
 
         return $employee;
+    }
+
+    public function ranking()
+    {
+        return view('front-end.ranking.index');
+    }
+
+    public function employees()
+    {
+        $employees = User::orderBy('score', 'DESC')->get();
+        $first = $employees->shift(0);
+
+        return [
+            'first' => $first, 
+            'employees' => $employees
+        ];
     }
 
     /**

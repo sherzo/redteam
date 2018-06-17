@@ -77,6 +77,9 @@ const evaluation = new Vue({
           this.evaluated = res.data
           this.inEvaluation = false
           this.employee = {}
+          this.questions.forEach(e => {
+            e.answer = null
+          })
         })
         .catch(err => {
           console.log(err)
@@ -94,10 +97,15 @@ const evaluation = new Vue({
       if(e.evaluated) {
         return
       }
+      window.scrollTo(0,0)
       this.evaluated = {}
       this.employee = e 
       console.log(this.employee)
       this.inEvaluation = true
+      /*
+      * Traigo empleados para renovar la lista total
+      */
+      this.getEmployees()
     },
     getEmployees () {
       axios.get('evaluations/employees')
@@ -120,7 +128,7 @@ const evaluation = new Vue({
       axios.post('publications', form)
         .then(res => {
           this.success = true
-          window.location = axios.defaults.baseURL + '/admin/home';
+          window.location = axios.defaults.baseURL + '/home';
          
         })
         .catch(err => {

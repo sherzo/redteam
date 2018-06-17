@@ -54,13 +54,13 @@
                                         <form>
                                             <select v-model="employee.select" :key="employee.id">
                                                 <option value="" selected disabled>Colocar ADP</option>
-                                                <option value="25">Ascenso</option>
-                                                <option value="20">Aumento de Sueldo</option>
-                                                <option value="15">Trabajo Extraordinario</option>
-                                                <option value="10">Horas Extras</option>
-                                                <option value="-15">Falsedad material</option>
-                                                <option value="-20">Amonestación escrita</option>
-                                                <option value="-25">Ausencia sin permiso</option>
+                                                <option value="15">Ascenso</option>
+                                                <option value="10">Aumento de Sueldo</option>
+                                                <option value="8">Trabajo Extraordinario</option>
+                                                <option value="5">Horas Extras</option>
+                                                <option value="-10">Falsedad material</option>
+                                                <option value="-10">Amonestación escrita</option>
+                                                <option value="-15">Ausencia sin permiso</option>
                                             </select>
                                             <button type="button" class="btn btn-primary" @click="enviar(employee.id,employee.select,employee.index)" style="margin-left: 2vw;">Aceptar</button>
                                         </form>

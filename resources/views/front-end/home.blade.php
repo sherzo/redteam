@@ -109,7 +109,7 @@
                             <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
                         </form>
                     </div>
-                    {{--    FIN DE V-FOR --}}
+                    {{--    FIN DE V-FOR 
 
                     <div class="col-md-12">
                         <div class="ui feed uifeedAvatar">
@@ -173,7 +173,7 @@
                         </form>
                     </div>
 
-                    {{-- 2BLOQUE VACIONES --}}
+                    {{-- 2BLOQUE VACIONES 
 
                     <div class="col-md-12 typeEventEspecial">
                         <img class="img-responsive" src="{{ asset('assets/images/ico-vacaciones.jpg') }}">
@@ -287,6 +287,7 @@
                             <a href="" class="dataComenyt"><p>Comentar</p></a>
                         </form>
                     </div>
+                    --}}
                 </div>    
             
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -1024,7 +1025,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 ButtinPublish">
-                                        <input type="submit" value="Enviar"></input>
+                                        <input type="submit" value="Enviar">
+                                        <button type="button" class="btn btn-default close-modal hide" data-dismiss="modal" id="close-modal">Close</button>
                                     </div>
                                 </div>
                             </form>
@@ -1042,7 +1044,10 @@
 {{--
 --}}
 <!-- BS JavaScript -->
- <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
+{{--
+
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
+    --}} 
 <script src="{{ asset('assets/js/src/publication.js') }}"></script>
 <script>
     publication.getUser({{Auth::user()->id}})

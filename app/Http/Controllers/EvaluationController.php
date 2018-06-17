@@ -11,6 +11,12 @@ class EvaluationController extends Controller
 {
 	public function index()
 	{
+		$user = Auth::user();
+		$employees = $user->employees->count();
+		if($employees == 0){
+			return redirect('home');
+		}
+
 		return view('front-end.evaluations.index');
 	}   
 
@@ -58,8 +64,7 @@ class EvaluationController extends Controller
 			$newScore = $evaluation->score;
 		}
 		
-		$newStars = $newScore / 20;
-
+		$newStars = round($newScore / 20);
 		$employee->score = $newScore;
 		$employee->stars = $newStars;
 		$employee->save();

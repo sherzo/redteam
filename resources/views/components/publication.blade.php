@@ -29,6 +29,7 @@
                             </div>
                             <div class="col-md-6 ButtinPublish">
                                 <input type="submit" value="Enviar"></input>
+                            
                             </div>
                         </div>
                     </form>

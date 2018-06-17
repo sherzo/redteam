@@ -43,4 +43,19 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+       if(auth::user()->hasRole('admin')) {
+            return 'admin/home';
+       }
+
+       return $this->redirectTo;
+    }
+
 }

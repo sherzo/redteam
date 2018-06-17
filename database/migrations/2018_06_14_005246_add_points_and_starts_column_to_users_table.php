@@ -14,11 +14,11 @@ class AddPointsAndStartsColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('score')
+            $table->integer('score')
                 ->after('username')
                 ->nullable();
 
-            $table->unsignedInteger('stars')
+            $table->integer('stars')
                 ->after('score')
                 ->nullable();
         });
