@@ -10,9 +10,17 @@ const ranking = new Vue({
     puntos_exito: false,
     stars: [1,2,3,4,5]
   },
+  filters: {
+    showScore (score) {
+      return parseInt(score) / 20
+    },
+    urlProfile (username) {
+      return axios.defaults.baseURL + '/profile/' + username
+    }
+  },
   methods: {
     ranking () { // METODO QUE SE USA EN EL RANKING PUBLICO
-      axios.get('ranking/all')
+      axios.get('ranking/employees')
         .then(res => {
           this.employees = res.data.employees
           this.first = res.data.first
@@ -64,5 +72,6 @@ const ranking = new Vue({
   },
   mounted () {
     this.getEmployees()
+    this.ranking()
   }
 })

@@ -59,7 +59,7 @@
                             <div class="label dataPrubeIm dataProfileEvaluacionesDetallUser" :style="{ 'background-image': 'url(' + evaluated.avatar + ')' }"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 dataNamesUsers">
-                            <p class="colorBlack fontMiriamProSemiBold">@{{ evaluated.name }}</p>
+                            <p class="colorBlack fontMiriamProSemiBold">@{{ evaluated.name }} @{{ evaluated.lastname }}</p>
                             <div class="ui star rating" :data-rating="evaluated.stars">
                                 <i class="icon" v-for="s in stars" :class="{ 'active': s <= evaluated.stars }"></i>
                             </div>
@@ -72,7 +72,7 @@
                         <a href="" :class="{ 'UserYarealizo': e.evaluated }" v-for="(e,i) in employees" @click.prevent="startEvaluation(e)">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <div class="label dataPrubeIm dataProfileEvaluaciones" :style="{ 'background-image': 'url(' + e.avatar + ')' }"></div>
-                                <p class="colorBlack fontMiriamProSemiBold">@{{ e.name }}</p>
+                                <p class="colorBlack fontMiriamProSemiBold">@{{ e.name }} @{{ e.lastname }}</p>
 
                                 <div class="ui star rating" :data-rating="e.stars">
                                     <i class="icon" v-for="(s,j) in stars" :class="{ 'active': s <= e.stars }"></i>

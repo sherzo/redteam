@@ -1,31 +1,35 @@
 @extends('layouts.public')
 
 @section('content')
-    <div class="container continerWithSite containRTanks">
-        <div class="row">
+    <div class="container continerWithSite containRTanks" id="ranking">
+        <div class="row" v-cloak>
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos captionRabkinEmpleados">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 profilesRabking">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 profilesRabking" v-if="first.name">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ProfileFotosStarts">
-                        <div class="label dataPrubeIm dataProfileRankingUser" style="background-image: url('{{ asset('assets/profiles/prifle.png') }}')">
+                        <div class="label dataPrubeIm dataProfileRankingUser" :style="{ 'background-image': 'url(' + first.avatar + ')' }">
                         </div>
-                        <a href="profile-users/1">
-                            <p class="colorBlack fontMiriamProSemiBold">Francisca De Flores</p>
+                        <a :href="first.username | urlProfile">
+                            <p class="colorBlack fontMiriamProSemiBold">@{{ first.name }} @{{ first.lastname }}</p>
                         </a>
 
-                        <p class="PuntuancionRanlinkNumber">4.5</p>
-                        <div class="ui star rating" data-rating="5"></div>
+                        <p class="PuntuancionRanlinkNumber">@{{ first.score | showScore }}</p>
+                        <div class="ui star rating" :data-rating="first.stars">
+                            <i class="icon" v-for="s in stars" :class="{ 'active': s <= first.stars }"></i>
+                        </div>
                     </div>
                 </div>
 
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 profilesRabking profileMoreUSaer">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ProfileFotosStartsMoreUser">
-                        <div class="label dataPrubeIm dataProfileRankingUser ranINDDS" style="background-image: url('{{ asset('assets/profiles/profile2.jpg') }}')">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ProfileFotosStartsMoreUser" v-for="(e,i) in employees">
+                        <div class="label dataPrubeIm dataProfileRankingUser ranINDDS" :style="{ 'background-image': 'url(' + e.avatar + ')' }">
                         </div>
-                        <a href="profile-users/1">
-                            <p class="colorBlack fontMiriamProSemiBold">Jessica Ramirez</p>
+                        <a :href="e.username | urlProfile">
+                            <p class="colorBlack fontMiriamProSemiBold">@{{ e.name }} @{{ e.lastname }}</p>
                         </a>
-                        <div class="ui star rating" data-rating="4"></div>
+                         <div class="ui star rating" :data-rating="e.stars">
+                            <i class="icon" v-for="(s,j) in stars" :class="{ 'active': s <= e.stars }"></i>
+                        </div>
                     </div>
                 </div>
 
@@ -104,4 +108,8 @@
 
     {{-- WINDOWS CHAT --}}
     @include('front-end.partials.fields-windows-chat')
+@endsection
+
+@section('js')
+<script src="{{ asset('assets/js/src/ranking.js') }}"></script>
 @endsection
