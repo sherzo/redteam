@@ -1,7 +1,7 @@
-@extends('layouts.Template-home')
+@extends('layouts.public')
 
 @section('content')
-    <div class="container continerWithSite contaiNChatU">
+    <div class="container continerWithSite contaiNChatU" id="chats" v-cloak>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos captionChat">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUser">
@@ -14,13 +14,17 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatCOntentUsers">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentChat chat_box">
 
-                        <div class="col-lg-12 MensaGedate getUserReceive getSenMenIds2">
-                            <div class="datafechasND datgde2">17-04-2017</div>
-                            <div class="col-lg-12 wrapMensage envMensgaRce2"><p>hola</p></div>
+                        <div class="col-lg-12 MensaGedate getSenMenIds2" :class="{ 'getUserReceive': m.user_id != user_id, 'getUserSend': m.user_id == user_id  }" v-for="m in messages">
+                            <div class="col-lg-12 wrapMensage envMensgaRce2"><p>@{{ m.content }}</p></div>
                         </div>
-                        <div class="col-lg-12 MensaGedate getUserSend getSenMenIds3">
-                            <div class="col-lg-12 wrapMensage envMensga3"><p>hola</p></div>
-                        </div>
+                        
+                        {{-- 
+                            <div class="col-lg-12 MensaGedate getUserSend getSenMenIds3">
+                                <div class="datafechasND datgde2">17-04-2017</div>
+                                <div class="col-lg-12 wrapMensage envMensga3"><p>hola que pasa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam omnis consectetur enim nesciunt ipsa quos numquam suscipit dolores, porro voluptate officia doloribus sunt libero perspiciatis facere quis, commodi, deserunt nihil!</p></div>
+                            </div>
+
+                         --}}
                     </div>
                 </div>
 
@@ -55,107 +59,30 @@
 
             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 captionRecordNotas captionAllMessage">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 dataShoWmensajes">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat">
+                    {{-- FOR --}}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat" v-for="(c,i) in chats">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
-                            <form action="chatUsers_submit" method="get" accept-charset="utf-8">
-                                <i class="fa fa-times" aria-hidden="true"></i>
+                            <form action="" method="get" accept-charset="utf-8">
+                                <i class="fa fa-times" aria-hidden="true" @click="deleteChat(i)"></i>
                             </form>
                         </div>
-                        <a href="#!" data-iduserchat="2">
+                        <a href="" @click.prevent="getMessages(c.id)">
                             <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
                                 <p class="gasper"></p>
-                                <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/16418.jpg') }}')"></div>
+                                <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + c.transmitter.avatar + ')' }" v-if="user_id != c.transmitter_id"></div>
+                                <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + c.receiver.avatar + ')' }" v-else></div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Administrador <span> dice: </span></p>
+                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-if="user_id != c.transmitter_id">@{{ c.transmitter.name }} <span> dice: </span></p>
+                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-else> @{{ c.receiver.name }} <span> dice: </span></p>
                                 <p class="cont_previwMenSage">que hay...</p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 TimeSendMenssage">
                             </div>
                         </a>
                     </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
-                            <form action="chatUsers_submit" method="get" accept-charset="utf-8">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </form>
-                        </div>
-                        <a href="#!" data-iduserchat="3">
-                            <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                <p class="gasper"></p>
-                                <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/6242.jpg') }}')"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Jessica <span> dice: </span></p>
-                                <p class="cont_previwMenSage">Tu: Hola jesssi...</p>
-                            </div>
-
-                        </a>
-                    </div>
-
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
-                            <form action="chatUsers_submit" method="get" accept-charset="utf-8">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </form>
-                        </div>
-                        <a href="#!" data-iduserchat="4">
-                            <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                <p class="gasper"></p>
-                                <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/56810.png') }}')"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Francisca <span> dice: </span></p>
-                                <p class="cont_previwMenSage">Tu: alo?...</p>
-                            </div>
-
-                        </a>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
-                            <form action="chatUsers_submit" method="get" accept-charset="utf-8">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </form>
-                        </div>
-                        <a href="#!" data-iduserchat="6">
-                            <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                <p class="gasper"></p>
-                                <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/87226.jpg') }}')"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Alicia <span> dice: </span></p>
-                                <p class="cont_previwMenSage">Tu: holaa...</p>
-                            </div>
-
-                        </a>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
-                            <form action="chatUsers_submit" method="get" accept-charset="utf-8">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </form>
-                        </div>
-                        <a href="#!" data-iduserchat="7">
-                            <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                <p class="gasper"></p>
-                                <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/67358.png') }}')"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Julio <span> dice: </span></p>
-                                <p class="cont_previwMenSage">Tu: f...</p>
-                            </div>
-
-                        </a>
-                    </div>
+                    {{--END FOR--}}
                 </div>
 
 
@@ -266,7 +193,6 @@
                     </div>
 
                     <div class="col-md-12 datPublich">
-                        asdasdad
                         <img class="img-responsive" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/IcoPublich.png" alt="asdasd" data-toggle="modal" data-target="#myModal">
                     </div>
                 </div>
@@ -369,4 +295,11 @@
     {{-- Mensajes entrada salida --}}
     @include('front-end.partials.fields-entrada-salida-mensajes')
 
+@endsection
+
+@section('js')
+<script src="{{ asset('assets/js/src/chat.js') }}"></script>
+<script>
+    chat.getUser({{ Auth::user()->id }})
+</script>
 @endsection

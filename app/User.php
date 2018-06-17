@@ -60,6 +60,12 @@ class User extends Authenticatable
         return $this->hasMany('App\User', 'boss_id');
     }
 
+    public function chats()
+    {   
+        return Chat::where('transmitter_id', $this->id)
+            ->orWhere('receiver_id', $this->id);
+    }
+
     public function evaluations()
     {
         return $this->hasMany(Evaluation::class);

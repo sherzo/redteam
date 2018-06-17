@@ -15,7 +15,21 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('transmitter_id');
+            $table->unsignedInteger('receiver_id');
+            
+            $table->foreign('transmitter_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+           
+            $table->foreign('receiver_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

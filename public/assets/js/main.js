@@ -41,7 +41,7 @@ jQuery(document).ready(function($) {
 });
 
 // chats
-
+/*
 $('body').on('click', '.columnChatss>.AlluserReegitradosPorBloque>a, .col-xs-12.col-sm-12.col-md-12.col-lg-12.FriendWithChat>a, .captionCircleUser.captionDenoews.AlluserReegitradosPorBloque>a', function() {
 	 $('.lnvmodal-loader').css({
 	  	display: 'block'
@@ -91,8 +91,8 @@ $('body').on('click', '.columnChatss>.AlluserReegitradosPorBloque>a, .col-xs-12.
 		    		var dataWithUserReceive = element.userReceive;
 		    		var arrayMensagge = element.mensages;
 		    		var mensages = '';
-		    		/**** si son mensajes que el user envio, lo coloca en un extremo, si no lo coloca al otro
-		    		extremo****/
+		    		 si son mensajes que el user envio, lo coloca en un extremo, si no lo coloca al otro
+		    		extremo
 
 		    		
 
@@ -167,7 +167,7 @@ $('body').on('click', '.columnChatss>.AlluserReegitradosPorBloque>a, .col-xs-12.
 	}); 
 
 });
-
+*/
 // FILTER BUSQUEDA CANDIDATE CHAT
 
 $(document).ready(function () {
