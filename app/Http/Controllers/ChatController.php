@@ -46,4 +46,11 @@ class ChatController extends Controller
 
     	return $messages;
     }
+
+    public function getUsers()
+    {
+        $users = User::all();
+
+        return $users;
+    }
 }

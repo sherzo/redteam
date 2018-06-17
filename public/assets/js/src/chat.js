@@ -14,6 +14,15 @@ const chat = new Vue({
       user_id: 0
    },
    methods: {
+    getUsers () {
+      axios.get('chats/users')
+        .the(res => {
+          this.users = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     getChats () {
       axios.get('chats/all')
         .then(res => {

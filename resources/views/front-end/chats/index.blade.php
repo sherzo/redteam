@@ -117,78 +117,18 @@
 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitrados columnChatss">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="2">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque" v-for="u in users">
+                                <a href="#!" @click="addChat(u.id)">
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
                                         <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/16418.jpg') }}')"></div>
+                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + u.avatar + ')' }"></div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Administrador</p>
+                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">@{{ u.name }}</p>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="3">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                        <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/6242.jpg') }}')"></div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Jessica</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="4">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                        <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/56810.png') }}')"></div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Francisca</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="5">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                        <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/38742.png') }}')"></div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Janixia</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="6">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                        <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/49907.png') }}')"></div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Alicia</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                <a href="#!" data-iduserchat="7">
-                                    <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                        <p class="gasper"></p>
-                                        <div class="label dataPrubeIm dataProfileAllUsersListChat" style="background-image: url('{{ asset('assets/profiles/67358.png') }}')"></div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Julio</p>
-                                    </div>
-                                </a>
-                            </div>
+                            
                         </div>
                     </div>
 
