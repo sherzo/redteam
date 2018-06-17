@@ -3,8 +3,8 @@
 module.exports = {
   port: process.env.PORT || 6800,
   host: 'localhost',
-  user: 'flirtbe',
-  password: 'flirtbeSistemasJE',
-  database: 'flirtbe',
+  user: 'root',
+  password: 'e216*',
+  database: 'intranet',
   port_db: 3306
 }
