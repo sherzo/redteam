@@ -100,8 +100,10 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('ranking/employees', 'RankingController@employees');
     Route::get('chats', 'ChatController@index');
     Route::get('chats/all', 'ChatController@all');
+    Route::get('chats/users', 'ChatController@users');
     Route::get('chats/{id}/get-messages', 'ChatController@getMessages');
     Route::get('chats/{id}/get-or-create', 'ChatController@getOrCreate');
+    Route::post('chats/delete', 'ChatController@delete');
 });
 
 /*

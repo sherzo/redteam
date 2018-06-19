@@ -6,7 +6,7 @@ const moment = require('moment')
 function saveMessage(req, res){
   let db = connection.connections()
   console.log(JSON.stringify(req))
-  let sql = `INSERT INTO messages (chat_id, message, user_id) VALUES (?, ?, ?)`
+  let sql = `INSERT INTO messages (chat_id, content, user_id) VALUES (?, ?, ?)`
 
   let sql_2 = `SELECT * 
                 FROM messages 
@@ -14,7 +14,7 @@ function saveMessage(req, res){
 
     let sql_3 = `UPDATE chats SET updated_at = ? WHERE id = ? `
 
-  db.query(sql, [req.chat_id, req.message, req.user_id], (err, result) => {
+  db.query(sql, [req.chat_id, req.content, req.user_id], (err, result) => {
     if (err) return res(err)
 
         db.query(sql_3,[moment().format('YYYY-MM-DD h:mm:ss'), req.chat_id])
@@ -37,8 +37,8 @@ function listMessages(req, res){
   			 				AND destinatario = ?)`
 
   let sql_upd = `UPDATE mensajes SET 
-  					seend = ?, 
-  							WHERE seend = null 
+  					seen = ?, 
+  							WHERE seen = null 
   								AND remitente = ? 
   									AND destinatario = ?`
 

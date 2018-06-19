@@ -1,74 +1,106 @@
 @extends('layouts.public')
 
+@section('css')
+<style>
+    .contenMoreImages img {
+        display: block;
+        position: relative;
+    }
+
+    .contenMoreImages i {
+        position: absolute;
+        display: block;
+    }
+    .selected {
+        background-color: #f1f0f1;
+    }
+</style>
+@endsection
+
+
 @section('content')
     <div class="container continerWithSite contaiNChatU" id="chats" v-cloak>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos captionChat">
+                {{-- Cabecera --}}
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUser">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUserDatas">
-                        <div class="label dataPrubeIm dataProfileAllUsersListChatSelect recibeSelectChat" style="background-image: url('{{ asset('assets/profiles/67358.png') }}');"></div>
-                        <p class="colorBlack fontMiriamProSemiBold">Janixia</p>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUserDatas" v-if="chat.id">
+
+                        <div class="label dataPrubeIm dataProfileAllUsersListChatSelect recibeSelectChat" :style="{ 'background-image': 'url(' + chat.transmitter.avatar + ')' }" v-if="chat.transmitter_id != user_id"></div>
+
+                        <div class="label dataPrubeIm dataProfileAllUsersListChatSelect recibeSelectChat" :style="{ 'background-image': 'url(' + chat.receiver.avatar + ')' }" v-else></div>
+                        
+                        <p class="colorBlack fontMiriamProSemiBold" v-if="chat.transmitter_id != user_id">@{{ chat.transmitter.name }} @{{ chat.transmitter.lastname }}</p>
+                        <p class="colorBlack fontMiriamProSemiBold" v-else>@{{ chat.receiver.name }} @{{ chat.receiver.lastname }}</p>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUserDatas" v-else>
+                        <p class="text-center text-muted" style="color:black;">
+                            <small style="color: black;">No ha seleccionado conversación</small>
+                        </p>
                     </div>
                 </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatCOntentUsers">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentChat chat_box">
+                
+                {{-- Bandeja --}}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatCOntentUsers" id="bandeja">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentChat chat_box" >
 
                         <div class="col-lg-12 MensaGedate getSenMenIds2" :class="{ 'getUserReceive': m.user_id != user_id, 'getUserSend': m.user_id == user_id  }" v-for="m in messages">
                             <div class="col-lg-12 wrapMensage envMensgaRce2"><p>@{{ m.content }}</p></div>
                         </div>
                         
-                        {{-- 
-                            <div class="col-lg-12 MensaGedate getUserSend getSenMenIds3">
-                                <div class="datafechasND datgde2">17-04-2017</div>
-                                <div class="col-lg-12 wrapMensage envMensga3"><p>hola que pasa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam omnis consectetur enim nesciunt ipsa quos numquam suscipit dolores, porro voluptate officia doloribus sunt libero perspiciatis facere quis, commodi, deserunt nihil!</p></div>
-                            </div>
-
-                         --}}
                     </div>
                 </div>
-
+                
+                {{-- Nuevo mensaje --}}
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatSendUsers">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentSend">
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contenTexaArea chat_box">
-                            <textarea name="" class="input_message form-control" placeholder="Escribe aquí"></textarea>
-                            <input type="hidden" class="input_id_user_logi" value="5"> <form id="formuploadajax" class="chatFIles" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
-                                <div class="contenMoreImages">
-                                    <input type="file" class="fileInputImageChat1" name="fileInputImageChat[]">
+                    <form id="formuploadajax" class="chatFIles" method="POST" accept-charset="utf-8" enctype="multipart/form-data" @submit.prevent="sendMessage">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentSend">
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contenTexaArea chat_box">
+                                <textarea name="" class="input_message form-control" placeholder="Escribe aquí" v-model="content" @keyup.enter="sendMessage" ></textarea>
+                                    <div class="contenMoreImages">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                        <img :src="showImage" alt="" width="100" height="100" v-show="showImage != ''">
+                                        <input type="file" class="fileInputImageChat1" ref="myFile">
+                                    </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 contentActionSend chat_box">
+
+                                <div class="anjunFoto">
+                                    <img class="img-responsive imImgaChat" onclick="document.getElementById('imageInputC').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="" >
+                                    
+                                    <input type="file" class="fileInputImageChat1" id="imageInputC" ref="chatImage" style="display: none" @change="getChatImage">
+
                                 </div>
-                            </form>
-                            <input type="hidden" class="input_name DatIdUserChat" value="5">
+                                <div class="anjunDocu">
+                                    <img class="img-responsive img1DoChat" onclick="document.getElementById('fileInputC').click()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
+                                    
+                                    <input type="file" class="fileInputImageChat1" id="fileInputC" ref="chatFile" style="display: none" @change="getChatFile">
+                                    
+                                </div>
 
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 contentActionSend chat_box">
-
-                            <div class="anjunFoto">
-                                <img class="img-responsive imImgaChat" onclick="chooseFileImageChat1();" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
+                                <input type="submit" value="Enviar" class="input_send">
                             </div>
-                            <div class="anjunDocu">
-                                <img class="img-responsive img1DoChat" onclick="chooseFileDocuChat1()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
-                            </div>
-
-                            <input type="submit" value="Enviar" class="input_send">
                         </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
-
+            
+            {{-- Conversaciones --}}
             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 captionRecordNotas captionAllMessage">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 dataShoWmensajes">
                     {{-- FOR --}}
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat" v-for="(c,i) in chats">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 FriendWithChat" v-for="(c,i) in chats" :class="{ 'selected': chat.id == c.id }">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 RemoveChatWithUser">
                             <form action="" method="get" accept-charset="utf-8">
                                 <i class="fa fa-times" aria-hidden="true" @click="deleteChat(i)"></i>
                             </form>
                         </div>
-                        <a href="" @click.prevent="getMessages(c.id)">
+                        <a href="" @click.prevent="selectChat(i)">
                             <input type="hidden" name="_token" value="lEgRWkCkDrNuMQ36ujN6a1wK301wPsvf84onT1ZJ">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
+                            <div class="badge badge-primary" v-if="c.notRead > 0">@{{ c.notRead }}</div>
                                 <p class="gasper"></p>
                                 <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + c.transmitter.avatar + ')' }" v-if="user_id != c.transmitter_id"></div>
                                 <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + c.receiver.avatar + ')' }" v-else></div>
@@ -82,12 +114,18 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-xs-12" v-show="chats.length == 0">
+                        <br>
+                        <p class="text-center">
+                            <small class="text-muted">Sin conversaciones</small>
+                        </p>
+                    </div>
                     {{--END FOR--}}
                 </div>
 
-
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 listConection lineChat">
 
+                    {{-- Usuario en linea --}}
                     <div class="captionUsersInLive">
                         <div class="ui accordion">
                             <h3 class="fontMiriamProRegular"><span class="estusLive">•</span>En Linea</h3>
@@ -115,21 +153,21 @@
                             </form>
                         </div>
 
-
+                        {{-- Listado de usuarios --}}
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitrados columnChatss">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque" v-for="u in users">
-                                <a href="#!" @click="addChat(u.id)">
+                                <a href="#!" @click="getOrCreate(u.id)">
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
                                         <p class="gasper"></p>
                                         <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + u.avatar + ')' }"></div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">@{{ u.name }}</p>
+                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">@{{ u.name }} @{{ u.lastname }}</p>
                                     </div>
                                 </a>
                             </div>
-                            
                         </div>
+
                     </div>
 
                     <div class="col-md-12 datPublich">

@@ -4,13 +4,12 @@ const app = require('./app')
 const config = require('./config')
 const io = app.io
 const server = app.server
-const ChatCtrl = require('./controllers/ChatController')
+const ChatController = require('./controllers/ChatController')
 const sockets_on = [];
 
 io.on('connection', (socket) => {
 
   console.log(`socket connection: ${eval(socket).id}`);
-
   socket.on('destroy', (object) => {
     io.emit('response_destroy', object)
   })
@@ -24,7 +23,7 @@ io.on('connection', (socket) => {
       var receiver_id = data.receiver_id
       var socket_destino = '';
 
-      ChatCtrl.storeMessage(data,(mh)=>{
+      ChatController.storeMessage(data,(mh)=>{
 
         sockets_on.forEach((el, i)=>{
             if(el.id == receiver_id){
@@ -35,11 +34,12 @@ io.on('connection', (socket) => {
             }
         })
         
+        
       })
   })
 
   socket.on('listMessages',(data)=>{
-    ChatCtrl.listMessages(data,(mensajes)=>{
+    ChatController.listMessages(data,(mensajes)=>{
       io.emit('list-mensajes-app',mensajes)
     })
   })
@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
 
   socket.on('consultar_mensajes',(data)=>{
     console.log(JSON.stringify(data),'server')
-    ChatCtrl.cantMensajes(data,(mensajes)=>{
+    ChatController.cantMensajes(data,(mensajes)=>{
       
       get_socket('cant_mensajes',data.id,mensajes)
       sockets_on.forEach((el, i)=>{
@@ -117,6 +117,5 @@ io.on('connection', (socket) => {
   }
 
 })
-
 server.listen(config.port)
         

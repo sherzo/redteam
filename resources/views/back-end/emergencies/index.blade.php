@@ -133,7 +133,7 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueImageretu">
                                                         <img class="img-responsive imImga"  onclick="document.getElementById('imageInputE').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
-                                                        <input type="file" id="imageInputE" ref="emergecyImage" style="display: none" @change="getEmergencyImage">
+                                                        <input type="file" id="imageInputE" ref="emergecyImage" style="display: none" @change="getChatImage">
 
                                                         <img class="img-responsive img1Do"  onclick="document.getElementById('fileInputE').click()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
                                                         <input type="file" id="fileInputE" ref="emergencyFile" style="display: none" @change="getEmergencyFile">

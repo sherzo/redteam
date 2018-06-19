@@ -36,19 +36,23 @@ class Chat extends Model
 
     public static function getOrCreate(User $transmitter, User $receiver)
     {
-    	$chat = self::where('transmitter_id', $transmitter->id)
+    	$chat = self::withTrashed()
+            ->where('transmitter_id', $transmitter->id)
     		->where('receiver_id', $receiver->id)
     		->orWhere(function($query) use ($transmitter, $receiver){
     			$query->where('transmitter_id', $receiver->id)
     			->where('receiver_id', $transmitter->id);
     		})->first();
+            
 
-    	if(!$chat) {
-    		$chat = self::create([
-    			'transmitter_id' => $transmitter->id,
-    			'receiver_id' => $receiver->id
-    		]);
-    	}
+        if(!$chat) {
+            $chat = self::create([
+                'transmitter_id' => $transmitter->id,
+                'receiver_id' => $receiver->id
+            ]);
+        } else  if($chat->delete_at == null) {
+            $chat->restore();
+        }   
     	
     	return $chat;
     }

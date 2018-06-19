@@ -19,7 +19,7 @@ class ChatController extends Controller
     {
     	$user = Auth::user();
 
-    	$chats = $user->chats()->get();
+    	$chats = $user->chats()->orderBy('updated_at', 'desc')->get();
 
     	$chats->load('transmitter', 'receiver');
 
@@ -34,7 +34,9 @@ class ChatController extends Controller
     	$receiver = User::find($id);
 
     	$chat = Chat::getOrCreate($transmitter, $receiver);
-    
+            
+        $chat->load('transmitter', 'receiver');
+
     	return $chat;
     }
     
@@ -47,10 +49,21 @@ class ChatController extends Controller
     	return $messages;
     }
 
-    public function getUsers()
+    public function users()
     {
-        $users = User::all();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
 
         return $users;
+    }
+
+    public function delete(Request $request)
+    {
+        $chat = Chat::find($request->id);
+
+        $chat->delete();
+
+        return [
+            'result' => true
+        ];
     }
 }
