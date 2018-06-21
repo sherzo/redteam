@@ -14,16 +14,27 @@ function saveMessage(req, res){
 
     let sql_3 = `UPDATE chats SET updated_at = ? WHERE id = ? `
 
-  db.query(sql, [req.chat_id, req.content, req.user_id], (err, result) => {
-    if (err) return res(err)
+  if(req.type == 0) {
+    console.log('mensaje comun')
+    db.query(sql, [req.chat_id, req.content, req.user_id], (err, result) => {
+      if (err) return res(err)
 
-        db.query(sql_3,[moment().format('YYYY-MM-DD h:mm:ss'), req.chat_id])
-        db.query(sql_2,[result.insertId],(err,result1)=>{
-            if (err) return res(err)
-            // db.end()
-            return res(err, result1)
-        })
-  })
+          db.query(sql_3,[moment().format('YYYY-MM-DD h:mm:ss'), req.chat_id])
+          db.query(sql_2,[result.insertId],(err,result1)=>{
+              if (err) return res(err)
+              // db.end()
+              return res(err, result1)
+          })
+    })
+  }else {
+    console.log('mensajes file')
+    db.query(sql_3,[moment().format('YYYY-MM-DD h:mm:ss'), req.chat_id])
+    db.query(sql_2,[req.id],(err,result1)=>{
+        if (err) return res(err)
+        // db.end()
+        return res(err, result1)
+    })
+  }
 }
 
 
@@ -69,8 +80,21 @@ function getUnseenMessages(req, res){
         })
 
 }
+
+function getUsersOnline(req, res){
+    let db = connection.connections()
+    let sql = `select id, avatar from users where id = ?`;
+    db.query(sql, [req.id], (err, result) => {
+        if (err) return res(err)
+            db.end()
+            return res(err,result)
+        })
+
+}
+
 module.exports={
     saveMessage,
     listMessages,
-    getUnseenMessages
+    getUnseenMessages,
+    getUsersOnline
 }

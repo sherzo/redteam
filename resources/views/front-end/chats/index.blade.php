@@ -46,7 +46,25 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentChat chat_box" >
 
                         <div class="col-lg-12 MensaGedate getSenMenIds2" :class="{ 'getUserReceive': m.user_id != user_id, 'getUserSend': m.user_id == user_id  }" v-for="m in messages">
-                            <div class="col-lg-12 wrapMensage envMensgaRce2"><p>@{{ m.content }}</p></div>
+                            
+                            {{-- Si es solo texto --}}
+                            <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 0"><p>@{{ m.content }}</p>
+                            </div>
+
+                            {{-- Si es una imagen --}}
+                            <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 1">
+                                <div class="col-md-6">
+                                    <p><img :src="m.content" alt="" class="img-responsive"></p>
+                                </div>
+                            </div>
+                            
+                            {{-- Si es un archivo --}}
+                            <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 2"><p>
+                                <a :download="m.content" href="" >
+                                <img src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" class="img-responsive">
+                                    
+                                </a>
+                            </p></div>
                         </div>
                         
                     </div>
@@ -57,9 +75,8 @@
                     <form id="formuploadajax" class="chatFIles" method="POST" accept-charset="utf-8" enctype="multipart/form-data" @submit.prevent="sendMessage">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentSend">
                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contenTexaArea chat_box">
-                                <textarea name="" class="input_message form-control" placeholder="Escribe aquí" v-model="content" @keyup.enter="sendMessage" ></textarea>
+                                <textarea name="" class="input_message form-control" placeholder="Escribe aquí" v-model="content" @keyup.enter="sendMessage" :disabled="uploadFile != 0"></textarea>
                                     <div class="contenMoreImages">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
                                         <img :src="showImage" alt="" width="100" height="100" v-show="showImage != ''">
                                         <input type="file" class="fileInputImageChat1" ref="myFile">
                                     </div>
@@ -80,6 +97,7 @@
                                 </div>
 
                                 <input type="submit" value="Enviar" class="input_send">
+                                <button class="btn btn-default" v-show="uploadFile != 0" @click.stop.prevent="cancelUpload"><i class="fa fa-close"></i></button>
                             </div>
                         </div>
                     </form>
@@ -126,7 +144,9 @@
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 listConection lineChat">
 
                     {{-- Usuario en linea --}}
-                    <div class="captionUsersInLive">
+                     {{--
+                         
+                        <div class="captionUsersInLive">
                         <div class="ui accordion">
                             <h3 class="fontMiriamProRegular"><span class="estusLive">•</span>En Linea</h3>
                             <div class="title"><div class="captionCircleUser captionDenoews AlluserReegitradosPorBloque"><a href="#!" class="userLive" data-idonline="5" data-iduserchat="5"> <div class="label dataPrubeIm vloqImageUser dataProfileAllUsersOnline styRos5" style="background-image: url({{ asset('assets/profiles/67358.png') }});"> </div></a></div>
@@ -135,6 +155,9 @@
                             </div>
                         </div>
                     </div>
+                         --}}
+
+                    @include('components.users-online')
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatListAllUser">
 

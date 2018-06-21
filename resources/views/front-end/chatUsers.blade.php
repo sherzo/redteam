@@ -161,7 +161,9 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 listConection lineChat">
 
-                    <div class="captionUsersInLive">
+                    {{--
+                         
+                        <div class="captionUsersInLive">
                         <div class="ui accordion">
                             <h3 class="fontMiriamProRegular"><span class="estusLive">•</span>En Linea</h3>
                             <div class="title"><div class="captionCircleUser captionDenoews AlluserReegitradosPorBloque"><a href="#!" class="userLive" data-idonline="5" data-iduserchat="5"> <div class="label dataPrubeIm vloqImageUser dataProfileAllUsersOnline styRos5" style="background-image: url({{ asset('assets/profiles/67358.png') }});"> </div></a></div>
@@ -170,6 +172,9 @@
                             </div>
                         </div>
                     </div>
+                         --}}
+
+                         @include('front-end.partials.fields-users-all-chat')
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatListAllUser">
 

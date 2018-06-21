@@ -104,6 +104,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('chats/{id}/get-messages', 'ChatController@getMessages');
     Route::get('chats/{id}/get-or-create', 'ChatController@getOrCreate');
     Route::post('chats/delete', 'ChatController@delete');
+    Route::post('chats/send-file', 'ChatController@sendFile');
 });
 
 /*

@@ -56,6 +56,22 @@ class ChatController extends Controller
         return $users;
     }
 
+    public function sendFile(Request $request)
+    {
+        $file = $request->file('file');
+        
+        $url = $file->store('chats/chatfiles' . $request->chat_id, 'public');
+
+        $message = Message::create([
+            'type' => $request->type,
+            'content' => $url,
+            'user_id' => $request->user_id,
+            'chat_id' => $request->chat_id
+        ]);
+
+        return $message;
+    }
+
     public function delete(Request $request)
     {
         $chat = Chat::find($request->id);

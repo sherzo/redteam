@@ -262,10 +262,7 @@
     })
 
     @auth
-        let data = {
-            id: '{{Auth::user()->id}}'
-        }
-        socket.emit('conect-socket', data)
+        socket.emit('conect-socket', { id: '{{ Auth::user()->id }}' })
     @endauth
     //socket.emit('connection')
 

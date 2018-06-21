@@ -24,8 +24,16 @@ function cantMensajes(data,callback){
   })
 }
 
+function getUsersOnline(data,callback){
+  Chat.getUsersOnline(data,(err,Chat)=>{
+    if (err) return console.log(`ocurrio un error: ${err}`)
+    callback(Chat)
+  })
+}
+
 module.exports={
   storeMessage,
   listMessages,
-  cantMensajes
+  cantMensajes,
+  getUsersOnline
 }

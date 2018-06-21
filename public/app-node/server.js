@@ -6,6 +6,7 @@ const io = app.io
 const server = app.server
 const ChatController = require('./controllers/ChatController')
 const sockets_on = [];
+const users_online = [];
 
 io.on('connection', (socket) => {
 
@@ -22,9 +23,7 @@ io.on('connection', (socket) => {
   socket.on('sendMessage',(data)=>{
       var receiver_id = data.receiver_id
       var socket_destino = '';
-
       ChatController.storeMessage(data,(mh)=>{
-
         sockets_on.forEach((el, i)=>{
             if(el.id == receiver_id){
                 el.sockets.forEach((el,i)=>{
@@ -33,9 +32,7 @@ io.on('connection', (socket) => {
                 })
             }
         })
-        
-        
-      })
+      })   
   })
 
   socket.on('listMessages',(data)=>{
@@ -45,6 +42,23 @@ io.on('connection', (socket) => {
   })
 
   socket.on('conect-socket',(data)=>{
+      // Listado de usuario conectados
+      let encontrado = false
+      users_online.forEach((e,i) => {
+        if(e.id == data.id) {  
+          encontrado = true
+        } 
+      })
+      
+      if(!encontrado) {
+        ChatController.getUsersOnline(data, (user) => {
+          users_online.push(user[0])
+          console.log(users_online)
+
+        })
+        io.emit('users-online', users_online)
+      }
+
       let indice = true;
       sockets_on.forEach((elm,ind)=>{
         if(elm.id==data.id){
