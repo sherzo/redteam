@@ -76,9 +76,9 @@
     <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-    <script src="/socket.io/socket.io.js"></script>
-    {{--
     <script src="http://18.219.62.126/socket.io/socket.io.js"></script>
+    {{--
+    <script src="/socket.io/socket.io.js"></script>
 
     --}}
 
