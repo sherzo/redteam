@@ -106,7 +106,7 @@
                                 
                                 {{-- Si es un archivo --}}
                                 <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 2"><p>
-                                    <a :download="m.content" href="" >
+                                    <a download="" :href="m.content" >
                                     <img src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" class="img-responsive">
                                         
                                     </a>

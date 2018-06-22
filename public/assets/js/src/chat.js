@@ -36,6 +36,9 @@ const chat = new Vue({
       this.uploadFile = 0
     },
     sendMessage () {
+      if(!this.chat.id) {
+        return
+      }
       let type = this.uploadFile // Lleva el tipo imagen, texto, archivo
 
       let receiver_id
