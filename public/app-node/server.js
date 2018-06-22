@@ -9,10 +9,18 @@ const sockets_on = [];
 const users_online = [];
 
 io.on('connection', (socket) => {
-
-  console.log(`socket connection: ${eval(socket).id}`);
+  //console.log(`socket connection: ${eval(socket).id}`);
   socket.on('destroy', (object) => {
     io.emit('response_destroy', object)
+  })
+
+  socket.on('disconnect', (reason) => {
+    console.log('Sockets al desconectarse')
+    console.log(sockets_on)
+  })
+
+  socket.on('get-users', (data) => {
+    io.emit('users-online', users_online)
   })
 
   socket.on('share', (data) => {
@@ -53,9 +61,8 @@ io.on('connection', (socket) => {
       if(!encontrado) {
         ChatController.getUsersOnline(data, (user) => {
           users_online.push(user[0])
-          console.log(users_online)
-
         })
+        
         io.emit('users-online', users_online)
       }
 
@@ -69,6 +76,7 @@ io.on('connection', (socket) => {
       if(indice){
         sockets_on.push({id:data.id, sockets:[socket.id]})
       }
+      console.log('Sockets conectadas')
       console.log(sockets_on)
   })
 
