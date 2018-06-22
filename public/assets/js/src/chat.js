@@ -19,6 +19,11 @@ const chat = new Vue({
       content: '',
       uploadFile: 0
    },
+   filters: {
+    showImage (image) {
+      return axios.defaults.baseURL + '/storage/' + image
+    }
+   },
    watch: {
     chat(chat) {
       this.getMessages(chat.id)
@@ -73,7 +78,11 @@ const chat = new Vue({
 
           })
           .catch(err => {
-            console.log(err)
+            if(err.response.status == 422) {
+              alert('El archivo no es una imagen')
+            }else {
+              console.log(err.response)
+            }
           })
 
       }else {
@@ -249,9 +258,13 @@ const chat = new Vue({
     },
    },
    mounted () {
+
+
     socket.on('users-online', (users) => {
-      console.log(users)
+      this.online = users
     })
+
+    socket.emit('get-users', {id:1})
 
     socket.on('new-message', (message) => {
       console.log(message)

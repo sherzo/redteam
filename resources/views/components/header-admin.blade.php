@@ -1,9 +1,11 @@
-<div class="container continerWithSite">
+<div class="container @isset($chat) wirhSiteChatr @endisset continerWithSite">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionAdminContain">
         <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido secCetTitleS">
+            @isset($title)
             <h1>{{ $title }}</h1>	
-			<h3>{{ Auth::user()->name }}</h3>
+			@endisset
+            <h3>{{ Auth::user()->name }}</h3>
 			<h4>{{ Auth::user()->email }}</h4>
             {{-- @include('back-end.partials.fields-name-admin-login')
             --}}

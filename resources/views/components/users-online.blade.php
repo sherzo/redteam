@@ -5,8 +5,7 @@
             
             <div class="captionCircleUser captionDenoews AlluserReegitradosPorBloque" v-for="o in online">
                 <a href="{{ url('chats') }}" class="userLive" data-idonline="2" data-iduserchat="2">
-                    <div class="label dataPrubeIm vloqImageUser dataProfileAllUsersOnline" :style="{ 'background-image': 'url(' + o.avatar + ')' }">
-                    </div>
+                    <img :src="o.avatar | showImage" alt="" class="img-responsive">
                 </a>
             </div>
         </div>

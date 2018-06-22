@@ -10,9 +10,26 @@ use Auth;
 
 class ChatController extends Controller
 {
+    public function chat()
+    {
+        $isAdmin = Auth::user()->hasRole('admin');
+        
+        if($isAdmin) {
+            return redirect('admin/chats'); 
+        }
+
+        return view('front-end.chats.index');
+    }
+
     public function index()
     {
-    	return view('front-end.chats.index');
+        $isAdmin = Auth::user()->hasRole('admin');
+
+        if(!$isAdmin) {
+            return redirect('chats');
+        }
+
+        return view('back-end.chats.index');
     }
 
     public function all()
@@ -57,7 +74,17 @@ class ChatController extends Controller
     }
 
     public function sendFile(Request $request)
-    {
+    {   
+        if($request->type == 1) {
+            $rules = [
+                'file' => 'image'
+            ];
+        }else {
+            $rules = [
+                'file' => 'file'
+            ];
+        }
+        $this->validate($request, $rules);
         $file = $request->file('file');
         
         $url = $file->store('chats/chatfiles' . $request->chat_id, 'public');

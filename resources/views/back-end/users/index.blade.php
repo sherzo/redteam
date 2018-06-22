@@ -76,16 +76,24 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
                                         <div class="col-md-6 actionpuBlish">
-                                            
+                                            {{--
+
+                                                --}}
                                             <div class="col-md-2 Adjuntar">
+
                                                 <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInput').click()">
                                                 <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getFile">
                                             </div>
+                                           {{--
+                                            --}}
 
                                             <div class="col-md-2 AdjuntarFoto" onclick="document.getElementById('imageInput').click()">
                                                 <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
                                                 <input type="file" id="imageInput" ref="myImage" style="display: none" @change="getImage">
                                             </div>
+                                            {{--
+
+                                                --}}
                                             
                                             <div class="col-md-2 DestacarPuslish" @click="selectFeatured" >
                                                 <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">

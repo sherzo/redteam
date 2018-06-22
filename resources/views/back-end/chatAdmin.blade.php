@@ -174,10 +174,10 @@
                             <!--  FILTAR BUISQUEDA  -->
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitrados columnChatss">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 AlluserReegitradosPorBloque">
-                                    <a href="#!" data-iduserchat="">
+                                    <a href="#!" data-iduserchat="" > 
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 vloqImageUser">
-                                            <img class="img-responsive" src="{{ asset('assets/images/profile-user-circle.png') }}" alt="">
+                                            <img class="img-responsive " src="{{ asset('assets/images/profile-user-circle.png') }}" alt="">
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
                                             <p class="colorBlack fontMiriamProSemiBold TitleUserMen">Roberto</p>

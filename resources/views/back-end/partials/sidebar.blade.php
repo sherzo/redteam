@@ -1,11 +1,11 @@
 <div id="sidebar"> 
     <ul>
-        <li id='titleAdmin'><a href="{{ url('home') }}">Administrador</a></li>
+        <li id='titleAdmin'><a href="{{ url('admin/home') }}">Administrador</a></li>
         <li>
-            <a href="home" class="{{ url('admin/home') }}"> Dashboards</a>
+            <a href="{{ url('admin/board') }}" class=""> Dashboards</a>
         </li>
         <li>
-            <a href="chat" class="mensageIco">  Mensajes</a>
+            <a href="{{ url('admin/chats') }}" class="mensageIco">  Mensajes</a>
         </li>
         <li>
             <a href="{{ url('admin/suggestions') }}" class="usgerenIco"> Sugerencias</a>
@@ -54,12 +54,12 @@
     <div id="sidebar3">
         <ul>
             <li class="topHome">
-                <a href="home">
+                <a href="{{ url('admin/home') }}">
                     <img src="{{ asset('assets/images/icons/home.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
             <li>
-                <a href="chat">
+                <a href="{{ url('admin/chats') }}">
                     <img src="{{ asset('assets/images/icons/message.png') }}" class="img- responsive" alt="">
                 </a>
             </li>

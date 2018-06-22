@@ -62,10 +62,10 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('emergencies', 'EmergencyController@index');
     Route::get('all/applications', 'ApplicationController@all');
     Route::get('applications', 'ApplicationController@index');
-    
     Route::get('users/{id}/schedules', 'UserController@schedule')->name('users.schedule');
     Route::get('users/{id}/get-schedules', 'UserController@getSchedules');
     Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
+    Route::get('chats', 'ChatController@index');
 });
 
 Route::group(['middleware' =>  'auth'], function() {
@@ -98,7 +98,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::post('evaluations/store', 'EvaluationController@store');
     Route::get('ranking', 'RankingController@ranking');
     Route::get('ranking/employees', 'RankingController@employees');
-    Route::get('chats', 'ChatController@index');
+    Route::get('chats', 'ChatController@chat');
     Route::get('chats/all', 'ChatController@all');
     Route::get('chats/users', 'ChatController@users');
     Route::get('chats/{id}/get-messages', 'ChatController@getMessages');

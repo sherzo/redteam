@@ -76,7 +76,29 @@
     <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
+    <script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
+
+    <script>    
+    const socket = io.connect('http://127.0.0.1:6800',{
+        'reconnection': true,
+        'reconnectionDelay': 500,
+        'reconnectionAttempts': 10
+    })
+
+    @auth
+        socket.emit('conect-socket', { id: '{{ Auth::user()->id }}' })
+    @endauth
+    //socket.emit('connection')
+
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    $('.dropdownSemantic')
+        .dropdown({
+            transition: 'drop'
+        });
+
+    </script>
     <script>
+
         $('.dropdownSemantic')
             .dropdown({
                 transition: 'drop'

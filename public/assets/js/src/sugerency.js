@@ -85,11 +85,11 @@ const sugerency = new Vue({
       axios.post('suggestions', sugerency)
         .then(res => {
 
-          this.sugerencies.push(res.data)
+          //this.sugerencies.push(res.data)
 
           setTimeout(() => {
             this.success = false
-          }, 1500)
+          }, 2000)
         })
     },
     getSuggestions() {

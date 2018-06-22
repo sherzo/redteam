@@ -11,9 +11,24 @@
         position: absolute;
         display: block;
     }
+    
     .selected {
         background-color: #f1f0f1;
     }
+
+    .captionCircleUser {
+        margin: 4px;
+    }
+    img.right {
+        float: right;
+    }
+
+    img.border-img {
+        border: 2px solid #0071bc;
+        margin: 8px 5px;
+        border-radius: 5px;
+    }
+
 </style>
 @endsection
 
@@ -52,10 +67,8 @@
                             </div>
 
                             {{-- Si es una imagen --}}
-                            <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 1">
-                                <div class="col-md-6">
-                                    <p><img :src="m.content" alt="" class="img-responsive"></p>
-                                </div>
+                            <div class="">
+                                <img :src="m.content" alt="" class="img-responsive border-img" width="200" v-if="m.type == 1" :class="{ 'right': m.user_id == user_id }">
                             </div>
                             
                             {{-- Si es un archivo --}}
@@ -76,6 +89,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 userCOntentSend">
                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contenTexaArea chat_box">
                                 <textarea name="" class="input_message form-control" placeholder="Escribe aquí" v-model="content" @keyup.enter="sendMessage" :disabled="uploadFile != 0"></textarea>
+
                                     <div class="contenMoreImages">
                                         <img :src="showImage" alt="" width="100" height="100" v-show="showImage != ''">
                                         <input type="file" class="fileInputImageChat1" ref="myFile">
@@ -132,35 +146,23 @@
                             </div>
                         </a>
                     </div>
+                    {{--END FOR--}}
                     <div class="col-xs-12" v-show="chats.length == 0">
                         <br>
                         <p class="text-center">
                             <small class="text-muted">Sin conversaciones</small>
                         </p>
                     </div>
-                    {{--END FOR--}}
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 listConection lineChat">
-
-                    {{-- Usuario en linea --}}
-                     {{--
-                         
-                        <div class="captionUsersInLive">
-                        <div class="ui accordion">
-                            <h3 class="fontMiriamProRegular"><span class="estusLive">•</span>En Linea</h3>
-                            <div class="title"><div class="captionCircleUser captionDenoews AlluserReegitradosPorBloque"><a href="#!" class="userLive" data-idonline="5" data-iduserchat="5"> <div class="label dataPrubeIm vloqImageUser dataProfileAllUsersOnline styRos5" style="background-image: url({{ asset('assets/profiles/67358.png') }});"> </div></a></div>
-                            </div>
-                            <div class="content">
-                            </div>
-                        </div>
-                    </div>
-                         --}}
-
+                    
+                    {{-- Usuarios en linea --}}
                     @include('components.users-online')
-
+                    
+                    {{-- Todos los usuarios --}}
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatListAllUser">
-
+                        
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 SearchSection">
                             <form action="" class="formSearchChat">
                                 <div class="row">
@@ -194,7 +196,7 @@
                     </div>
 
                     <div class="col-md-12 datPublich">
-                        <img class="img-responsive" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/IcoPublich.png" alt="asdasd" data-toggle="modal" data-target="#myModal">
+                        <img class="img-responsive" src="{{ asset('assets/images/avatar/AnuncioPublicAdmin.png') }}" alt="asdasd" data-toggle="modal" data-target="#myModal">
                     </div>
                 </div>
             </div>
