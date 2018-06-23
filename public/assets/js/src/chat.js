@@ -1,6 +1,7 @@
 const chat = new Vue({
    el: '#chats',
    data: {
+      noprofile: axios.defaults.baseURL + '/assets/images/sin_avatar.png',
       online: [],
       description: '',
       showImage: '',
@@ -261,8 +262,6 @@ const chat = new Vue({
     },
    },
    mounted () {
-
-
     socket.on('users-online', (users) => {
       this.online = users
     })

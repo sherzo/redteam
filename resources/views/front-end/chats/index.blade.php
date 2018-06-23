@@ -11,7 +11,12 @@
         position: absolute;
         display: block;
     }
-    
+    .imgInline {
+        display: inline;
+    }
+    textarea {
+        margin-top: 20px;
+    }
     .selected {
         background-color: #f1f0f1;
     }
@@ -23,11 +28,33 @@
     img.right {
         float: right;
     }
+    .input_send {
+        margin-bottom: 10px;
+    }
 
     img.border-img {
         border: 2px solid #0071bc;
         margin: 8px 5px;
         border-radius: 5px;
+    }
+    .captionPosteos {
+        padding: 0;
+        background: white;
+        margin-bottom: 7%;
+        box-shadow: 0px 2px 10px 1px #e2e2e2;
+    }
+
+    .ChatCOntentUsers {
+        width: 100%;
+    height: 500px;
+    background: white;
+    overflow: auto;
+    }
+    .userCOntentChat.chat_box {
+        box-shadow: 0px 0px 0px 0px #e2e2e2;
+    }
+    .userCOntentSend {
+        background: #f7f7f7;
     }
 </style>
 @endsection

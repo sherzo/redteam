@@ -14,17 +14,12 @@ io.on('connection', (socket) => {
     io.emit('response_destroy', object)
   })
 
-  socket.on('disconnect', (reason) => {
-    console.log('Sockets al desconectarse')
-    console.log(sockets_on)
-  })
-
   socket.on('get-users', (data) => {
     io.emit('users-online', users_online)
   })
 
   socket.on('share', (data) => {
-    console.log(data);
+    //console.log(data);
     io.emit('response_share', data)
   })
 
@@ -49,6 +44,7 @@ io.on('connection', (socket) => {
     })
   })
 
+  // Conectar a la socket
   socket.on('conect-socket',(data)=>{
       // Listado de usuario conectados
       let encontrado = false
@@ -63,7 +59,6 @@ io.on('connection', (socket) => {
           users_online.push(user[0])
         })
         
-        io.emit('users-online', users_online)
       }
 
       let indice = true;
@@ -76,16 +71,28 @@ io.on('connection', (socket) => {
       if(indice){
         sockets_on.push({id:data.id, sockets:[socket.id]})
       }
-      console.log('Sockets conectadas')
-      console.log(sockets_on)
+
+      console.log('Se conecto emite')
+      io.emit('users-online', users_online)
   })
 
+  // Desconectar de la socket
   socket.on('desconectar',(data)=>{
     sockets_on.forEach((elm, ind)=>{
         if(elm.id == data.id){
             sockets_on.splice(ind,1)
         }
     })
+
+    users_online.forEach((e, i) => {
+      if(e.id == data.id) {
+        users_online.splice(i, 1)
+      }
+    })
+
+    io.emit('users-online', users_online)
+    console.log('se desconerto')
+
   })
   
   socket.on('bloquear', data => 

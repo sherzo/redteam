@@ -87,6 +87,14 @@
     @auth
         socket.emit('conect-socket', { id: '{{ Auth::user()->id }}' })
     @endauth
+
+    function disconnect(event) {
+        event.preventDefault();
+
+        socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )
+        
+        document.getElementById('logout-form').submit();
+    }
     //socket.emit('connection')
 
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);

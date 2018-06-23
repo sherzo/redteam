@@ -207,8 +207,7 @@
                                 <li>
                                     <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
                                     <a href="{{ url('/logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                       onclick="disconnect(event)">
                                         Salir
                                     </a>
 
@@ -251,9 +250,6 @@
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 <script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
-{{--
-
-    --}}
 <script>    
     const socket = io.connect('http://18.219.62.126:6800',{
         'reconnection': true,
@@ -264,14 +260,20 @@
     @auth
         socket.emit('conect-socket', { id: '{{ Auth::user()->id }}' })
     @endauth
-    //socket.emit('connection')
 
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     $('.dropdownSemantic')
         .dropdown({
             transition: 'drop'
         });
+    
+    function disconnect(event) {
+        event.preventDefault();
 
+        socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )
+        
+        document.getElementById('logout-form').submit();
+    }
 </script>
 <script>
     $('.button')
@@ -312,19 +314,6 @@
 <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
-
-{{--
-
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker12').datetimepicker({
-            inline: true,
-            sideBySide: true
-        });
-    });
-</script>
-    --}}
-
 <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
 <script type="text/javascript">
     $('#sandbox-container .input-daterange').datepicker({

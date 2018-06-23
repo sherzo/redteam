@@ -6,7 +6,9 @@
         display: block;
         position: relative;
     }
-
+    .imgInline {
+        display: inline;
+    }
     .contenMoreImages i {
         position: absolute;
         display: block;
@@ -19,11 +21,15 @@
     .captionCircleUser {
         margin: 4px;
     }
-    
+    textarea {
+        margin-top: 20px;
+    }
     img.right {
         float: right;
     }
-
+    .input_send {
+        margin-bottom: 10px;
+    }
     img.border-img {
         border: 2px solid #0071bc;
         margin: 8px 5px;
@@ -33,7 +39,7 @@
         border-radius: 50%;
     }
     .all-users {
-        width: 45px;
+        width: 35px;
     }
     .captionPosteos {
         padding: 0;
@@ -133,15 +139,15 @@
                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 contentActionSend chat_box">
                                         
                                 <div class="anjunFoto">
-                                    <img class="img-responsive imImgaChat" onclick="document.getElementById('imageInputC').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="" >
+                                    <img class="img-responsive imImgaChat imgInline" onclick="document.getElementById('imageInputC').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="" >
                                     
                                     <input type="file" class="fileInputImageChat1" id="imageInputC" ref="chatImage" style="display: none" @change="getChatImage">
 
-                                </div>
-                                <div class="anjunDocu">
-                                    <img class="img-responsive img1DoChat" onclick="document.getElementById('fileInputC').click()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
+                                    <img class="img-responsive img1DoChat imgInline" onclick="document.getElementById('fileInputC').click()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
                                     
                                     <input type="file" class="fileInputImageChat1" id="fileInputC" ref="chatFile" style="display: none" @change="getChatFile">
+                                </div>
+                                <div class="anjunDocu">
                                     
                                 </div>
 
