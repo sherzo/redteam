@@ -106,7 +106,7 @@
                                             <div class="containerPhotoProfile profileLateraS">
                                             </div>
                                         </a>
-                                        <p class="colorBlack fontMiriamProSemiBold">{{ Auth::user()->name }}</p>
+                                        <p class="colorBlack fontMiriamProSemiBold">{{ Auth::user()->full_name }}</p>
                                     </li>
                                     <li class="bloquesMarca marEntrada">
                                         <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" >Marcar entrada</a>
@@ -126,7 +126,7 @@
                                         @endauth
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
-                                        <a href="chatUsers" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
+                                        <a href="{{ url('chats') }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                         <a href="profile" class="fontMiriamProRegular colorGrisMediumSuave lineJustify borderLineGris">Ver galerias</a>
@@ -162,7 +162,7 @@
                         <a href="profile" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Editar perfil</a>
                     </li>
                     <li class="bloquesMarca accionesPerfil blockMobileMen colorBlack fontMiriamProRegular">
-                        <a href="chatUsers" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
+                        <a href="{{ url('chats') }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
                     </li>
                     <li class="bloquesMarca accionesPerfil accionesBussines blockMobileMen colorBlack fontMiriamProRegular">
                         <a href="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/pdf/Manual-de-empleado.pdf" target="_blank" class="fontMiriamProRegular colorGrisSuave lineJustify">Manual de empleado</a>
