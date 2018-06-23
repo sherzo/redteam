@@ -56,7 +56,7 @@ class ApplicationController extends Controller
         //return $request->all();
         $user = Auth::user();
 
-        $application = Application::find($request->application_id);
+        $application = Application::find($request->id);
 
         $application->discussions()->create([
             'description' => $request->description,

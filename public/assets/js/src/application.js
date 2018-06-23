@@ -157,7 +157,7 @@ const application = new Vue({
       }      
       let formData = new FormData()
       formData.append('description', description) 
-      formData.append('application_id', this.applications[i].id) 
+      formData.append('id', this.applications[i].id) 
       
       this.applications[i].discussion = ''
 

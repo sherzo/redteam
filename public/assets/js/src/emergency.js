@@ -110,7 +110,7 @@ const emergency = new Vue({
       formData.append('description', description) 
       formData.append('file', this.emergencyFile) 
       formData.append('image', this.emergencyImage) 
-      formData.append('emergency_id', this.emergencies[i].id) 
+      formData.append('id', this.emergencies[i].id) 
       
       this.emergencyImage = ''
       this.emergencyFile = ''

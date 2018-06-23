@@ -17,7 +17,7 @@
 
                     
 
-                   <a :download="e.file" href="" style="display: inline-block;">
+                   <a download="" :href="e.file" style="display: inline-block;">
                         <img class="img-responsive"   alt="documento"  v-show="e.image"  src="{{ asset('assets/images/avatar/adjuntarIco.png') }}">
                     </a>
                 </h3>
@@ -53,7 +53,7 @@
                         </div>
                         <p>Responder</p>
                         <div href="#!" class="clActiveMOdalS" data-toggle="modal" data-target="#myModalSolicitudRespuesta" style="display:none;"></div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 formsActions" @click="e.send = true">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 formsActions" @click="e.send = true" v-show="!e.send">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 Sendmensage">
                                 <div class="panel-group" id="accordionq" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">

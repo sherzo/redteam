@@ -71,15 +71,6 @@
                                     @include('front-end.partials.fields-day-vacaciones-users')
                                 </div>
                             </div>
-                            {{--
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 soliAceptadaD">
-                                <!-- SOLICTUD ACEPTADA  -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 solicitudAceptada">
-                                    <h1>¡Tu solicitud fue aceptada!</h1>
-                                   
-                                </div>
-                            </div>
-                                --}}
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 soliDetemnegadae" v-else-if="a.status === 0">
                                 <p>Su Solicitud ha sido denegada</p>
                             </div>
@@ -101,21 +92,18 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <transition name="fade">
                             <form action="" class="formReturnMennsage" method="post" accept-charset="utf-8" enctype="multipart/form-data"  @submit.prevent="addDiscussion(i, 'applications')" v-show="a.send">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 textAreaReturn">
                                         <textarea name="descrip_comen_suge" v-model="a.discussion"></textarea>
-
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 submitSendSugerencia">
                                          <input type="submit" value="Enviar">
                                     </div>
                         
                                 </div>
-                                <input type="hidden" name="id_user_sugerencia" value="">
-                                <input type="hidden" name="id_solicitudse" value="">
                             </form>
                         </transition>
                     </div>

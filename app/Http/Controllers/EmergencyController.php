@@ -54,7 +54,7 @@ class EmergencyController extends Controller
         //return $request->all();
         $user = Auth::user();
 
-        $emergency = Emergency::find($request->emergency_id);
+        $emergency = Emergency::find($request->id);
 
         $emergency->discussions()->create([
             'description' => $request->description,

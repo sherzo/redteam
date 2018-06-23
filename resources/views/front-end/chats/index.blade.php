@@ -32,7 +32,6 @@
 </style>
 @endsection
 
-
 @section('content')
     <div class="container continerWithSite contaiNChatU" id="chats" v-cloak>
         <div class="row">
@@ -201,7 +200,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Modal -->

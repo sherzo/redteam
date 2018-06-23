@@ -114,7 +114,7 @@ const sugerency = new Vue({
 
       let data = {
         description: description,
-        suggestion_id: this.suggestions[i].id 
+        id: this.suggestions[i].id 
       }
       this.suggestions[i].discussion = ''
 

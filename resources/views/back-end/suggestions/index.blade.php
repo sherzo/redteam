@@ -100,8 +100,6 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-8 col-md-11 col-lg-11 captionCOmetsReceibeDescriUserCOmen" >
                                                         <h4>@{{ d.user.name }}
-                                                            <img class="img-responsive" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarIco.png" alt="" data-toggle="modal" data-target="#myModalswAdjunImgComen3"></h4>
-
                                                         <p>@{{ d.description }}</p>
                                                     </div>
                                                 </div>
@@ -120,13 +118,6 @@
                                                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 submitSendSugerencia">
                                                             <input type="submit" value="Enviar">
                                                         </div>
-                                                        {{--
-
-                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueImageretu">
-                                                            <img class="img-responsive imImga" onclick="" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarFoto.png" alt="">
-                                                            <img class="img-responsive img1Do" onclick="" src="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/images/avatar/adjuntarIco.png" alt="">
-                                                        </div>
-                                                            --}}
                                                     </div>
                                                     <input type="hidden" name="id_user_sugerencia" value="1">
                                                     <input type="hidden" name="id_solicitudse" value="7">

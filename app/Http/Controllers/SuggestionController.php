@@ -63,7 +63,7 @@ class SuggestionController extends Controller
     {
         $user = Auth::user();
 
-        $suggestion = Suggestion::findOrFail($request->suggestion_id);
+        $suggestion = Suggestion::findOrFail($request->id);
 
         $suggestion->discussions()->create([
             'description' => $request->description,

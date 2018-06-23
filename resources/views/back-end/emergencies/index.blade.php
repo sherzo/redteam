@@ -80,7 +80,7 @@
                                 <h3 class="vieCandidate">@{{ e.user.name }}
                                     <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="" data-toggle="modal" data-target="#myModalswAdjunImg" v-show="e.image" alt="imagen" @click="showImage(e.image)">
                                     
-                                    <a :download="e.file" href="" style="display: inline-block;"  v-show="e.file" >
+                                    <a download="" :href="e.file" style="display: inline-block;"  v-show="e.file" >
                                         <img class="img-responsive"   alt="documento"  src="{{ asset('assets/images/avatar/adjuntarIco.png') }}">
                                     </a>
                                     

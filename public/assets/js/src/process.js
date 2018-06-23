@@ -25,15 +25,17 @@ const request = new Vue({
       if(!description) {
         return
       }      
-      let formData = new FormData()
-      formData.append('description', description) 
-      formData.append('application_id', this.applications[i].id) 
-      
-      this.applications[i].discussion = ''
 
-      axios.post('applications/discussion', formData)
+      let formData = new FormData()
+
+      formData.append('description', description) 
+      formData.append('id', this[el][i].id) 
+      
+      this[el][i].discussion = ''
+
+      axios.post(el + '/discussion', formData)
         .then(res => {
-          this.applications[i].discussions.push(res.data)
+          this[el][i].discussions.push(res.data)
         })
         .catch(err => {
           console.log(err)
