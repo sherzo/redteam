@@ -794,12 +794,13 @@ p.textCOment.fontMiriamProRegular.colorGrisMediumSuave {
   display: none;
 }
 
-
+/*
 .contenMoreImages {
   background: #e0e0f7;
   padding: 1%;
   margin-top: 1%;
 }
+*/
 
 .contenMoreImages>i {
   display: inline-block;

@@ -27,7 +27,11 @@ const chat = new Vue({
    },
    watch: {
     chat(chat) {
-      this.getMessages(chat.id)
+      if(chat.id) {
+        this.getMessages(chat.id)
+      }else {
+        this.messages = []
+      }
     }
    },
    methods: {

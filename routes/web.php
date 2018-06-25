@@ -40,6 +40,9 @@ Route::get('/hom', function () {
 Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
 
     Route::get('home', 'Admin\AdminController@Home');
+    Route::get('homedefault', function(){
+        return view('back-end.homedefault');
+    });
     /*
     |--------------------------------------------------------------------------
     | Routes resources (index, create, edit and delete) 
@@ -66,9 +69,20 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('users/{id}/get-schedules', 'UserController@getSchedules');
     Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
     Route::get('chats', 'ChatController@index');
+    Route::get('calendar', 'CalendarController@index');
+    
+    /*
+    *   Admin Notifications
+    */
+    Route::get('admin-notification', 'AdminNotificationController@all');
+    Route::post('admin-notification/store', 'AdminNotificationController@store');
+    Route::post('admin-notification/send', 'AdminNotificationController@send');
 });
 
 Route::group(['middleware' =>  'auth'], function() {
+    /*
+    *   Publicaciones
+    */
     Route::get('publications', 'PublicationController@index');
     Route::post('publications', 'PublicationController@store');
     Route::post('publications/like', 'PublicationController@like');
@@ -93,11 +107,20 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('get-applications', 'ProfileController@applications');
     Route::get('get-suggestions', 'ProfileController@suggestions');
     Route::get('get-emergencies', 'ProfileController@emergencies');
+    /*
+    *   Evaluaciones
+    */
     Route::get('evaluations', 'EvaluationController@index');
     Route::get('evaluations/employees', 'EvaluationController@employees');
     Route::post('evaluations/store', 'EvaluationController@store');
+    /*
+    *   Ranking
+    */
     Route::get('ranking', 'RankingController@ranking');
     Route::get('ranking/employees', 'RankingController@employees');
+    /*
+    *   Chats
+    */
     Route::get('chats', 'ChatController@chat');
     Route::get('chats/all', 'ChatController@all');
     Route::get('chats/users', 'ChatController@users');
@@ -105,6 +128,13 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('chats/{id}/get-or-create', 'ChatController@getOrCreate');
     Route::post('chats/delete', 'ChatController@delete');
     Route::post('chats/send-file', 'ChatController@sendFile');
+    /*
+    *   Calendario
+    */
+    Route::get('calendar', 'CalendarController@calendar');
+    Route::get('calendar/{date}/render', 'CalendarController@renderMonth');
+    Route::get('calendar/{date}/events', 'CalendarController@events');
+    Route::post('calendar/store', 'CalendarController@store');
 });
 
 /*

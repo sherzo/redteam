@@ -1,38 +1,26 @@
 const publication = new Vue({
-   el: '#publications',
-   data: {
-      //Calendar
-      
-      month: '',
-      title: '',
-      calendar: [],
-      date: moment(),
-      events: [],
-
-      // Publications
-      publications: [],
-      description: '',
-      emergency: false,
-      featured: false,
-      comment: '',
-      file: [],
-      image: '',
-      success: false,
-      user_id: 0
-   },
-   filters: {
-    humanize(d) {
-      moment.locale('es')
-      return moment(d).fromNow()
-    },
-    profileUrl(username) {
-      return axios.defaults.baseURL + '/profile/' + username
-    },
+  el: '#calendar',
+  data: {
+    month: '',
+    title: '',
+    calendar: [],
+    events: [],
+    description: '',
+    emergency: false,
+    featured: false,
+    comment: '',
+    file: [],
+    image: '',
+    success: false,
+    user_id: 0,
+    date: moment()
+  },
+  filters: {
     showDay(date) {
       return moment(date).format('DD')
-    } 
-   },
-   methods: {
+    }
+  },
+  methods: {
     getCalendar() {
       let date = this.date.format('YYYY-MM-DD')
 
@@ -93,18 +81,6 @@ const publication = new Vue({
           console.log(err)
         })
     },
-    getPublications () {
-      axios.get('publications')
-        .then(res => {
-          this.publications = res.data
-          this.publications.forEach(e => {
-            Vue.set(e, 'comment', '')
-          })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
     addPublication () {
       let form = new FormData()
       form.append('description', this.description)
@@ -113,50 +89,22 @@ const publication = new Vue({
       form.append('featured', this.featured)
       form.append('emergency', this.emergency)
       this.description = ''
-      //$('#myModal').modal('hide')
-      //$('body').removeClass('modal-open');
-      //$('.modal-backdrop').remove();
-      document.getElementById('close-modal').click()
+      /*
+      $('#myModal').modal('hide')
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+      */
       axios.post('publications', form)
         .then(res => {
           this.success = true
-          this.publications.unshift(res.data)
-          setTimeout(() => {
-            this.success = false
-          },3000)
+          window.location = axios.defaults.baseURL + '/admin/home';
+         
         })
         .catch(err => {
           console.log(err)
         })
     },
-    addComment (publication_id, i) {
-      let comment = {
-        description: this.publications[i].comment,
-        publication_id
-      }
-      this.publications[i].comment = ''
-      axios.post('publications/comment', comment)
-        .then(res => {
-          this.publications[i].comments.push(res.data)
-        })
-          .catch(err => {
-            console.log(err)
-        })
-    },
-    like (publication) {
-      publication_id = publication.id
-
-      publication.likes.push({
-        publication_id: publication_id,
-        user_id: this.user_id
-      });
-
-      axios.post('publications/like', { publication_id })
-        .then(res => {
-        })
-        .catch(err => {
-            console.log(err)
-        })
+    setPopup () {
     },
     getUser(user_id){
       this.user_id = user_id
@@ -181,11 +129,10 @@ const publication = new Vue({
       if (this.emergency) {
         this.featured = false
       }
-    }
-   },
-   mounted() {
-    moment.locale('es')
-    this.getPublications()
+    },
+  },
+  mounted() {
+moment.locale('es')
     this.getEventsMonth()
     this.getCalendar()
     setTimeout(() => {
@@ -194,6 +141,5 @@ const publication = new Vue({
         autoclose: true
       });
     }, 100) 
-
-   } 
+  }
 });

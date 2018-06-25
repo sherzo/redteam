@@ -19,11 +19,6 @@ const publication = new Vue({
       form.append('featured', this.featured)
       form.append('emergency', this.emergency)
       this.description = ''
-      /*
-      $('#myModal').modal('hide')
-      $('body').removeClass('modal-open');
-      $('.modal-backdrop').remove();
-      */
       axios.post('publications', form)
         .then(res => {
           this.success = true

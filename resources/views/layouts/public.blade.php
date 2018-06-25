@@ -229,15 +229,6 @@
     @yield('content')
 </div>
 
-{{--<span class="lnvmodal lnvmodal-loader" style="opacity: 0.9;">
-      <p>
-      <span>Cargando...</span>
-      </p>
-      <aside role="dialog">
-       <div>Loading....</div>
-      </aside>
-    </span>
---}}
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
@@ -249,9 +240,9 @@
 
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
 <script>    
-    const socket = io.connect('http://18.219.62.126:6800',{
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -269,9 +260,7 @@
     
     function disconnect(event) {
         event.preventDefault();
-
         socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )
-        
         document.getElementById('logout-form').submit();
     }
 </script>
@@ -315,14 +304,6 @@
 <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
-<script type="text/javascript">
-    $('#sandbox-container .input-daterange').datepicker({
-        format: "yyyy-mm-dd",
-        autoclose: true
-    });
-</script>
-
-{{--<script src="{{ asset('assets/js/main_chat.js') }}" type="text/javascript" ></script>--}}
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
 @yield('js')
 </body>

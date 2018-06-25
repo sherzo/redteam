@@ -141,7 +141,16 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             
                             {{--     INICIO DE V-FOR--}}           
-                            <div class="col-md-12" v-for="(p, i) in publications">
+                            <div class="col-md-12" v-for="(p, i) in publications" :class="{ 'typeAvisosPost': p.color }">
+                                <div class="ui icon message" v-if="p.color" :style="{ 'background': p.color }">
+                                    <img class="img-responsive" src="{{ asset('assets/images/ico-oportunidades.png') }}">
+                                    <div class="content">
+                                        <p class="fontMiriamProRegular">@{{ p.description }} </p>
+                                    </div>
+                                </div>
+
+                                <div v-else>
+                                    
                                 <div class="ui feed uifeedAvatar">
                                     <div class="event">
                                         <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
@@ -204,6 +213,7 @@
                                     </div>
                                     <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
                                 </form>
+                                </div> {{-- V-ELSE --}}  
                             </div>
                             {{--    FIN DE V-FOR --}}
                         </div>

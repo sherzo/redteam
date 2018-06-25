@@ -1,39 +1,50 @@
-@extends('layouts.admin')
+@extends('layouts.Template-admin')
 
-@section('css')
-<style>
-    .daysNumberCalendar>div {
-        margin-left: 2px;
-    }
-    
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s;
-    }
-    
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-    }
-    
-</style>
-@endsection
+@section('content')
+    <div class="container continerWithSite">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionAdminContain">
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
 
-@section('content')        
-    
-    @include('components.header-admin', [
-        'title' => 'Hola!',
-        'placeholder' => 'Buscar usuarios por su nombre'
-    ])
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido">
+                <h1>Hola!</h1>
+                @include('back-end.partials.fields-name-admin-login')
+                @include('back-end.partials.fields-search-usuarios')
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <ul class="nav navbar-nav navbar-right navulRIght">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                        <li>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                                Salir
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- SECTION MENU INTERNO HOME -->
     <section class="container-fluid">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionMenuInterno">
             <ul>
-                <li class="active"><a href="{{ url('admin/home') }}">Home</a></li>
-                <li><a href="{{ url('admin/board') }}">Board</a></li>
-                <li><a href="{{ url('admin/users') }}">Usuarios</a></li>
+                <li class="active"><a href="home">Home</a></li>
+                <li><a href="board">Board</a></li>
+                <li><a href="usuarios">Usuarios</a></li>
             </ul>
         </div>
     </section>
+
 
     <!-- SECTION BLOQUE NOTIFICACION Y MENSAJES -->
     <section class="container-fluid sectionAdminNotifiMensa">
@@ -351,24 +362,22 @@
 
 
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 calendarAdmin" id="calendar">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 calendarAdmin">
                 <!-- CALENDAR -->
 
-                <div class="captionCalendar" v-cloak>
+                <div class="captionCalendar">
                     <div class="dayMonth">
                         <p class="fontMiriamProSemiBold">Agenda</p>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
-                            <p class="DayAgenda">{{ now()->format('l') }}</p>
-                            <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
+                            <p class="DayAgenda">TUESDAY</p>
+                            <p class="DayNumberAgenda">10</p>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
                             <p class="typEEvento">Este día </br> no hay eventos</p>
 
                         </div>
                     </div>
-
-                    @include('components.calendar')
-                
+                    @include('back-end.partials.field-calendar-admin-lateral')
                 </div>
 
                 <!-- END CALENDAR -->
@@ -383,13 +392,13 @@
                     <!-- Tab panes -->
                     <div class="tab-content tabconteAddComent">
                         <div role="tabpanel" class="tab-pane fade" id="profile">
-                            <form action="postCreateEvento" method="post" @submit.prevent="addEvent">
+                            <form action="postCreateEvento" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <textarea cols="30" rows="10" name="evento_descript" placeholder="Escribe el evento" required v-model="title"></textarea>
+                                <textarea cols="30" rows="10" name="evento_descript" placeholder="Escribe el evento" required></textarea>
                                 <div id='sandbox-container'>
                                     <div class="input-daterange input-group" id="datepicker">
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 captioNFehcIni">
-                                            <input id="day" type="text" class="input-sm form-control" name="fecha_start_evento" required />
+                                            <input type="text" class="input-sm form-control" name="fecha_start_evento" required />
                                         </div>
                                     </div>
                                     <h4 class="colorGrisMediumSuave fontMiriamProRegular">Seleccionar fecha</h4>
@@ -444,18 +453,13 @@
                     <img class="img-responsive" src="{{ asset('assets/images/avatar/AnuncioPublicAdmin.png') }}" alt=""  data-toggle="modal" data-target="#myModalNotifications">
                 </div>
                 <!-- END RECORDATORIOS -->
+
             </div>
         </div>
     </section>
 
+
     <!-- Modal NOTIFICACIONES -->
-    @include('components.modal-notifications')
+    @include('back-end.partials.fields-modal-notificaciones')
 
-@endsection
-
-
-@section('js')
-    <script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/src/calendar.js') }}"></script>
-    <script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
 @endsection

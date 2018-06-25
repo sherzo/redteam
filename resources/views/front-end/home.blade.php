@@ -5,6 +5,9 @@
   [v-cloak] > * {
     display: none;
   }
+  .daysNumberCalendar>div {
+    margin-left: 2px;
+  }
 </style>
 @endsection
 
@@ -45,69 +48,78 @@
                     {{-- BLOCK TEXT --}}
 
                     {{--     INICIO DE V-FOR--}}           
-                    <div class="col-md-12" v-for="(p, i) in publications">
-                        <div class="ui feed uifeedAvatar">
-                            <div class="event">
-                                <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            @{{ p.user.name }}
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave">
-                                            @{{ p.created_at | humanize }}
+                    <div class="col-md-12" v-for="(p, i) in publications" :class="{ 'typeAvisosPost': p.color }">
+                        <div class="ui icon message" v-if="p.color" :style="{ 'background': p.color }">
+                            <img class="img-responsive" src="{{ asset('assets/images/ico-oportunidades.png') }}">
+                            <div class="content">
+                                <p class="fontMiriamProRegular">@{{ p.description }} </p>
+                            </div>
+                        </div>
+
+                        <div v-else>
+                            <div class="ui feed uifeedAvatar">
+                                <div class="event">
+                                    <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
+                                    </div>
+                                    <div class="content">
+                                        <div class="summary">
+                                            <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                @{{ p.user.name }}
+                                            </a>
+                                            <div class="date fontMiriamProRegular colorGrisMediumSuave">
+                                                @{{ p.created_at | humanize }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
-                            @{{ p.description }}
-                        </p>
-                        <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
-                            <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
-                        </a>
-                        <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
-                        <div class="ui feed uifeedActions">
-                            <div class="event">
-                                <div class="label">
-                                    <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
-                                </div>
-                                <div class="content contLike">
-                                    <div class="summary">
-                                        <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                            @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
-                                        </a>
-                                        <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
-                                            <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
+                            <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
+                                @{{ p.description }}
+                            </p>
+                            <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
+                                <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
+                            </a>
+                            <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
+                            <div class="ui feed uifeedActions">
+                                <div class="event">
+                                    <div class="label">
+                                        <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
+                                    </div>
+                                    <div class="content contLike">
+                                        <div class="summary">
+                                            <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
+                                                @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
+                                            </a>
+                                            <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
+                                                <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                         <div class="ui feed uifeedComnetUser" v-if="p.comments.length > 0">
-                            <div class="event" v-for="c in p.comments">
-                                <div class="label dataPrubeIm" :style="{ 'background-image': 'url(' + c.user.avatar + ')' }">
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a :href="c.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
-                                            @{{ c.user.name }}
-                                        </a>
-                                        <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
-                                            @{{ c.description }}
+                             <div class="ui feed uifeedComnetUser" v-if="p.comments.length > 0">
+                                <div class="event" v-for="c in p.comments">
+                                    <div class="label dataPrubeIm" :style="{ 'background-image': 'url(' + c.user.avatar + ')' }">
+                                    </div>
+                                    <div class="content">
+                                        <div class="summary">
+                                            <a :href="c.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                @{{ c.user.name }}
+                                            </a>
+                                            <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
+                                                @{{ c.description }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i)">
+                                <div class="field">
+                                    <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
+                                </div>
+                                <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
+                            </form>
                         </div>
-                        <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i)">
-                            <div class="field">
-                                <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
-                            </div>
-                            <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
-                        </form>
                     </div>
                     {{--    FIN DE V-FOR 
 
@@ -507,13 +519,16 @@
                         <div class="dayMonth">
                             <p class="fontMiriamProSemiBold">Agenda</p>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
-                                <p class="DayAgenda">Lunes</p>
-                                <p class="DayNumberAgenda">4</p>
+                                <p class="DayAgenda">{{ now()->format('l') }}</p>
+                                <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
                                 <p class="typEEvento">Hoy capacitación </br>para técnicos</p>
                             </div>
                         </div>
+                        @include('components.calendar')
+                        {{--
+
                         <div class="calendarDatas">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                 <!-- Wrapper for slides -->
@@ -604,6 +619,7 @@
                                 </a>
                             </div>
                         </div>
+                            --}}
                     </div>
 
                     {{-- SECTION ADD EVENT CALENDAR --}}
@@ -616,12 +632,12 @@
                         <!-- Tab panes -->
                         <div class="tab-content tabconteAddComent">
                             <div role="tabpanel" class="tab-pane fade" id="profile">
-                                <form action="">
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="Escribe el evento"></textarea>
+                                <form action="" @submit.prevent="addEvent">
+                                    <textarea name="" id="" cols="30" rows="10" placeholder="Escribe el evento" v-model="title"></textarea>
                                     <div id='sandbox-container'>
                                         <div class="input-daterange input-group" id="datepicker">
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 captioNFehcIni">
-                                                <input type="text" class="input-sm form-control" name="fecha-start" />
+                                                <input type="text" class="input-sm form-control" name="fecha-start" id="day"/>
                                             </div>
                                         </div>
                                         <h4 class="colorGrisMediumSuave fontMiriamProRegular">Seleccionar fecha</h4>

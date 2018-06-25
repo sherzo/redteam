@@ -2,6 +2,9 @@
 
 @section('css')
 <style>
+    .contenMoreImages {
+        margin: 10px 0;
+    }
     .contenMoreImages img {
         display: block;
         position: relative;
@@ -66,15 +69,14 @@
                 {{-- Cabecera --}}
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUser">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUserDatas" v-if="chat.id">
-
                         <div class="label dataPrubeIm dataProfileAllUsersListChatSelect recibeSelectChat" :style="{ 'background-image': 'url(' + chat.transmitter.avatar + ')' }" v-if="chat.transmitter_id != user_id"></div>
 
                         <div class="label dataPrubeIm dataProfileAllUsersListChatSelect recibeSelectChat" :style="{ 'background-image': 'url(' + chat.receiver.avatar + ')' }" v-else></div>
                         
                         <p class="colorBlack fontMiriamProSemiBold" v-if="chat.transmitter_id != user_id">@{{ chat.transmitter.name }} @{{ chat.transmitter.lastname }}</p>
                         <p class="colorBlack fontMiriamProSemiBold" v-else>@{{ chat.receiver.name }} @{{ chat.receiver.lastname }}</p>
-
                     </div>
+
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ChatWithUserDatas" v-else>
                         <p class="text-center text-muted" style="color:black;">
                             <small style="color: black;">No ha seleccionado conversación</small>
@@ -100,8 +102,7 @@
                             {{-- Si es un archivo --}}
                             <div class="col-lg-12 wrapMensage envMensgaRce2" v-if="m.type == 2"><p>
                                 <a download="" :href="m.content" >
-                                <img src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" class="img-responsive">
-                                    
+                                    <img src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" class="img-responsive">
                                 </a>
                             </p></div>
                         </div>
@@ -117,7 +118,7 @@
                                 <textarea name="" class="input_message form-control" placeholder="Escribe aquí" v-model="content" @keyup.enter="sendMessage" :disabled="uploadFile != 0"></textarea>
 
                                     <div class="contenMoreImages">
-                                        <img :src="showImage" alt="" width="100" height="100" v-show="showImage != ''">
+                                        <img :src="showImage" alt="" width="100" v-show="showImage != ''">
                                         <input type="file" class="fileInputImageChat1" ref="myFile">
                                     </div>
                             </div>
@@ -213,7 +214,7 @@
                                         <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + u.avatar + ')' }"></div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">@{{ u.name }} @{{ u.lastname }}</p>
+                                        <p class="colorBlack fontMiriamProSemiBold TitleUserMen">@{{ u.name }}</p>
                                     </div>
                                 </a>
                             </div>
@@ -232,7 +233,7 @@
     <!-- Modal -->
     @include('front-end.partials.field-public-post')
 
-    <!-- Modal chat -->
+    <!-- Modal chat 
     <div class="modal fade" id="myModalCHat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog contPusblishDialogo" role="document">
             <div class="modal-content">
@@ -318,6 +319,7 @@
         </div>
     </div>
     </div>
+    -->
 
     <div class="alert alert-info dataClMoPosPEr" role="alert">¡Publicacion Agregada!</div>
     {{-- Mensajes entrada salida --}}

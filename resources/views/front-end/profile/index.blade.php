@@ -1,5 +1,13 @@
 @extends('layouts.public')
 
+@section('css')
+<style>
+    .daysNumberCalendar>div {
+        margin-left: 2px;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="container continerWithSite containBloquePro">
         <div class="row">            
@@ -317,17 +325,64 @@
 
             </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 captionRecordNotas SecCalendar">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 captionRecordNotas SecCalendar" id="calendar">
 
                 <!-- BLOQUE CALENDAR -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                     <!-- SECTION CALENDAR AND ADD EVENT CALENDAR -->
-                @include('front-end.partials.fields-lateral-calendar')
+                    <div class="captionCalendar">
+                        <div class="dayMonth" >
+                            <p class="fontMiriamProSemiBold">Agenda</p>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
+                                <p class="DayAgenda">Agosto</p>
+                                <p class="DayNumberAgenda">10</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
+                                <p class="typEEvento">Hoy Cumpleaños Karla</p>
+                                <!-- <p class="typEEvento">Este día </br> no hay eventos</p>  -->
+
+                            </div>
+                        </div>
+                        <div v-cloak>
+                            @include('components.calendar')
+                        </div>
+                    </div>
+
+                    <div class="captionAddEvento">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" ><a href="#profile" class="fontMiriamProRegular" aria-controls="profile" role="tab" data-toggle="tab" >Agregar evento a calendario</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabconteAddComent">
+                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                <form action="postCreateEvento" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <textarea cols="30" rows="10" name="evento_descript" placeholder="Escribe el evento" required v-model="title"></textarea>
+                                    <div id='sandbox-container'>
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 captioNFehcIni">
+                                                <input type="text" class="input-sm form-control" id="day" name="fecha_start_evento" required />
+                                            </div>
+                                        </div>
+                                        <h4 class="colorGrisMediumSuave fontMiriamProRegular">Seleccionar fecha</h4>
+                                        <input type="hidden" name="id_user_evento" value="{{ Auth::user()->id }}">
+                                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 captioNFehcFina">
+                                            <input type="submit" class="form-control Submit" value='Aceptar'/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{--
+
+                    @include('front-end.partials.fields-lateral-calendar')
+                        --}}
 
                 <!-- GALERIA DE FOTOS -->
                     @include('front-end.partials.fields-galeria-fotos-user')
-
 
                 </div>
 
@@ -368,4 +423,5 @@ $(document).ready(function() {
 });
 </script>
 <script src="{{ asset('assets/js/src/upload-file.js') }}"></script>
+<script src="{{ asset('assets/js/src/calendar.js') }}"></script>
 @endsection

@@ -128,4 +128,9 @@ class User extends Authenticatable
 
         return '';
     }
+
+    public function adminNotifications()
+    {
+        return $this->hasMany(AdminNotification::class);
+    }
 }

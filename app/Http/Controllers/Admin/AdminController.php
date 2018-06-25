@@ -25,8 +25,6 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function Home()
     {
         $user = Auth::user();
@@ -38,6 +36,7 @@ class AdminController extends Controller
             return view('back-end.home');
         }   
     }
+
 
     public function Board()
     {

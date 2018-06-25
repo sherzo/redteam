@@ -17,7 +17,7 @@
             <a href="{{ url('admin/applications') }}" class="permisoIco">  Permisos</a>
         </li>
         <li>
-            <a href="calendario" class="calendarIco"> Calendario</a>
+            <a href="{{ url('admin/calendar') }}" class="calendarIco"> Calendario</a>
         </li>
         <li>
             <a href="{{ url('admin/documents') }}" class="documentIco">  Documentos</a>
@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li>
-                <a href="calendario">
+                <a href="{{ url('calendar') }}">
                     <img src="{{ asset('assets/images/icons/calendar.png') }}" class="img- responsive" alt="">
                 </a>
             </li>

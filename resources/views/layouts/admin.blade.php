@@ -76,9 +76,9 @@
     <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-    <script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+    <script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
     <script>    
-    const socket = io.connect('http://18.219.62.126:6800',{
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -90,9 +90,7 @@
 
     function disconnect(event) {
         event.preventDefault();
-
         socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )
-        
         document.getElementById('logout-form').submit();
     }
     //socket.emit('connection')
@@ -157,12 +155,9 @@
                 }
             })
         ;
-
     </script>
-    {{--
-
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/clock/bootstrap-clockpicker.min.js') }}" type="text/javascript" ></script>
+
     <script type="text/javascript">
         $('.clockpicker').clockpicker()
             .find('input').change(function() {
@@ -178,10 +173,17 @@
             $('input').prop('readOnly', true);
         }
     </script>
+    {{--
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
     <!-- End ClockPicker -->
     --}}
+    <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
+    
+    {{--
+    
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker12').datetimepicker({
@@ -190,7 +192,6 @@
             });
         });
     </script>
-    {{--
     <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
     <script type="text/javascript">
         $('#sandbox-container .input-daterange').datepicker({
@@ -198,8 +199,8 @@
             autoclose: true
         });
     </script>
-    --}}
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    --}}
     <script type="text/javascript">
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         //<![CDATA[
