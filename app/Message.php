@@ -25,4 +25,9 @@ class Message extends Model
        	return Storage::disk('public')->url($content); 
     }
      
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

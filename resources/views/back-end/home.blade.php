@@ -38,11 +38,12 @@
     <!-- SECTION BLOQUE NOTIFICACION Y MENSAJES -->
     <section class="container-fluid sectionAdminNotifiMensa">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
-
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido">
-                <p class="alert alert-success">EL recordatorio se creo con exito!</p>
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido" id="home">
+                <div v-cloak>
+                <p class="alert alert-success" v-show="success != ''" >@{{ success }}</p>
+                    
+                </div>
 
                 <!-- notificaciones -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloquesNotification">
@@ -55,7 +56,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="#!" class='ayerActivi'>
+                                            <a href="#!" class="ayerActivi" @click.prevent="getYesterday('notifications')">
                                                 Ayer
                                             </a>
                                         </li>
@@ -79,8 +80,8 @@
                                 </ul>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberNotifis">
-                                <h1>2</h1>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberNotifis" v-cloak>
+                                <h1>@{{ notifications }}</h1>
                             </div>
 
                         </div>
@@ -100,7 +101,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="#!" class="ayerAsistencia">
+                                            <a href="#!" class="ayerAsistencia" @click.prevent="getYesterday('lates')">
                                                 Ayer
                                             </a>
                                         </li>
@@ -119,13 +120,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropDetallAsiste" aria-labelledby="dLabel">
                                     <li>
-                                        <a href="" data-daynext="">Detalles</a>
+                                        <a href="{{ url('admin/history') }}" data-daynext="">Detalles</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberAsisten">
-                                <h1>2</h1>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberAsisten" v-cloak>
+                                <h1>@{{ lates }}</h1>
                             </div>
 
                         </div>
@@ -144,7 +145,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="#!" class="ayerEmergenci">
+                                            <a href="#!" class="ayerEmergenci" @click.prevent="getYesterday('emergencies')">
                                                 Ayer
                                             </a>
                                         </li>
@@ -163,13 +164,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropDetallEmerge" aria-labelledby="dLabel">
                                     <li>
-                                        <a href="" data-daynext="">Detalles</a>
+                                        <a href="{{ url('admin/emergencies') }}" data-daynext="">Detalles</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberEmergenci">
-                                <h1 class="emergenciRed">1</h1>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberEmergenci" v-cloak>
+                                <h1 class="emergenciRed">@{{ emergencies }}</h1>
                             </div>
 
                         </div>
@@ -189,7 +190,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="" class="ayerPermiso">
+                                            <a href="" class="ayerPermiso" @click.prevent="getYesterday('applications')">
                                                 Ayer
                                             </a>
                                         </li>
@@ -208,13 +209,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropDetallPermiso" aria-labelledby="dLabel">
                                     <li>
-                                        <a href="" data-daynext="">Detalles</a>
+                                        <a href="{{ url('admin/applications') }}" data-daynext="">Detalles</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberPermiso">
-                                <h1 class="permisosOrange">3</h1>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberPermiso" v-cloak>
+                                <h1 class="permisosOrange">@{{ applications }}</h1>
                             </div>
 
                         </div>
@@ -227,57 +228,59 @@
                 <!-- end section notificaciones -->
 
                 <!-- section mensajes -->
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menssagesBloques">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menssagesBloques" v-cloak>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 allTextMensages">
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 chexAllsMensages">
-                            <div class="dropdown dwropOptionMensgae">
+                            <div class="dropdown dwropOptionMensgae" :class="{ dwropOptionMensgaeActive: isChecked }">
                                 <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                                     <li>
-                                        <form action="home_submit" method="get" accept-charset="utf-8" class="removeMensage">
+                                        <form action="home_submit" @submit.prevent="deletes" method="get" accept-charset="utf-8" class="removeMensage">
                                             <input type="submit" value="Eliminar">
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="home_submit" method="get" accept-charset="utf-8" class="removeMensage">
+                                        <form action="home_submit" @submit.prevent="markAsRead"  method="get" accept-charset="utf-8" class="removeMensage">
                                             <input type="submit" value="Marca como leído">
                                         </form>
                                     </li>
                                 </ul>
                             </div>
                             <form action="home_submit" method="get" accept-charset="utf-8" class="formCheallmensage">
-                                <input type="checkbox">
+                                <input type="checkbox" v-model="checkAll">
                             </form>
                         </div>
                         <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 textAllsMensages">
-                            <a href=""><span>15</span>   Mensajes nuevos</a><span><span>1</span>-5</span>
+                            <a href=""><span>@{{ messages.length }}</span>   Mensajes nuevos</a><span><span>1</span>-5</span>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages" v-for="m in messages">
                         <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 checkMEnsagge">
-                            <form action="home_submit" method="get" accept-charset="utf-8" class="selectMensage">
-                                <input type="checkbox">
+                            <form action="home_submit" method="get" accept-charset="utf-8"  class="selectMensage">
+                                <input type="checkbox" v-model="checkeds" :value="m.id">
                             </form>
                         </div>
                         <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 textAllsMensages">
                             <form action="home_submit" method="get" accept-charset="utf-8" class="mensageOne">
                                 <a href="">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fchaUisersMensage">
-                                        <p>29 de Diciembre de 2016 a las 7:30 p.m.</p>
+                                        <p>@{{ m.created_at }}</p>
                                     </div>
+
                                     <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 secFotoUser">
-                                        <img class="img-responsive" src="{{ asset('assets/images/profile-user-circle.png') }}" alt="">
+                                        <img class="img-responsive" :src="m.user.avatar" alt="">
                                     </div>
+                                    
                                     <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 sectioForMEnsagen">
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nameUisersMensage">
-                                            <h3>Lisseth Rivas <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt=""></h3>
+                                            <h3>@{{ m.user.name }}<img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt=""></h3>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 typeUisersMensage">
-                                            <p>Oportunidades de empleo, pagos, inicio de proyectos,   apertura de sucursales, días feriados, actividades internas, etc.</p>
+                                            <p>@{{ m.content }}</p>
                                         </div>
 
                                     </div>
@@ -285,7 +288,13 @@
                             </form>
                         </div>
                     </div>
-
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages" v-show="messages.length == 0">
+                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 textAllsMensages">
+                            <p class="text-muted"><em>Sin mensajes</em></p>
+                        </div>
+                    </div>
+                        
+                    <!--
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages">
                         <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 checkMEnsagge">
                             <form action="home_submit" method="get" accept-charset="utf-8" class="selectMensage">
@@ -345,7 +354,7 @@
                                 </a>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- emd section mensajes  -->
 
@@ -407,11 +416,11 @@
                 <!-- END SECTION ADD EVENTO -->
 
                 <!-- REXCORDATORIOS -->
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 caption Addrecordatorio">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 caption Addrecordatorio" id="reminders">
                     <h2>¡Recordar!</h2>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionRecordatorios">
-                        <p>Tienes entrevistas este dia!</p>
-                        <form action="removeRecordatorio" method="post" class="formHEchoRecordar" accept-charset="utf-8">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionRecordatorios" v-for="(r,i) in reminders">
+                        <p>@{{ r.title }}</p>
+                        <form action="removeRecordatorio" method="post" @submit.prevent="markAsCompleted(i)" class="formHEchoRecordar" accept-charset="utf-8">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id_remove_recordatorio" value="">
                             <input type="submit" class="submitHecho" value="Hecho">
@@ -425,10 +434,8 @@
                         <!-- Tab panes -->
                         <div class="tab-content tabconteAddComent">
                             <div role="tabpanel" class="tab-pane fade" id="AddRcordatorio">
-                                <form action="postCreateRecordatorio" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <textarea name="descrip_recordatorio" id="" cols="30" rows="10" placeholder="Escribe el recordatorio" required=""></textarea>
-                                    <input type="hidden" name="id_user_recordatorio" value="{{ Auth::user()->id }}">
+                                <form action="postCreateRecordatorio" method="post" @submit.prevent="store">
+                                    <textarea name="descrip_recordatorio" id="" cols="30" rows="10" placeholder="Escribe el recordatorio" required="" v-model="titler"></textarea>
                                     <div id='sandbox-container'>
                                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 captioNFehcFina">
                                             <input type="submit" class="form-control Submit"  value='Aceptar'/>
@@ -458,4 +465,5 @@
     <script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/src/calendar.js') }}"></script>
     <script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
+    <script src="{{ asset('assets/js/src/admin_home.js') }}"></script>
 @endsection

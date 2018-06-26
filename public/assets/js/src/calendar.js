@@ -13,7 +13,9 @@ const publication = new Vue({
     image: '',
     success: false,
     user_id: 0,
-    date: moment()
+    date: moment(),
+    reminders: [],
+    titler: ''
   },
   filters: {
     showDay(date) {
@@ -21,6 +23,39 @@ const publication = new Vue({
     }
   },
   methods: {
+     getReminders () {
+      axios.get('admin/reminders')
+        .then(res => {
+          this.reminders = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    store () {
+      let data = {
+        title: this.titler
+      }
+      this.titler = ''
+      axios.post('admin/reminders/store', data)
+        .then(res => {
+          this.reminders.push(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    markAsCompleted (i) {
+      let id = this.reminders[i].id
+
+      axios.post('admin/reminders/mark-as-completed', { id })
+        .then(res => {
+          this.reminders.splice(i, 1)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     getCalendar() {
       let date = this.date.format('YYYY-MM-DD')
 
@@ -135,6 +170,7 @@ const publication = new Vue({
 moment.locale('es')
     this.getEventsMonth()
     this.getCalendar()
+    this.getReminders()
     setTimeout(() => {
       $('#sandbox-container .input-daterange').datepicker({
         format: "yyyy-mm-dd",

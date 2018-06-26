@@ -389,6 +389,7 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Publication' => __DIR__ . '/../..' . '/app/Publication.php',
         'App\\Publications' => __DIR__ . '/../..' . '/app/Publications.php',
+        'App\\Reminder' => __DIR__ . '/../..' . '/app/Reminder.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Schedule' => __DIR__ . '/../..' . '/app/Schedule.php',
         'App\\ScheduleDay' => __DIR__ . '/../..' . '/app/ScheduleDay.php',

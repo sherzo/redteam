@@ -91,6 +91,21 @@ class User extends Authenticatable
         return $this->schedules()->where('midday', true);
     }
 
+    public function adminNotifications()
+    {
+        return $this->hasMany(AdminNotification::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
+    }
+
     /*
     *   Magis methods
     */
@@ -127,10 +142,5 @@ class User extends Authenticatable
         }
 
         return '';
-    }
-
-    public function adminNotifications()
-    {
-        return $this->hasMany(AdminNotification::class);
     }
 }

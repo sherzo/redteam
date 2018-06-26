@@ -70,7 +70,15 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
     Route::get('chats', 'ChatController@index');
     Route::get('calendar', 'CalendarController@index');
-    
+    /*
+    *   Home admin
+    */
+    Route::get('dashboard', 'Admin\AdminController@dashboard');
+    Route::get('yesterday/{data}', 'Admin\AdminController@getYesterday');
+    Route::post('messages/mark-as-read', 'Admin\AdminController@markAsRead');
+    Route::get('reminders', 'ReminderController@all');
+    Route::post('reminders/store', 'ReminderController@store');
+    Route::post('reminders/mark-as-completed', 'ReminderController@markAsCompleted');
     /*
     *   Admin Notifications
     */

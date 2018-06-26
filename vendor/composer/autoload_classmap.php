@@ -60,6 +60,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Publication' => $baseDir . '/app/Publication.php',
     'App\\Publications' => $baseDir . '/app/Publications.php',
+    'App\\Reminder' => $baseDir . '/app/Reminder.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Schedule' => $baseDir . '/app/Schedule.php',
     'App\\ScheduleDay' => $baseDir . '/app/ScheduleDay.php',

@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request as facedesrequest;
 use Auth;
-
+use Carbon\Carbon;
+use App\Application;
+use App\Emergency;
+use App\Publication;
+use App\Event;
+use App\Message;
 
 class AdminController extends Controller
 {
@@ -37,6 +42,113 @@ class AdminController extends Controller
         }   
     }
 
+    public function dashboard()
+    {
+        $user = Auth::user();
+
+        $today = now()->format('Y-m-d');
+        $emergencies = Emergency::whereDate('created_at', $today)->count();
+        $applications = Application::whereDate('created_at', $today)->count();
+        $notifications = Publication::whereDate('created_at', $today)->count();
+        $notifications += Event::whereDate('created_at', $today)->count();
+        $lates = 0;
+
+        //$chats = $user->chats()->
+        /*
+        $messages = Message::where('messages.user_id', '!=', $user->id)
+            ->join('chats', 'chats.transmitter_id', '=', 'messages.user_id')
+            ->join('chats', 'chats.receiver_id', '=', 'messages.user_id')
+            ->where(function ($query) use ($user) {
+                $query->where('chats.receiver_id', $user->id)
+                ->orWhere('chats.transmitter_id', $user->id);
+            })
+            ->where('messages.seen', false)
+            ->orderBy('messages.created_at', 'desc')
+            ->take(5)
+            ->get();
+        */
+
+        $messages = collect();
+       
+        $chats = $user->chats()->take(5)->get();
+
+        $chats->each(function($chat) use ($user, $messages) {
+            
+            $message =  $chat->messages()
+                ->with('user')
+                ->where('seen', false)
+                ->where('user_id', '!=', $user->id)
+                ->where('type', 0)
+                ->orderby('id', 'desc')
+                ->first();
+            if(!is_null($message)) {
+                $messages->push($message);
+            }
+        });
+
+        //return $chats;
+        /*
+        $chats = $user->chats()->with(['messages' => function($query) use ($user) {
+            $query->where('seen', false)
+            ->where('user_id', '!=', $user->id)
+            ->orderby('created_at', 'DESC')
+            ->with('user')
+            ->take(1);
+        }])->get();
+    */
+
+        return [
+            'notifications' => $notifications,
+            'applications' => $applications,
+            'emergencies' => $emergencies,
+            'lates' => $lates,
+            'messages' => $messages 
+        ];
+    }
+
+     /**
+     * Mark 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function MarkAsRead(Request $request)
+    {
+        $applications = Message::whereIn('id', $request->ids)
+            ->update(['seen' => true]);
+        
+        return [
+            'result' => true
+        ]; 
+    }
+
+
+    public function getYesterday($element) 
+    {
+        $yesterday = Carbon::yesterday()->format('Y-m-d');
+
+        switch ($element) {
+            case 'notifications':
+                $countYesterday = Publication::whereDate('created_at', $yesterday)->count();
+                $countYesterday += Event::whereDate('created_at', $yesterday)->count();
+                break;
+            
+            case 'lates':
+                $countYesterday = 0;
+                break;
+            
+            case 'emergencies':
+                $countYesterday = Emergency::whereDate('created_at', $yesterday)->count();
+                break;
+        
+            default:
+                $countYesterday = Application::whereDate('created_at', $yesterday)->count();
+                break;
+ 
+        }
+        
+        return $countYesterday;
+    }
+ 
 
     public function Board()
     {
