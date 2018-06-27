@@ -108,17 +108,18 @@
                                         </a>
                                         <p class="colorBlack fontMiriamProSemiBold">{{ Auth::user()->full_name }}</p>
                                     </li>
-                                    <li class="bloquesMarca marEntrada">
-                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" >Marcar entrada</a>
+                                    <li class="bloquesMarca marEntrada" v-if="isWorking == null">
+                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" @click.prevent="markEntry">Marcar entrada</a>
                                         <div class='secEntrada'>
-                                            <input type="hidden" name="id_user_login" class="IdloginUser" value="{{ Auth::user()->id }}">
                                         </div>
                                     </li>
-                                    <li class="bloquesMarca marSalida">
-                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave">Marcar salida</a>
+                                    <li class="bloquesMarca marSalida" v-else-if="isWorking">
+                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" @click.prevent="markExit">Marcar salida</a>
                                         <div class='secEntrada'>
-                                            <input type="hidden" name="id_user_login" class="IdloginUser" value="{{ Auth::user()->id }}">
                                         </div>
+                                    </li>
+                                     <li class="bloquesMarca marSalida" v-else>
+                                        <p class="text-muted text-center "><small>Ha terminado su jornada</small></p>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                         @auth
@@ -260,7 +261,9 @@
     
     function disconnect(event) {
         event.preventDefault();
-        socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )
+        if(socket != undefined) {
+            socket.emit('desconectar', { id: '{{ Auth::user()->id }}'} )     
+        }
         document.getElementById('logout-form').submit();
     }
 </script>
@@ -305,6 +308,7 @@
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/src/assistance.js') }}"></script>
 @yield('js')
 </body>
 </html>

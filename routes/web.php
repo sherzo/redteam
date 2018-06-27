@@ -143,6 +143,12 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('calendar/{date}/render', 'CalendarController@renderMonth');
     Route::get('calendar/{date}/events', 'CalendarController@events');
     Route::post('calendar/store', 'CalendarController@store');
+    /*
+    *   Assistence
+    */
+    Route::post('mark-entry', 'AssistanceController@markEntry');
+    Route::post('mark-exit', 'AssistanceController@markExit');
+    Route::get('get-work-status', 'AssistanceController@getWorkStatus');
 });
 
 /*

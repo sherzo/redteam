@@ -120,23 +120,18 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 textAreaReturn">
                                                         <textarea name="descrip_comen_suge" v-model="e.discussion"></textarea>
                                                     </div>
-                                                    <div class="contenMoreDocuments">
-                                                        <input type="file" class="fileInputAdmin" name="fileinputdocuemnt">
-                                                    </div>
-
-                                                    <div class="contenMoreImages">
-                                                        <input type="file" class="fileInputAdminImage" name="fileinputimage">
-                                                    </div>
 
                                                     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 submitSendSugerencia">
                                                         <input type="submit" value="Enviar">
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueImageretu">
                                                         <img class="img-responsive imImga"  onclick="document.getElementById('imageInputE').click()" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
-                                                        <input type="file" id="imageInputE" ref="emergecyImage" style="display: none" @change="getChatImage">
+
+                                                        
+
 
                                                         <img class="img-responsive img1Do"  onclick="document.getElementById('fileInputE').click()" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="">
-                                                        <input type="file" id="fileInputE" ref="emergencyFile" style="display: none" @change="getEmergencyFile">
+                                                       
 
                                                     </div>
                                                 </div>
@@ -152,6 +147,8 @@
                         </div>
                     </div>
                 </div>
+                <input type="file" id="imageInputE" ref="emergecyImageE" style="display: none" @change="getEmergencyImage">
+                 <input type="file" id="fileInputE" ref="emergencyFile" style="display: none" @change="getEmergencyFile">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages text-center" v-show="emergencies.length == 0" style="padding: 40px">
                     <p>No hay emergencias pendientes</p>
                 </div>

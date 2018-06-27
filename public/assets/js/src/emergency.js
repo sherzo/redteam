@@ -165,7 +165,8 @@ const emergency = new Vue({
       this.emergencyFile = this.$refs.emergencyFile.files[0]
     },
     getEmergencyImage () {
-      this.emergencyImage = this.$refs.emergecyImage.files[0]
+      console.log('iMagen')
+      this.emergencyImage = this.$refs.emergecyImageE.files[0]
     },
     selectFeatured () {
       console.log(this.featured)

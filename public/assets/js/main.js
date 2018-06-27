@@ -846,6 +846,7 @@ $(".fileInputEmergenciImg2").change(function(){
 
 
 // MARCANDO HORA ENTRADA Y SALIDA
+/*
 jQuery(document).ready(function($) {
 
 	$('.marEntrada').click(function(event) {
@@ -934,7 +935,7 @@ jQuery(document).ready(function($) {
 	});
 
 });
-
+*/
 $('.collapseDataPermisos').click(function(event) {
 	var findSendMensajeComent = $('.conteFormSolicitru').parent().parent().parent().parent().parent().parent().parent().find('form.conteFormSolicitru');
 	$(findSendMensajeComent).fadeIn().toggleClass('validaSendMnessa');
@@ -1180,11 +1181,12 @@ $(".fileInputImageChat1").change(function(){
 
 
   // ACTIVE DESPLACE MENU
+ /*
   $("#gn-menuData").click(function(){
       $("nav.gn-menu-wrapper").toggleClass("gn-open-all");
       $("a.gn-icon.gn-icon-menu").toggleClass("gn-selected");
   });
-
+*/
   /*  $("body").click(function(){
     	if($('nav.gn-menu-wrapper').hasClass("gn-open-all")){
     		$("nav.gn-menu-wrapper").removeClass("gn-open-all");

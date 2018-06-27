@@ -61,7 +61,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="HistoryNotify">
+                                            <a href="{{ url('admin/notifications') }}">
                                                 Ver historial
                                             </a>
                                         </li>
@@ -75,7 +75,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropDetallNotify" aria-labelledby="dLabel">
                                     <li>
-                                        <a href="HistoryNotify/" data-daynext="">Detalles</a>
+                                        <a href="{{ url('admin/notifications') }}" data-daynext="">Detalles</a>
                                     </li>
                                 </ul>
                             </div>
@@ -106,7 +106,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="history">
+                                            <a href="{{ url('admin/history') }}">
                                                 Ver historial
                                             </a>
                                         </li>
@@ -150,7 +150,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="emergencias">
+                                            <a href="{{ url('admin/emergencies') }}">
                                                 Ver historial
                                             </a>
                                         </li>
@@ -195,7 +195,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="{{ url('admin/applications') }}">
                                                 Ver historial
                                             </a>
                                         </li>

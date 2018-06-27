@@ -17,7 +17,7 @@ const publication = new Vue({
       comment: '',
       file: [],
       image: '',
-      success: false,
+      success: '',
       user_id: 0
    },
    filters: {
@@ -119,10 +119,10 @@ const publication = new Vue({
       document.getElementById('close-modal').click()
       axios.post('publications', form)
         .then(res => {
-          this.success = true
+          this.success = 'Se registro su publicación correctamente'
           this.publications.unshift(res.data)
           setTimeout(() => {
-            this.success = false
+            this.success = ''
           },3000)
         })
         .catch(err => {

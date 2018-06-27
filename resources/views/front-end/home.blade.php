@@ -8,6 +8,12 @@
   .daysNumberCalendar>div {
     margin-left: 2px;
   }
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
 @endsection
 
@@ -15,7 +21,9 @@
 <div id="publications"> 
     <div class="container continerWithSite" v-cloak>
         <div class="row">
-            <p class="alert alert-success" v-show="success">Evento creado con exitos</p>
+            <transition>
+                <p class="alert alert-success" v-show="success != ''">@{{ success }}</p>
+            </transition>
             <div class="col-xs-12 col-sm-12 notifisMobile">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right navulRIght">
@@ -49,8 +57,10 @@
 
                     {{--     INICIO DE V-FOR--}}           
                     <div class="col-md-12" v-for="(p, i) in publications" :class="{ 'typeAvisosPost': p.color }">
+                        
+                        {{--  Notificaciones de admin si existe color  --}}
                         <div class="ui icon message" v-if="p.color" :style="{ 'background': p.color }">
-                            <img class="img-responsive" src="{{ asset('assets/images/ico-oportunidades.png') }}">
+                            {{--<img class="img-responsive" src="{{ asset('assets/images/ico-oportunidades.png') }}">--}}
                             <div class="content">
                                 <p class="fontMiriamProRegular">@{{ p.description }} </p>
                             </div>
