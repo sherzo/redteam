@@ -70,9 +70,7 @@
     
     {{-- SCRIPTS --}}
     <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript">
-        $('#myModalSolicitudRespuestCorrect').modal('show');
-    </script>
+    
     <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>

@@ -85,6 +85,11 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('admin-notification', 'AdminNotificationController@all');
     Route::post('admin-notification/store', 'AdminNotificationController@store');
     Route::post('admin-notification/send', 'AdminNotificationController@send');
+    /*
+    *   Assistances history
+    */ 
+    Route::get('assistances', 'AssistanceController@index');
+    Route::get('assistances/all', 'AssistanceController@all');
 });
 
 Route::group(['middleware' =>  'auth'], function() {

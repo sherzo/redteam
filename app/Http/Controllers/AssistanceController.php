@@ -9,6 +9,24 @@ use Carbon\Carbon;
 
 class AssistanceController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+
+        if($user->hasRole('admin')) {
+            return redirect('/');
+        }
+
+        return view('back-end.assistances.index');
+    }
+
+    public function all() 
+    {
+        $assistances = Assistance::with('user')->get();
+        
+        return $assistances;
+    }
+
     public function markEntry()
     {
     	$user = Auth::user();
