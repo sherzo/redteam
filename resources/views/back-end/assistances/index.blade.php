@@ -10,7 +10,7 @@
 
     <!-- SECTION BLOQUE NOTIFICACION Y MENSAJES -->
     <section class="container-fluid sectionAdminNotifiMensa secNotifiRanking" id="history">
-<br><br>
+        <br><br>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido conteniRanking">
 
@@ -18,7 +18,7 @@
                     <!-- Bloque Subtitles sections -->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueactionsTitles">
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                            <h3>Todos los contatos (50)</h3>
+                            <h3>Todos los contatos (@{{ assistances.length }})</h3>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                             <h3>Hora de entrada</h3>
@@ -36,7 +36,7 @@
                 <!-- end section rankings -->
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueUserRankings">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DataUserRankings DataUserRankingsHistory dataHitorySear" v-for="a in assistances">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DataUserRankings DataUserRankingsHistory dataHitorySear" v-for="(a, i) in assistances">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueactionsRankingsSz searchHis">
                             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 UserImgData">
                                 <div class="label dataPrubeIm dataProfileHistory" :style="{ 'background-image': 'url(' + a.user.avatar + ')' }">
@@ -47,12 +47,13 @@
                                 <p class="gasper">2017-03-20 00:00:00</p>
                                 <p class="gasper">Monday</p>
                                 <p :class="{ 'llegadaTarde': !a.entry_status }">@{{ a.entry | showTime }}</p>
+                                <p class="coloADP" v-if="!a.entry_status && !a.adp" data-toggle="modal" data-target="#colorADP" @click.prevent="modalADP(i, a.user, a.id)">Colocar ADP</p>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 CountADP horaSalida">
                                 <p class="gasper">2017-03-20 00:00:00</p>
                                 <p class="gasper">Monday</p>
                                 <h3 :class="{ 'horaSalidaAntes': !a.exit_status }">@{{ a.exit | showTime }}</h3>
-                                <p class="coloADP" v-if="!a.exit_status" data-toggle="modal" data-target="#colorADP" @click.prevent="addADP(a.user)">Colocar ADP</p>
+                                <p class="coloADP" v-if="!a.exit_status && !a.adp" data-toggle="modal" data-target="#colorADP" @click.prevent="modalADP(i, a.user, a.id)">Colocar ADP</p>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 starRankinHistiry">
                                 <div class="ui star rating" :data-rating="a.user.stars">
@@ -64,7 +65,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                                         <li class="selecEdit">
-                                            <a href="history/3">Ver historial</a>
+                                            <a href="" @click.prevent="individual(a.user.id)">Ver historial</a>
                                             <a href="chat">Enviar mensaje</a>
                                         </li>
                                     </ul>
@@ -1081,8 +1082,6 @@
                     </div>
                         --}}
                 </div>
-
-
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ">
 
@@ -1096,12 +1095,14 @@
                     <div class="modal-body captionBodySolicRespuesa">
                         <div class="col-xs-12 col-sm-12 col-md-12 contRevibeSOlic">
                             <div class="col-xs-12 col-sm-12 col-md-12 clAdpsCLo">
-                                <h5 class="aceptSol">¿Esta seguro que desea colocar ADP a @{{ modal.name }}?</h5>
+                                <h5 class="aceptSol" v-if="!modal.complete">¿Esta seguro que desea colocar ADP a @{{ modal.name }}?</h5>
+                                <h5 class="aceptSol" v-else>La acción de personal fue colocado exitosamente a:</h5>
+
                                 <div class="captionEvulveImg" :style="{ 'background-image': 'url(' + modal.avatar + ')' }">
                                 </div>
                                 <h4 class="nameSoliUser">@{{ modal.name }}</h4>
-                                <p class="AcepAdp">Aceptar</p>
-                                <p class="return" data-dismiss="modal">Regresar</p>
+                                <p class="AcepAdp" @click="addADP">Aceptar</p>
+                                <p class="return" data-dismiss="modal" id="didmis">Regresar</p>
                                 <form action="adps" method="post" accept-charset="utf-8" class="placeADP">
                                 </form>
                             </div>

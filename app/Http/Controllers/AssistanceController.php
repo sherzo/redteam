@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Assistance;
+use App\Performance;
 use Carbon\Carbon;
+use App\User;
 
 class AssistanceController extends Controller
 {
@@ -13,11 +15,32 @@ class AssistanceController extends Controller
     {
         $user = Auth::user();
 
-        if($user->hasRole('admin')) {
-            return redirect('/');
+        if(!$user->hasRole('admin')) {
+            return redirect('/home');
         }
 
         return view('back-end.assistances.index');
+    }
+
+    public function individual($id)
+    {
+        $user = User::find($id);
+
+        $assistances = $user->assistances()->orderBy('entry', 'DESC')->get();
+
+        return view('back-end.assistances.individual', [
+            'assistances' => $assistances, 
+            'user' => $user
+        ]);
+    }
+
+    public function allUsers()
+    {
+        $users = User::with(['assistances' => function($query){
+            $query->orderBy('entry', 'DESC');  
+        }])->get();
+
+        return view('back-end.assistances.all', ['users' => $users]);
     }
 
     public function all() 
@@ -105,6 +128,33 @@ class AssistanceController extends Controller
     	return [
     		'isWorking' => null // No ha marcado hoy
     	];
+    }
+
+    public function adp(Request $request)
+    {
+        $user = Auth::user();
+
+        $assistance = Assistance::find($request->id);
+
+        $assistance->adp = true;
+
+        $assistance->save();
+
+        $performance = Performance::create([
+            'user_id' => $user->id,
+            'performance' => 1,
+            'operation' => -5
+        ]);
+
+        $user->score += $performance->operation;
+
+        if($user->score > 10) { 
+            $user->stars = $user->score / 5;
+        }
+
+        $user->save();
+
+        return $assistance;
     }
 
 }

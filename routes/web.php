@@ -90,6 +90,9 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     */ 
     Route::get('assistances', 'AssistanceController@index');
     Route::get('assistances/all', 'AssistanceController@all');
+    Route::post('assistances/adp', 'AssistanceController@adp');
+    Route::get('assistances/{id}/individual', 'AssistanceController@individual');
+    Route::get('assistances/all-users', 'AssistanceController@allUsers');
 });
 
 Route::group(['middleware' =>  'auth'], function() {

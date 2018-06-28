@@ -2,12 +2,14 @@ const history = new Vue({
   el: '#history',
   data: {
     assistances: [],
+    index: null,
     modal: {
       avatar: '',
       name: '',
+      id: '',
       complete: false,
-      stars: [1,2,3,4,5]
-    }
+    },
+    stars: [1,2,3,4,5]
   },
   filters: {
     showTime(time) {
@@ -15,6 +17,9 @@ const history = new Vue({
     }
   },
   methods: {
+    individual (id) {
+      window.location = axios.defaults.baseURL + '/admin/assistances/'+ id +'/individual'
+    },
     getAssitances(){
       axios.get('admin/assistances/all')
         .then(res => {
@@ -24,9 +29,26 @@ const history = new Vue({
           console.log(err)
         })
     },
-    addADP (user) {
+    modalADP (i, user, id) {
+      this.index = i
+      console.log(user)
+      this.modal.id = id
       this.modal.name = user.name
-      this.moda.avatar = user.avatar
+      this.modal.avatar = user.avatar
+    },
+    addADP () {
+      axios.post('admin/assistances/adp', { id: this.modal.id })  
+        .then(res => {
+          this.modal.complete = true
+          this.assistances[this.index].adp = true
+          setTimeout(() => {
+            document.getElementById('didmis').click()
+          },3000)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
     }
   },
   mounted () {

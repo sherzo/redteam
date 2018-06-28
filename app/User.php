@@ -106,6 +106,11 @@ class User extends Authenticatable
         return $this->hasMany(Reminder::class);
     }
 
+    public function assistances()
+    {
+        return $this->hasMany(Assistance::class);
+    }
+
     /*
     *   Magis methods
     */

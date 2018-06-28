@@ -106,7 +106,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ url('admin/history') }}">
+                                            <a href="{{ url('admin/assistances') }}">
                                                 Ver historial
                                             </a>
                                         </li>
@@ -120,7 +120,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropDetallAsiste" aria-labelledby="dLabel">
                                     <li>
-                                        <a href="{{ url('admin/history') }}" data-daynext="">Detalles</a>
+                                        <a href="{{ url('admin/assistances') }}" data-daynext="">Detalles</a>
                                     </li>
                                 </ul>
                             </div>
