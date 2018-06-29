@@ -2,7 +2,6 @@ const publication = new Vue({
    el: '#publications',
    data: {
       //Calendar
-      
       month: '',
       title: '',
       calendar: [],
@@ -10,6 +9,8 @@ const publication = new Vue({
       events: [],
 
       // Publications
+      count: 0,
+      publicationsTwo: [],
       publications: [],
       description: '',
       emergency: false,
@@ -18,8 +19,10 @@ const publication = new Vue({
       file: [],
       image: '',
       success: '',
-      user_id: 0
-   },
+      user_id: 0,
+      offset: 0,
+  },
+  directives: { infiniteScroll },
    filters: {
     humanize(d) {
       moment.locale('es')
@@ -94,12 +97,23 @@ const publication = new Vue({
         })
     },
     getPublications () {
-      axios.get('publications')
+      axios.get(`publications?offset=${this.offset}`)
         .then(res => {
-          this.publications = res.data
-          this.publications.forEach(e => {
+          if(res.data.length > 0) {
+            res.data.forEach(e => {
+              e.comment = ''
+              if(this.count % 2 == 0) {
+                this.publications.push(e)
+              }else {
+                this.publicationsTwo.push(e)
+              }
+              this.count++;
+            })
+          }
+          this.offset += 4
+          /*this.publications.forEach(e => {
             Vue.set(e, 'comment', '')
-          })
+          })*/
         })
         .catch(err => {
           console.log(err)
@@ -129,15 +143,16 @@ const publication = new Vue({
           console.log(err)
         })
     },
-    addComment (publication_id, i) {
+    addComment (publication_id, i, type) {
       let comment = {
-        description: this.publications[i].comment,
+        description: this[type][i].comment,
         publication_id
       }
-      this.publications[i].comment = ''
+      
+      this[type][i].comment = ''
       axios.post('publications/comment', comment)
         .then(res => {
-          this.publications[i].comments.push(res.data)
+          this[type][i].comments.push(res.data)
         })
           .catch(err => {
             console.log(err)

@@ -74,12 +74,15 @@
                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                 </button>
                                 <ul class="dropdown-menu dropDetallNotify" aria-labelledby="dLabel">
-                                    <li>
-                                        <a href="{{ url('admin/notifications') }}" data-daynext="">Detalles</a>
-                                    </li>
+                                    {{--<li>
+                                        <a href="#" data-daynext="">Detalles</a>
+                                    </li>--}}
+                                    <div class="menu" style="width: 300px;">
+                                        @include('components.notifications')
+                                    </div>
                                 </ul>
                             </div>
-
+                            
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 countNumber counNumberNotifis" v-cloak>
                                 <h1>@{{ notifications }}</h1>
                             </div>
@@ -90,7 +93,7 @@
                         </div>
 
                     </div>
-
+                            
                     <!-- llegadas tarde -->
                     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 daatNotifis">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 notifis">

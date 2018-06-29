@@ -15,7 +15,8 @@ const publication = new Vue({
     user_id: 0,
     date: moment(),
     reminders: [],
-    titler: ''
+    titler: '',
+    today: ''
   },
   filters: {
     showDay(date) {
@@ -168,6 +169,14 @@ const publication = new Vue({
   },
   mounted() {
 moment.locale('es')
+    axios.get('calendar/today-event')
+      .then(res => {
+        this.today = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
     this.getEventsMonth()
     this.getCalendar()
     this.getReminders()

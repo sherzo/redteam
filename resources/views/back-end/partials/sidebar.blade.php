@@ -106,11 +106,11 @@
                     <img src="{{ asset('assets/images/icons/users.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
-            <li>
+           {{-- <li>
                 <a href="usuarios">
                     <img src="{{ asset('assets/images/icons/ranking.png') }}" class="img- responsive" alt="">
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="ranking">
                     <img src="{{ asset('assets/images/icons/evaluation.png') }}" class="img- responsive" alt="">

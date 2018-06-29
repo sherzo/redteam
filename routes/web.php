@@ -150,6 +150,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('calendar', 'CalendarController@calendar');
     Route::get('calendar/{date}/render', 'CalendarController@renderMonth');
     Route::get('calendar/{date}/events', 'CalendarController@events');
+    Route::get('calendar/today-event', 'CalendarController@todayEnvent');
     Route::post('calendar/store', 'CalendarController@store');
     /*
     *   Assistence

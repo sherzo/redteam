@@ -8,11 +8,16 @@ use Auth;
 
 class PublicationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    	$publications = Publication::orderBy('id', 'DESC')->get();
+    	$publications = Publication::with(['user', 'likes', 'comments.user'])
+            ->orderBy('id', 'DESC');
 
-    	$publications->load('user', 'likes', 'comments.user');
+        if($request->offset) {
+            $publications = $publications->offset($request->offset);
+        }
+
+        $publications = $publications->limit(4)->get();
 
     	return $publications;
     }

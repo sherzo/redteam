@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('front-end.home');
+        $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
+        return view('front-end.home', ['today' => $today]);
     }
 
     public function profile($username)

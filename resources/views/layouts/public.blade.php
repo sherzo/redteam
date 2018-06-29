@@ -52,11 +52,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
-                {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> --}}
             </div>
 
             <div class="collapse navbar-collapse collapseMenuUser" id="app-navbar-collapse">
@@ -101,9 +96,9 @@
                             <div class="gn-scroller">
                                 <ul class="gn-menu">
                                     <li class="gn-search-item">
-                                        <a href="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/profile">
+                                        <a href="{{ url('profile/' . Auth::user()->username ) }}">
                                             <p class="gasper"></p>
-                                            <div class="containerPhotoProfile profileLateraS">
+                                            <div class="containerPhotoProfile profileLateraS" style="background-image: url('{{ Auth::user()->avatar }}')">
                                             </div>
                                         </a>
                                         <p class="colorBlack fontMiriamProSemiBold">{{ Auth::user()->full_name }}</p>

@@ -20,6 +20,13 @@ class CalendarController extends Controller
     	return view('back-end.calendar.index');
     }
 
+    public function todayEvent()
+    {
+        $event = Event::whereDate('day', now('Y-m-d'))->orderBy('id', 'desc')->first();
+
+        return $event->title;
+    }
+
     public function calendar()
     {
     	$user = Auth::user();
