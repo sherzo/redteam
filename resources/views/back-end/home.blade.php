@@ -297,67 +297,7 @@
                         </div>
                     </div>
                         
-                    <!--
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages">
-                        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 checkMEnsagge">
-                            <form action="home_submit" method="get" accept-charset="utf-8" class="selectMensage">
-                                <input type="checkbox">
-                            </form>
-                        </div>
-                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 textAllsMensages">
-                            <form action="home_submit" method="get" accept-charset="utf-8" class="mensageOne">
-                                <a href="#!" data-iduserchat="">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fchaUisersMensage">
-                                        <p>29 de Diciembre de 2016 a las 7:30 p.m.</p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 secFotoUser">
-                                        <img class="img-responsive" src="{{ asset('assets/assets/images/profile-user-circle.png') }}" alt="">
-                                    </div>
-                                    <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 sectioForMEnsagen">
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nameUisersMensage">
-                                            <h3>Lisseth Rivas</h3>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 typeUisersMensage">
-                                            <p>Hola necesito que...</p>
-                                        </div>
-
-                                    </div>
-                                </a>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contectAllMenssages">
-                        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 checkMEnsagge">
-                            <form action="home_submit" method="get" accept-charset="utf-8" class="selectMensage">
-                                <input type="checkbox">
-                            </form>
-                        </div>
-                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 textAllsMensages">
-                            <form action="home_submit" method="get" accept-charset="utf-8" class="mensageOne">
-                                <a href="">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fchaUisersMensage">
-                                        <p>29 de Diciembre de 2016 a las 7:30 p.m.</p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 secFotoUser">
-                                        <img class="img-responsive" src="{{ asset('assets/assets/images/profile-user-circle.png') }}" alt="">
-                                    </div>
-                                    <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 sectioForMEnsagen">
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nameUisersMensage">
-                                            <h3 class="vieCandidate">Lisseth Rivas </h3>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 typeUisersMensage">
-                                            <p>Oportunidades de empleo, pagos, inicio de proyectos,   apertura de sucursales, días feriados, actividades internas, etc.</p>
-                                        </div>
-
-                                    </div>
-                                </a>
-                            </form>
-                        </div>
-                    </div> -->
+        
                 </div>
                 <!-- emd section mensajes  -->
 
@@ -374,8 +314,11 @@
                             <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
-                            <p class="typEEvento">Este día </br> no hay eventos</p>
-
+                            <p class="typEEvento" >
+                                @if($today != null)
+                                    {{ $today->title }}
+                                @endif
+                            </p>
                         </div>
                     </div>
 

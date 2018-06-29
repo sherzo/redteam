@@ -244,7 +244,11 @@
                                 <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
-                                <p class="typEEvento">{{ $today->title }}</p>
+                                <p class="typEEvento">
+                                    @if($today != null)
+                                        {{ $today->title }}
+                                    @endif
+                                </p>
                             </div>
                         </div>
                         @include('components.calendar')

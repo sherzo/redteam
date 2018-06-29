@@ -33,13 +33,10 @@ class AdminController extends Controller
     public function Home()
     {
         $user = Auth::user();
-        if($user->hasRole('admin')) {
 
-            return view('back-end.home');
-        
-        } else {
-            return view('back-end.home');
-        }   
+        $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
+
+        return view('back-end.home', ['today' => $today]);      
     }
 
     public function dashboard()
