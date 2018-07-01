@@ -10,7 +10,7 @@
     ])
 
     <!--  SECTION BLOQUE NOTIFICACION Y MENSAJES -->
-    <section class="container-fluid sectionAdminNotifiMensa secNotifiRanking" style="margin-top: 7vh;">
+    <section class="container-fluid sectionAdminNotifiMensa secNotifiRanking" style="margin-top: 7vh;" v-cloak>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido conteniRanking">
                 <p class="alert alert-success" v-show="adp_exito">Se ha colocado la ADP</p>
@@ -38,7 +38,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 DataUserRankings AlluserRankinSearch">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bloqueactionsRankingsSz ranlingSty">
                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 UserImgData">
-                                    <div class="label dataPrubeIm dataProfileAllUsersRanking" style="background-image: url('http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/profiles/73049.jpg')"></div>
+                                    <div class="label dataPrubeIm dataProfileAllUsersRanking" :style="{ 'background-image': 'url(' + employee.avatar + ')' }"></div>
                                     <p class="fontMiriamProSemiBold">@{{employee.name}} @{{employee.lastname}}</p>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 starRankin">
