@@ -62,21 +62,20 @@
                  {{-- END SIDEBAR MENU --}}
             </div>
         </nav>
-    
-        
         
         @yield('content')
+    
     </div>
     
     {{-- SCRIPTS --}}
     <script src="{{ asset('js/app.js') }}"></script>
     
-    <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-    <script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
+    <script src="{{ asset('assets/js/menu/classie.js') }}"></script>
+    <script src="{{ asset('assets/js/menu/gnmenu.js') }}" ></script>
+    <script src="{{ asset('assets/js/semantic.js') }}" ></script>
+    <script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
     <script>    
-    const socket = io.connect('http://127.0.0.1:6800',{
+    const socket = io.connect('http://18.219.62.126:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -173,12 +172,13 @@
     </script>
     {{--
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
-    <!-- End ClockPicker -->
+    End ClockPicker 
     --}}
-    <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}"></script>
     
     {{--
     
@@ -199,7 +199,7 @@
     </script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
     --}}
-    <script type="text/javascript">
+    <script>
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         //<![CDATA[
         $(window).load(function(){
@@ -210,7 +210,6 @@
                 // $('.container.continerWithSite').toggleClass("widthFull");
             });
         });//]]>
-
     </script>
     <script src="{{ asset('assets/js/admin/main.js') }}" type="text/javascript" ></script>
     @yield('js')

@@ -408,7 +408,6 @@
 
 
 @section('js')
-    <script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/src/calendar.js') }}"></script>
     <script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
     <script src="{{ asset('assets/js/src/admin_home.js') }}"></script>

@@ -45,11 +45,11 @@ const adminNotification = new Vue({
       axios.post('admin/admin-notification/store', data)
         .then(res => {
           this.notifications.push(res.data)
-          this.success = 'Se ha registrado la notificacion correctamente'
+          this.success = 'Se ha registrado la notificacion, para utilizarla haga clic en enviar'
           this.id_notification = res.data.id
-          this.setTimeout(() => {
+          setTimeout(() => {
             this.success = ''
-          }, 2000)
+          }, 4000)
         })
         .catch(err => {
           console.log(err)

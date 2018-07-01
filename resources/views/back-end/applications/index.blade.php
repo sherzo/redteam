@@ -222,14 +222,12 @@
 
     <div class="alert alert-info dataClMoPosPEr" role="alert">¡Publicacion Agregada!</div>
 
-    
-
-
     <!-- Modal NOTIFICACIONES -->
-    @include('back-end.partials.fields-modal-notificaciones')
+    @include('components.modal-notifications')
 
 @endsection
 
 @section('js')
 <script src="{{ asset('assets/js/src/application.js') }}"></script>
+<script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
 @endsection

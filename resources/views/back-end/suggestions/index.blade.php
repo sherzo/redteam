@@ -149,7 +149,7 @@
     </section>
 
     <!-- Modal NOTIFICACIONES -->
-    @include('back-end.partials.fields-modal-notificaciones')
+    @include('components.modal-notifications')
 
     <div class="alert alert-info dataClMoPosPEr" role="alert">Publicacion Agregada!</div>
 
@@ -157,4 +157,5 @@
 
 @section('js')
 <script src="{{ asset('assets/js/src/sugerency.js') }}"></script>
+<script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
 @endsection
