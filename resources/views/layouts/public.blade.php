@@ -183,7 +183,7 @@
                                 <img src="{{ asset('assets/images/house-ido.png') }}" class="img-responsive" alt="">
                             </a>
                         </li>
-                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak style="min-width: 250px;">
+                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak>
                             <a href="#!" @click.prevent.stop="showNotifications">
                                 <img src="{{ asset('assets/images/notify-ico.png') }}" class="img-responsive" alt="">
                                 <div class="notifiCount">
@@ -192,7 +192,7 @@
                                     {{--@include('front-end.partials.fields-Totalnotificaciones')--}}
                                 </div>
                             </a>
-                            <div :class="clases" :style="{ 'display': display }">
+                            <div :class="clases" :style="{ 'display': display }" style="min-width: 250px;">
                                 @include('components.notifications')
                             </div>
                         </div>
