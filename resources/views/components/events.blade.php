@@ -19,11 +19,18 @@
                             <p class="DayPubliEvent">@{{ e.title }}</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ChatWithUserDatas vDataPublicTypeUSer">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ChatWithUserDatas vDataPublicTypeUSer" v-if="e.user_id != null">
 
-                        <div class="dataImhgEvent" :style="{ 'background-image': 'url(' + e.user.avatar + ')' }">
+                        <div class="dataImhgEvent" :style="{ 'background-image': 'url(' + e.user.avatar + ')' }" > 
                         </div>
                         <p class="colorBlack fontMiriamProSemiBold">@{{ e.user.name }}</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ChatWithUserDatas vDataPublicTypeUSer" v-else>
+
+                        <div class="dataImhgEvent" style="{{ asset('assets/images/profiles/87226.jpg') }}"> 
+                        </div>
+
+                        <p class="colorBlack fontMiriamProSemiBold" >El sistema</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionCalendarType" v-if="events.length == 0">

@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->date('day');
             $table->boolean('type')->default(0);
             
-            $table->unsignedInteger('user_id')->comment('Usuario que creo el evento');
+            $table->unsignedInteger('user_id')->comment('Usuario que creo el evento')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

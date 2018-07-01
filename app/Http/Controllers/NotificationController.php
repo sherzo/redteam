@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notification;
+use App\User;
 use Auth;
 
 class NotificationController extends Controller
@@ -42,5 +43,27 @@ class NotificationController extends Controller
             'notifications' => $notifications,
             'unRead' => $unRead
         ];
+    }
+
+    public function birthday() 
+    {
+        $month = now()->format('m');
+        $day = now()->format('d');
+
+        $users = User::join('personal_informations', 'users.id', '=', 'personal_informations.user_id')
+            ->whereMonth('birthdate', $month)
+            ->whereDay('birthdate', $day)
+            ->get();
+
+        //return $users;
+
+        foreach ($users as $key => $user) {
+            $data = "Hoy es el cumpleaños de <strong class='nameUserNotifique'>". $user->full_name ."</strong>";
+
+            $notification = Notification::create([
+                'data' => $data,
+                'type' => 4
+            ]);
+        }
     }
 }

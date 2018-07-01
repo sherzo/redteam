@@ -22,7 +22,7 @@ class CalendarController extends Controller
 
     public function todayEvent()
     {
-        $event = Event::whereDate('day', now('Y-m-d'))->orderBy('id', 'desc')->first();
+        $event = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
 
         return $event->title;
     }

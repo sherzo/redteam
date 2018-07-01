@@ -343,6 +343,7 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
         'App\\Chat' => __DIR__ . '/../..' . '/app/Chat.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
+        'App\\Console\\Commands\\SendBirthdayNotifications' => __DIR__ . '/../..' . '/app/Console/Commands/SendBirthdayNotifications.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Discussion' => __DIR__ . '/../..' . '/app/Discussion.php',
         'App\\Document' => __DIR__ . '/../..' . '/app/Document.php',

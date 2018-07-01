@@ -238,10 +238,10 @@
 
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
 <script>    
     var authId = '{{ Auth::id() }}'
-    const socket = io.connect('http://18.219.62.126:6800',{
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10

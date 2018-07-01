@@ -22,8 +22,7 @@ const publication = new Vue({
       axios.post('publications', form)
         .then(res => {
           this.success = true
-          window.location = axios.defaults.baseURL + '/admin/home';
-         
+          window.location = axios.defaults.baseURL + '/admin/board';
         })
         .catch(err => {
           console.log(err)

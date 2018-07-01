@@ -14,6 +14,7 @@ return array(
     'App\\Branch' => $baseDir . '/app/Branch.php',
     'App\\Chat' => $baseDir . '/app/Chat.php',
     'App\\Comment' => $baseDir . '/app/Comment.php',
+    'App\\Console\\Commands\\SendBirthdayNotifications' => $baseDir . '/app/Console/Commands/SendBirthdayNotifications.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Discussion' => $baseDir . '/app/Discussion.php',
     'App\\Document' => $baseDir . '/app/Document.php',
