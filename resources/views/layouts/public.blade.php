@@ -183,7 +183,7 @@
                                 <img src="{{ asset('assets/images/house-ido.png') }}" class="img-responsive" alt="">
                             </a>
                         </li>
-                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak>
+                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak style="min-width: 250px;">
                             <a href="#!" @click.prevent.stop="showNotifications">
                                 <img src="{{ asset('assets/images/notify-ico.png') }}" class="img-responsive" alt="">
                                 <div class="notifiCount">
