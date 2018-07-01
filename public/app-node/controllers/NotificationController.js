@@ -22,7 +22,14 @@ function markAsRead(data, callback) {
 	})
 }
 
+function setReadForPropetary(data) {
+  Notification.markAsRead(data, (err, notification) => {
+    console.log('Se malco menol')
+  })
+}
+
 module.exports={
   storeNotification,
-  markAsRead
+  markAsRead,
+  setReadForPropetary
 }

@@ -280,7 +280,7 @@
                                     <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 sectioForMEnsagen">
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nameUisersMensage">
-                                            <h3>@{{ m.user.name }}<img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt=""></h3>
+                                            <h3>@{{ m.user.name }}</h3>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 typeUisersMensage">
                                             <p>@{{ m.content }}</p>

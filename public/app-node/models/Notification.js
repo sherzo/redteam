@@ -20,7 +20,7 @@ function saveNotification(req, res){
       db.query(sql_2,[result.insertId],(err,result1)=>{
           if (err) return res(err)
           // db.end()
-          console.log(result1)
+          //console.log(result1)
           return res(err, result1)
       })
   })

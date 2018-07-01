@@ -122,11 +122,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i)">
+                            <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i, 'publications')">
                                 <div class="field">
                                     <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
                                 </div>
-                                <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
+                                <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i, 'publications')"><p>Comentar</p></a>
                             </form>
                         </div>
                     </div>
@@ -203,11 +203,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i)">
+                            <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i, 'publicationsTwo')">
                                 <div class="field">
                                     <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
                                 </div>
-                                <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i)"><p>Comentar</p></a>
+                                <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i, 'publicationsTwo')"><p>Comentar</p></a>
                             </form>
                         </div>
                     </div>

@@ -93,6 +93,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::post('assistances/adp', 'AssistanceController@adp');
     Route::get('assistances/{id}/individual', 'AssistanceController@individual');
     Route::get('assistances/all-users', 'AssistanceController@allUsers');
+    
 });
 
 Route::group(['middleware' =>  'auth'], function() {
@@ -158,6 +159,10 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::post('mark-entry', 'AssistanceController@markEntry');
     Route::post('mark-exit', 'AssistanceController@markExit');
     Route::get('get-work-status', 'AssistanceController@getWorkStatus');
+    /*
+    *   Notifications
+    */
+    Route::get('notifications', 'NotificationController@all');
 });
 
 /*

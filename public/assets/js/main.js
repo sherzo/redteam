@@ -607,6 +607,7 @@ jQuery(document).ready(function($) {
 
 
 // Public coment
+/*
 jQuery(document).ready(function($) {
 	$('.dataComenyt').click(function(event) {
 		$('.lnvmodal-loader').css({
@@ -641,7 +642,7 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 });
-
+*/
 jQuery(document).ready(function($) {
 	$('img.img-responsive.clImgView ').click(function(event) {
 		var NameImagen = $(this).attr('src');

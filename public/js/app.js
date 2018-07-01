@@ -1058,6 +1058,8 @@ if (token) {
 //     encrypted: true
 // });
 
+var messagesNotifications = ["<strong class='nameUserNotifique'> %data </strong> Ha realizado una nueva <span class='typeAccionNotifi'>publicación</span>", "<a class='header'>¡Se ha realizado el pago a las %data</a>", "<strong class='nameUserNotifique'> %data </strong> Ha realizado publicado una nueva <span class='typeAccionNotifi'>foto</span>", "<strong class='nameUserNotifique'> %data </strong> Ha publicado una nuevo <span class='typeAccionNotifi'>documento</span>", "A %data </span> <span class='typeAccionNotifi'>les gusta tu publicación</span>", "<span class='typeAccionNotifi'> %data </span> comento tu publicacion", "<strong class='nameUserNotifique'>%data </strong>  Tiene una publicacion urgente <span class='typeAccionNotifi'>urgente</span>", "<strong class='nameUserNotifique ' > %data </strong>  actualizo su perfil", "<strong class='nameUserNotifique'> %data </strong> agrego un nuevo evento al calendario <span class='typeAccionNotifi'>al calendario</span>"];
+
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {

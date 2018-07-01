@@ -16,7 +16,14 @@ io.on('connection', (socket) => {
     console.log(data)
     NotificationController.storeNotification(data, (notification) => {
       let propetary_id = data.propetary_id
-      console.log(propetary_id)
+      
+      let data2 = {
+        user_id: propetary_id,
+        notification_id: notification[0].id
+      }
+
+      NotificationController.setReadForPropetary(data2)
+      
       if(notification.user_id == null) { // Para todos los usuarios
 
         io.sockets.emit('show-notifications', { notification, propetary_id })

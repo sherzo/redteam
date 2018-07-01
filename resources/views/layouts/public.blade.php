@@ -39,7 +39,7 @@
         ]); ?>
     </script>
 </head>
-<body class="bgUser">
+<body class="bgUser" onclick="quitNotifications()">
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top navbarHome BgYellow" >
         <div class="container">
@@ -183,15 +183,17 @@
                                 <img src="{{ asset('assets/images/house-ido.png') }}" class="img-responsive" alt="">
                             </a>
                         </li>
-                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile">
-                            <a href="#!">
+                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak>
+                            <a href="#!" @click.prevent.stop="showNotifications">
                                 <img src="{{ asset('assets/images/notify-ico.png') }}" class="img-responsive" alt="">
                                 <div class="notifiCount">
-                                    @include('front-end.partials.fields-Totalnotificaciones')
+                                    <p class="gasper">0</p>
+                                    <p>@{{ unRead }}</p>
+                                    {{--@include('front-end.partials.fields-Totalnotificaciones')--}}
                                 </div>
                             </a>
-                            <div class="menu">
-                                @include('front-end.partials.fields-notificaciones')
+                            <div :class="clases" :style="{ 'display': display }">
+                                @include('components.notifications')
                             </div>
                         </div>
                         <li class="dropdown uSerLogue colorBlackSuave fontMiriamProRegular">
@@ -231,14 +233,15 @@
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
 
 <script>
-    new gnMenu( document.getElementById( 'gn-menu' ) );
+    //new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
 
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
 <script>    
-    const socket = io.connect('http://18.219.62.126:6800',{
+    var authId = '{{ Auth::id() }}'
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -296,14 +299,23 @@
             }
         })
     ;
+    
+    function quitNotifications() {
+        if(notification.toggle) {
+            notification.showNotifications()
+        }
+    }
 </script>
 
-<script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/src/assistance.js') }}"></script>
+<script src="{{ asset('assets/js/src/notification.js') }}"></script>
+{{--
+    --}}
 @yield('js')
 </body>
 </html>

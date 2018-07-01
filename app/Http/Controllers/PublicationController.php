@@ -62,7 +62,7 @@ class PublicationController extends Controller
 
         $publication->load('comments', 'likes');
     	
-        return $publication;
+        return $user;
     }
 
     public function comment(Request $request) 
