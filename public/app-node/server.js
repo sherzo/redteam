@@ -5,10 +5,41 @@ const config = require('./config')
 const io = app.io
 const server = app.server
 const ChatController = require('./controllers/ChatController')
+const NotificationController = require('./controllers/NotificationController')
 const sockets_on = [];
 const users_online = [];
 
 io.on('connection', (socket) => {
+  
+  // Notificaciones todos los usuarios
+  socket.on('sendNotification', (data) => {
+    console.log(data)
+    NotificationController.storeNotification(data, (notification) => {
+      let propetary_id = data.propetary_id
+      console.log(propetary_id)
+      if(notification.user_id == null) { // Para todos los usuarios
+
+        io.sockets.emit('show-notifications', { notification, propetary_id })
+
+      }else { // Para un usuario asi como me gustas o comentraios
+
+        sockets_on.forEach((el, i)=> {
+          if(el.id == notification.user_id){
+              el.sockets.forEach((el,i)=>{
+                  socket.broadcast.to(el).emit('show-notifications', notification)
+              })
+          }
+        }) // Forearch
+      }
+    })
+  })
+
+  socket.on('markNotificationAsRead', (data)=> {
+    NotificationController.markAsRead(data, (notification)=> {
+      console.log('se marco')
+    })
+  })
+
   //console.log(`socket connection: ${eval(socket).id}`);
   socket.on('destroy', (object) => {
     io.emit('response_destroy', object)
@@ -48,6 +79,7 @@ io.on('connection', (socket) => {
   socket.on('conect-socket',(data)=>{
       // Listado de usuario conectados
       let encontrado = false
+      console.log('Conectado')
       users_online.forEach((e,i) => {
         if(e.id == data.id) {  
           encontrado = true
@@ -145,6 +177,7 @@ io.on('connection', (socket) => {
     })
   }
 
+ 
 })
 server.listen(config.port)
         
