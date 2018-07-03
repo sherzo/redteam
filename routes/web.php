@@ -147,6 +147,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('chats/{id}/get-or-create', 'ChatController@getOrCreate');
     Route::post('chats/delete', 'ChatController@delete');
     Route::post('chats/send-file', 'ChatController@sendFile');
+    
     /*
     *   Calendario
     */
@@ -155,16 +156,26 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('calendar/{date}/events', 'CalendarController@events');
     Route::get('calendar/today-event', 'CalendarController@todayEvent');
     Route::post('calendar/store', 'CalendarController@store');
+    
     /*
     *   Assistence
     */
     Route::post('mark-entry', 'AssistanceController@markEntry');
     Route::post('mark-exit', 'AssistanceController@markExit');
     Route::get('get-work-status', 'AssistanceController@getWorkStatus');
+    
     /*
     *   Notifications
     */
     Route::get('notifications', 'NotificationController@all');
+
+    /*
+    *   Profile
+    */
+    Route::get('/profile/{username}', 'ProfileController@index');
+    Route::get('profile/{id}/my-publications', 'ProfileController@myPublications');
+    Route::post('profile', 'ProfileController@update')->name('profile.update');
+    Route::get('galeries/{id}', 'ProfileController@galeries');
 });
 
 /*
@@ -180,16 +191,7 @@ Route::get('/home', 'HomeController@index');
 | Profile Users
 |--------------------------------------------------------------------------
 |
-*/
-Route::get('/profile/{username}', 'ProfileController@index');
 
-/*
-|--------------------------------------------------------------------------
-| Profile Users update
-|--------------------------------------------------------------------------
-|
-*/
-Route::post('profile', 'ProfileController@update')->name('profile.update');
 
 /*
 |--------------------------------------------------------------------------

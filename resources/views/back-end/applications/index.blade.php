@@ -186,36 +186,7 @@
             <img class="img-responsive" src="{{ asset('assets/images/avatar/AnuncioPublicAdmin.png') }}" alt=""  data-toggle="modal" data-target="#myModalNotifications">
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModalSolicitudRespuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog contAcotionModlas" role="document">
-                <div class="modal-content">
-                    <div class="modal-body captionBodySolicRespuesa">
-                        <div class="col-xs-12 col-sm-12 col-md-12 contRevibeSOlic">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="captionEvulveImg" :style="{ 'background-image': 'url(' + modal.user.avatar + ')' }">
-                                </div>
-                                <h5 class="aceptSol" v-if="modal.status">Has aceptado la solicitud de</h5>
-                                <h5 class="DeneSoli" v-else>Has denegado la solicitud de</h5>
-                                <h4 class="nameSoliUser">@{{ modal.user.name }}</h4>
-                                <div v-if="modal.status">
-                                    <h6 class="DescripSoliUser" v-if="!modal.discount">Se descontará el día septimo en la próxima planilla</h6>
-                                    <h6 class="descuenDia" v-else>Se descontará un día de las vacaciones</h6>
-                                    <div class="captionDiasvaciones col-md-12">
-                                        <div class="col-md-12 capsubDays">
-                                            <p>14</p>
-                                        </div>
-                                    </div>
-                                    <p class="userDayFaltante" v-show="modal.discount">Lisseth tiene <span>14 días</span> de vacaciones</p>
-                                </div>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal -->
+        <!-- Modal Publicacion  -->        
         @include('components.publication')
     </section>
 

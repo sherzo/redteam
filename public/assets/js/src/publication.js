@@ -21,6 +21,7 @@ const publication = new Vue({
       success: '',
       user_id: 0,
       offset: 0,
+      offsetOld: 0
   },
   directives: { infiniteScroll },
    filters: {
@@ -96,7 +97,7 @@ const publication = new Vue({
     getPublications () {
       axios.get(`publications?offset=${this.offset}`)
         .then(res => {
-          if(res.data.length > 0) {
+          if(res.data.length > 0 && this.offset > 0) {
             res.data.forEach(e => {
               e.comment = ''
               if(this.count % 2 == 0) {
@@ -108,9 +109,6 @@ const publication = new Vue({
             })
           }
           this.offset += 4
-          /*this.publications.forEach(e => {
-            Vue.set(e, 'comment', '')
-          })*/
         })
         .catch(err => {
           console.log(err)

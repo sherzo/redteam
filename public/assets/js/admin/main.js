@@ -1,8 +1,11 @@
 //******* Action selec user for chat
 // *********
+
+
+	/*
 jQuery(document).ready(function($) {
-	$('.captionUsersInLive>div.accordion>div.content>p').remove();
 	
+	$('.captionUsersInLive>div.accordion>div.content>p').remove();
 	$('.columnChatss>.AlluserReegitradosPorBloque>a, .col-xs-12.col-sm-12.col-md-12.col-lg-12.FriendWithChat>a').click(function(event) {
 		// Get data user select
 		var dataIdUser = $(this).data('iduserchat');
@@ -45,7 +48,7 @@ jQuery(document).ready(function($) {
 			    		var arrayMensagge = element.mensages;
 			    		var mensages = '';
 			    		/**** si son mensajes que el user envio, lo coloca en un extremo, si no lo coloca al otro
-			    		extremo****/
+			    		extremo
 
 			    		
 
@@ -119,9 +122,10 @@ jQuery(document).ready(function($) {
 		    }
 		}); 
 
-});
-});
+	});
 
+});
+*/
 
 /**** UPLOADS ARCHIVOS POST **/
 
@@ -740,7 +744,6 @@ function drag(parrafo, evento) {
 	finUbicacionArchivo = $(parrafo).find('p').data('ubicaciom');
 	console.log(finUbicacionArchivo);
 	// console.log(evento.srcElement.currentSrc); 
-
 }
 
 function drop(contenedor, evento) {

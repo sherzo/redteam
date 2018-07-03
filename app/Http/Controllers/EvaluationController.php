@@ -11,11 +11,11 @@ class EvaluationController extends Controller
 {
 	public function index()
 	{
-		$user = Auth::user();
-		$employees = $user->employees->count();
-		if($employees == 0){
+		//$user = Auth::user();
+		//$employees = $user->employees->count();
+		/*if($employees == 0){
 			return redirect('home');
-		}
+		}*/
 
 		return view('front-end.evaluations.index');
 	}   

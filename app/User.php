@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'type', 'password', 'second_name', 'username', 'lastname', 'gender', 'avatar'
+        'name', 'email', 'type', 'password', 'second_name', 'username', 'lastname', 'gender', 'avatar', 'holidays'
     ];
 
     /**
@@ -109,6 +109,11 @@ class User extends Authenticatable
     public function assistances()
     {
         return $this->hasMany(Assistance::class);
+    }
+
+    public function publications()
+    {
+        return $this->hasMany(Publication::class);
     }
 
     /*

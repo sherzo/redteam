@@ -8,29 +8,57 @@ use App\Area;
 use App\Suggestion;
 use App\Application;
 use App\Emergency;
+use App\Event;
 use Auth;
 
 class ProfileController extends Controller
 {
     public function index($username)
-    {
+    {   
         $user = User::where('username', $username)->first();
         $areas = Area::pluck('name', 'id');
+        $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
         $bosses = User::where('id', '!=', $user->id)->pluck('name', 'id');
+            
+        $holidays = $user->holidays;
+
+        if($holidays < 10) {
+            $firstHoliday = 0;
+            $sendcondHoliday = $holidays;
+        }else {
+            $holidays = str_split($holidays);
+            //dd($holidays);
+            $firstHoliday = $holidays[0];
+            $sendcondHoliday = $holidays[1];
+        }
+
+        //dd($firstHoliday, $sendcondHoliday);
 
         return view('front-end.profile.index', [
         	'user' => $user,
         	'bosses' => $bosses,
-        	'areas' => $areas
+        	'areas' => $areas,
+            'firstHoliday' => $firstHoliday,
+            'sendcondHoliday' => $sendcondHoliday,
+            'today' => $today
         ]);
+    }
 
+    public function myPublications(Request $request) 
+    {
+        $user = User::find($request->id);
+        
+        $publications = $user->publications()->whereNull('color')->orderBy('id', 'desc')->take(4)->get();
+        
+        $publications->load('user', 'comments.user', 'likes');
+        
+        return $publications;
     }
 
     public function update(Request $request)
     {
     	$user = User::find($request->user_id);
     	if($request->avatar) {
-    		//dd($request->all());
     		$avatar = $request->file('avatar');
     		$user->avatar = $avatar->store('avatars', 'public');
     		$user->save();
@@ -97,5 +125,14 @@ class ProfileController extends Controller
         $emergencies->load('discussions.user', 'user');
 
         return $emergencies;
+    }
+
+    public function galeries(Request $request) 
+    {
+        $user = User::find($request->id);
+
+        $images = $user->publications()->whereNotNull('image')->take(2)->pluck('image');
+    
+        return $images;
     }
 }

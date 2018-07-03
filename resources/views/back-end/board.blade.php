@@ -55,20 +55,25 @@
                     <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                     <li class="icosMenus">
-                        <a href="#!">
+                        <a href="{{ url('admin/home') }}">
                             <img src="{{ asset('assets/images/avatar/homeNotifiAdmin.png') }}" class="img-responsive" alt="">
                         </a>
                     </li>
-                    <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular">
-                        <a href="#!">
+                    <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular" :class="{'active visible': toggle }" id="notifications" v-cloak>
+                        <a href="#!" @click.prevent.stop="showNotifications">
                             <img src="{{ asset('assets/images/avatar/campaniNotifiAdmin.png') }}" class="img-responsive" alt="">
                             <div class="notifiCount">
-                                @include('back-end.partials.fields-history-notificaciones-cantidad')
+                                <p class="gasper">0</p>
+                                 <p>@{{ unRead }}</p>
+                                {{--@include('back-end.partials.fields-history-notificaciones-cantidad')--}}
                             </div>
                         </a>
-                        <div class="menu">
-                            @include('back-end.partials.fields-history-notificaciones-board')
+                        <div :class="clases" :style="{ 'display': display }" style="min-width: 250px;">
+                            @include('components.notifications')
                         </div>
+                        {{--<div class="menu">
+                            @include('back-end.partials.fields-history-notificaciones-board')
+                        </div>--}}
                     </div>
                     <li class="dropdown uSerLogue colorBlackSuave fontMiriamProRegular">
                         <a href="#" class="dropdown-toggle colorBlackSuave" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -316,6 +321,9 @@
                 </div>
 
             </div>
+    
+        @include('components.publication')
+        {{--
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog contPusblishDialogo" role="document">
@@ -356,6 +364,7 @@
                 </div>
             </div>
         </div>
+            --}}
     </div>
         </div>
 
@@ -374,4 +383,5 @@
     <script>
         publication.getUser({{Auth::user()->id}})
     </script>
+    <script src="{{ asset('assets/js/src/notification.js') }}"></script>
 @endsection

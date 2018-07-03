@@ -8,10 +8,14 @@ const publication = new Vue({
       file: [],
       image: '',
       success: false,
-      user_id: 0
+      user_id: 0,
+      alert: ''
    },
    methods: {
     addPublication () {
+      if(!this.description) {
+        this.alert = 'Debe agregar un comentario'
+      }
       let form = new FormData()
       form.append('description', this.description)
       form.append('image', this.image)

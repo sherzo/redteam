@@ -5,11 +5,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
                     <form class="sectionPublichUser" accept-charset="utf-8" @submit.prevent="addPublication" enctype="multipart/form-data">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <textarea name="" v-model="description" placeholder="Escribe un comentario"></textarea>
+                            <textarea name="" v-model="description" placeholder="Escribe un comentario" required=""></textarea>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
                             <div class="col-md-6 actionpuBlish">
-                                
                                 <div class="col-md-2 Adjuntar">
                                     <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInput').click()">
                                     <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getFile">
@@ -27,9 +26,10 @@
                                     <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
                                 </div>
                             </div>
+                           
                             <div class="col-md-6 ButtinPublish">
                                 <input type="submit" value="Enviar"></input>
-                            
+                                <button type="button" class="btn btn-default close-modal hide" data-dismiss="modal" id="close-modal">Close</button>
                             </div>
                         </div>
                     </form>

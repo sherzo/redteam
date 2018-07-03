@@ -1,22 +1,5 @@
 @extends('layouts.public')
 
-@section('css')
-<style>
-  [v-cloak] > * {
-    display: none;
-  }
-  .daysNumberCalendar>div {
-    margin-left: 2px;
-  }
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .3s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
-@endsection
-
 @section('content')
 <div id="publications"> 
     <div class="container continerWithSite" v-cloak>
@@ -298,50 +281,25 @@
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
-
-                                <div class="item active">
+                                @foreach($ranking as $key => $user)
+                                    @if($key == 0)
+                                        <div class="item active">
+                                    @endif
                                     <div class="col-md-6">
-                                        <a href="">
-                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ asset('assets/images/profile-user-circle.png') }}')">
+                                        <a href="{{ url('profile/' . $user->username) }}">
+                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ $user->avatar }}')">
                                             </div>
-                                            <p class="fontMiriamProSemiBold">Lisseth Rivas</p>
-                                            <div class="ui star rating" data-rating="5"></div>
+                                            <p class="fontMiriamProSemiBold">{{ $user->full_name }}</p>
+                                            <div class="ui star rating" data-rating="{{ $user->stars }}"></div>
                                         </a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href="">
-                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ asset('assets/images/profile-user-circle.png') }}')">
-                                            </div>
-                                            <p class="fontMiriamProSemiBold">Lisseth Rivas</p>
-                                            <div class="ui star rating" data-rating="5"></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="">
-                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ asset('assets/images/profile-user-circle.png') }}')">
-                                            </div>
-                                            <p class="fontMiriamProSemiBold">Lisseth Rivas</p>
-                                            <div class="ui star rating" data-rating="5"></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="">
-                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ asset('assets/images/profile-user-circle.png') }}')">
-                                            </div>
-                                            <p class="fontMiriamProSemiBold">Lisseth Rivas</p>
-                                            <div class="ui star rating" data-rating="5"></div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-6">
-                                        <a href="">
-                                            <div class="label dataPrubeIm dataimgRabksH" style="background-image: url('{{ asset('assets/images/profile-user-circle.png') }}')">
-                                            </div>
-                                            <p class="fontMiriamProSemiBold">Lisseth Rivas</p>
-                                            <div class="ui star rating" data-rating="5"></div>
-                                        </a>
-                                    </div>
+                                    @if($key % 3 == 0 && $key != 0)
+                                        @if($ranking->count() != $key+1)
+                                        </div>
+                                        <div class="item">
+                                        @endif
+                                    @endif
+                                @endforeach
                                 </div>
                             </div>
 
@@ -425,30 +383,36 @@
                         <h3 class="fontMiriamProSemiBold">Actividades recientes</h3>
                         <div class="notficiActivitie">
                             <div class="ui relaxed divided list">
-                                <div class="item PublicatiOn">
-                                    <i class="large github middle aligned icoPubli"></i>
-                                    <div class="content">
-                                        <a class="header"><strong class="nameUserNotifique">Juan Carlos Valdez </strong> tiene una nueva <span class="typeAccionNotifi">publicación</span></a>
+                                @foreach($recents as $recent)
+                                    <div class="item  NewFotos @if($recent->type > 1) icoFotos @else PublicatiOn @endif">
+                                        @if($recent->type == 0)
+                                            <i class="large github middle aligned icoPubli" ></i>
+                                        @elseif($recent->type == 1)
+                                            <i class="large github middle aligned icoPagos"></i>
+                                        @elseif($recent->type == 2)
+                                            <i class="large github middle aligned icoFotos"></i>
+                                        @elseif($recent->type == 3)
+                                            <i class="large github middle aligned icoDocumn"></i>
+                                        @elseif($recent->type == 4)
+                                            <i class="large github middle aligned icoCumple"></i>
+                                        @elseif($recent->type == 5)
+                                            <i class="large github middle aligned icoLikes"></i>
+                                        @elseif($recent->type == 6)
+                                            <i class="large github middle aligned icoComentarios"></i>
+                                        @elseif($recent->type == 7)
+                                            <i class="large github middle aligned icoUrgente" ></i>
+                                        @elseif($recent->type == 8)
+                                            <i class="large github middle aligned icoProFile" ></i>
+                                        @else($recent->type == 9)
+                                            <i class="large github middle aligned icoCalendar"></i>
+                                        @endif
+                                        <div class="content">
+                                            <a class="header">
+                                                {!!  $recent->data !!}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item NewFotos">
-                                    <i class="large github middle aligned icoFotos"></i>
-                                    <div class="content">
-                                        <a class="header"><strong class="nameUserNotifique">Janixia </strong> ha publicado <span class="typeAccionNotifi">nuevas fotos</span></a>
-                                    </div>
-                                </div>
-                                <div class="item ActivitiPago">
-                                    <i class="large github middle aligned icoPagos"></i>
-                                    <div class="content">
-                                        <a class="header">¡Se ha realizado el pago a las 7:00 P.M.!</a>
-                                    </div>
-                                </div>
-                                <div class="item Profilesa">
-                                    <i class="large github middle aligned icoProFile"></i>
-                                    <div class="content">
-                                        <a class="header"><strong class="nameUserNotifique">Edgardo </strong> actualizó su perfil</a>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

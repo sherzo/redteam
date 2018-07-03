@@ -303,7 +303,7 @@
 
 
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 calendarAdmin" id="calendar">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 hidden-xs calendarAdmin" id="calendar">
                 <!-- CALENDAR -->
 
                 <div class="captionCalendar" v-cloak>

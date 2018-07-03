@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Event;
+use App\Notification;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $recents = Notification::orderBy('id','desc')->take(8)->get();
+
         $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
-        return view('front-end.home', ['today' => $today]);
+
+        $ranking = User::orderBy('stars', 'desc')->take(8)->get();
+        
+        return view('front-end.home', [
+            'today' => $today, 
+            'ranking' => $ranking,
+            'recents' => $recents
+        ]);
     }
 
     public function profile($username)

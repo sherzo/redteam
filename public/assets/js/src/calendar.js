@@ -168,15 +168,7 @@ const publication = new Vue({
     },
   },
   mounted() {
-moment.locale('es')
-    axios.get('calendar/today-event')
-      .then(res => {
-        this.today = res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
+    moment.locale('es')
     this.getEventsMonth()
     this.getCalendar()
     this.getReminders()
