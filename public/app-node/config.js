@@ -4,7 +4,7 @@ module.exports = {
   port: process.env.PORT || 6800,
   host: 'localhost',
   user: 'root',
-  password: 'e216*',
+  password: 'root',
   database: 'intranet',
   port_db: 3306
 }
