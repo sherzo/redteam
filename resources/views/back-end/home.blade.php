@@ -13,6 +13,11 @@
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
     }
+
+    .activeConfig {
+        background-color: #039be5;
+        color: white;
+    }
     
 </style>
 @endsection
@@ -390,6 +395,15 @@
                                 </form>
                             </div>
                         </div>
+                        <div>
+                            <button class="btn btn-default activeConfig" @click="markStatusPhoto" v-if="activated == 1">
+                                Capturar foto activado
+                            </button >
+
+                            <button class="btn btn-default" v-else @click="markStatusPhoto">
+                                Capturar foto desactivado
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -411,4 +425,7 @@
     <script src="{{ asset('assets/js/src/calendar.js') }}"></script>
     <script src="{{ asset('assets/js/src/admin_notification.js') }}"></script>
     <script src="{{ asset('assets/js/src/admin_home.js') }}"></script>
+    <script>
+        calendar.getPhotoStatus()
+    </script>
 @endsection

@@ -96,6 +96,8 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('assistances/{id}/individual', 'AssistanceController@individual');
     Route::get('assistances/all-users', 'AssistanceController@allUsers');
     
+    Route::post('configs/set', 'ConfigController@set');
+    Route::get('configs/{type}/get', 'ConfigController@get');
 });
 
 Route::group(['middleware' =>  'auth'], function() {

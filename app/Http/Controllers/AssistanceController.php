@@ -57,10 +57,15 @@ class AssistanceController extends Controller
     	$user = Auth::user();
 
     	$now = now();
-        $url = 'assistances/'. now()->format('Ymdhms') . '.png';
-        $path = public_path() . '/' . $url;
-        
-        Image::make(file_get_contents($request->photo))->save($path);
+        if($request->photo != "null") {
+
+            $url = 'assistances/'. now()->format('Ymdhms') . '.png';
+            $path = public_path() . '/' . $url;
+            
+            Image::make(file_get_contents($request->photo))->save($path);
+        }else {
+            $url = null;
+        }
 
     	$assistance = Assistance::create([
     		'user_id' => $user->id,

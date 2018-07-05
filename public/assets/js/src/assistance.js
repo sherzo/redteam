@@ -5,7 +5,8 @@ const assistance = new Vue({
     sizes: {
       width: 200,
       height: 0
-    }
+    },
+    capture: 0
   },
   methods: {
     getWorkStatus () {
@@ -81,7 +82,12 @@ const assistance = new Vue({
 
     },
     markEntry () {
-      var foto = this.takePicture()
+      console.log(this.capture)
+      if(this.capture == 1) {
+        var foto = this.takePicture() 
+      }else {
+        var foto = null
+      }
 
       this.isWorking = true
 
@@ -119,13 +125,21 @@ const assistance = new Vue({
     },
   },
   mounted () {
-    this.initWebCam()
+    axios.get('admin/configs/capturePhoto/get')
+      .then(res => {
+        this.capture = res.data
+        if(res.data == 1) {
+          this.initWebCam()
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
     this.getWorkStatus()
     $("#gn-menuData").click(function(){
         $("nav.gn-menu-wrapper").toggleClass("gn-open-all");
         $("a.gn-icon.gn-icon-menu").toggleClass("gn-selected");
     });
-
     
   }
 })

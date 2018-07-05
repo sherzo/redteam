@@ -2,7 +2,8 @@ const reminder = new Vue({
   el: '#reminders',
   data: {
     reminders: [],
-    title: ''
+    title: '',
+    activated: 0
   }, 
   methods: {
     getReminders () {
@@ -32,9 +33,30 @@ const reminder = new Vue({
         .catch(err => {
           console.log(err)
         })
+    },
+    getPhotoStatus () {
+      axios.get(`configs/capturePhoto/get`)
+        .then(res => {
+          this.activated = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    markStatusPhoto () {
+      this.activated = !this.activated
+
+      axios.post('configs/set', { type: 'capturePhoto' , value: this.activated })
+        .then(res => {
+
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   mounted () {
     this.getReminders()
+    this.getPhotoStatus()
   }
 })

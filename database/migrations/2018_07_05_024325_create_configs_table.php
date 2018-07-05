@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhotoColumnToAssitancesTable extends Migration
+class CreateConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddPhotoColumnToAssitancesTable extends Migration
      */
     public function up()
     {
-        Schema::table('assistances', function (Blueprint $table) {
-            $table->string('photo')->after('exit_status')->comment('Capturada al marcar entrada')->nullable();
+        Schema::create('configs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type');
+            $table->string('value');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddPhotoColumnToAssitancesTable extends Migration
      */
     public function down()
     {
-        Schema::table('assistances', function (Blueprint $table) {
-            $table->dropColumn('photo');
-        });
+        Schema::dropIfExists('configs');
     }
 }

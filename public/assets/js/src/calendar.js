@@ -1,4 +1,4 @@
-const publication = new Vue({
+const calendar = new Vue({
   el: '#calendar',
   data: {
     month: '',
@@ -16,7 +16,8 @@ const publication = new Vue({
     date: moment(),
     reminders: [],
     titler: '',
-    today: ''
+    today: '',
+    activated: 0
   },
   filters: {
     showDay(date) {
@@ -166,6 +167,26 @@ const publication = new Vue({
         this.featured = false
       }
     },
+    getPhotoStatus () {
+      axios.get(`admin/configs/capturePhoto/get`)
+        .then(res => {
+          this.activated = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    markStatusPhoto () {
+      this.activated = this.activated == 0 ? 1 : 0
+
+      axios.post('admin/configs/set', { type: 'capturePhoto' , value: this.activated })
+        .then(res => {
+
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   },
   mounted() {
     moment.locale('es')

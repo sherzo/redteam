@@ -9,6 +9,7 @@ const history = new Vue({
       id: '',
       complete: false,
     },
+    photo: '',
     stars: [1,2,3,4,5]
   },
   filters: {
@@ -49,6 +50,9 @@ const history = new Vue({
           console.log(err)
         })
 
+    },
+    showPhoto (p) {
+      this.photo = p.photo 
     }
   },
   mounted () {
