@@ -1,11 +1,12 @@
 /* COVERED */
+/*
 
 #video, #canvas {
   position:absolute;
   opacity: 0;
   top: 0;
 }
-
+*/
 [v-cloak] > * {
   display: none;
 }

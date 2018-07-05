@@ -201,17 +201,10 @@
                                     @include('components.notifications')
                                 </div>
                             </div>
-                            <div style="margin-top: 10px">
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <a href="{{ url('profile/'. Auth::user()->username) }}" >Perfil</a>
-                                <a href="{{ url('/logout') }}"
-                                   onclick="disconnect(event)">
-                                    Salir
-                                </a>
-                            </div>
+                        <li class="dropdown uSerLogue colorBlackSuave fontMiriamProRegular">
+                            <a href="#" class="dropdown-toggle colorBlackSuave" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
