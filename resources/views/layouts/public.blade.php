@@ -201,12 +201,12 @@
                                     @include('components.notifications')
                                 </div>
                             </div>
-                            <div>
+                            <div style="margin-top: 10px">
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
-                                <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
+                                <a href="{{ url('profile/'. Auth::user()->username) }}" >Perfil</a>
                                 <a href="{{ url('/logout') }}"
                                    onclick="disconnect(event)">
                                     Salir
