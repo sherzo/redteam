@@ -8,6 +8,8 @@ use App\Assistance;
 use App\Performance;
 use Carbon\Carbon;
 use App\User;
+use Image;
+use Storage;
 
 class AssistanceController extends Controller
 {
@@ -50,15 +52,20 @@ class AssistanceController extends Controller
         return $assistances;
     }
 
-    public function markEntry()
+    public function markEntry(Request $request)
     {
     	$user = Auth::user();
 
     	$now = now();
+        $url = 'assistances/'. now()->format('Ymdhms') . '.png';
+        $path = public_path() . '/' . $url;
+        
+        Image::make(file_get_contents($request->photo))->save($path);
 
     	$assistance = Assistance::create([
     		'user_id' => $user->id,
-    		'entry' => $now
+    		'entry' => $now,
+            'photo' => $url
     	]);
 
     	$schedule = $user->schedules()

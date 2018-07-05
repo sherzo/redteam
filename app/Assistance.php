@@ -13,7 +13,7 @@ class Assistance extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'user_id', 'entry', 'exit', 'entry_status', 'exit_status'
+        'user_id', 'entry', 'exit', 'entry_status', 'exit_status', 'photo'
     ];
 
     public function user()
@@ -37,5 +37,10 @@ class Assistance extends Model
     {
         $day = new Carbon($this->entry);
         return $day->format('Y-m-d');
+    }
+
+    public function getPhotoAttribue($photo)
+    {
+        return asset($photo);
     }
 }

@@ -136,11 +136,16 @@
                                     <li class="bloquesMarca accionesPerfil accionesBussines">
                                         <a class="fontMiriamProRegular colorGrisSuave lineJustify">Ayuda</a>
                                     </li>
+                                    <li>
+                                        <video src="" id="video"></video>
+                                        <canvas id="canvas"></canvas>
+                                    </li>
                                 </ul>
                             </div><!-- /gn-scroller -->
                         </nav>
                     </li>
                 </ul>
+
                 <ul class="centerNameUserMenu">
                     <li class="bloquesMarca marEntrada blockMobileMen colorBlack fontMiriamProRegular">
                         <a class="BgYellow fontMiriamProSemiBold colorBlackSuave">Marcar entrada</a>
@@ -238,11 +243,11 @@
 
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
+<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
 <script>    
     var authId = '{{ Auth::id() }}'
     
-    const socket = io.connect('http://127.0.0.1:6800',{
+    const socket = io.connect('http://18.219.62.126:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -315,8 +320,7 @@
 <script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/src/assistance.js') }}"></script>
 <script src="{{ asset('assets/js/src/notification.js') }}"></script>
-{{--
-    --}}
+
 @yield('js')
 </body>
 </html>
