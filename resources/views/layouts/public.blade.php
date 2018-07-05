@@ -125,7 +125,7 @@
                                         <a href="{{ url('chats') }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
-                                        <a href="profile" class="fontMiriamProRegular colorGrisMediumSuave lineJustify borderLineGris">Ver galerias</a>
+                                        <a href="{{ url('profile/' . Auth::user->username ) }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify borderLineGris">Ver galerias</a>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil accionesBussines">
                                         <a href="http://app-7983e06f-f506-428d-aef9-aea82667c6d7.cleverapps.io/public/assets/pdf/Manual-de-empleado.pdf" target="_blank" class="fontMiriamProRegular colorGrisSuave lineJustify">Manual de empleado</a>
