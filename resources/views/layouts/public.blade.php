@@ -188,22 +188,31 @@
                                 <img src="{{ asset('assets/images/house-ido.png') }}" class="img-responsive" alt="">
                             </a>
                         </li>
-                        <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak>
-                            <a href="#!" @click.prevent.stop="showNotifications">
-                                <img src="{{ asset('assets/images/notify-ico.png') }}" class="img-responsive" alt="">
-                                <div class="notifiCount">
-                                    <p class="gasper">0</p>
-                                    <p>@{{ unRead }}</p>
-                                    {{--@include('front-end.partials.fields-Totalnotificaciones')--}}
+                            <div class="ui dropdown dropdownSemantic notifiICos fontMiriamProRegular noneMobile" :class="{'active visible': toggle }" id="notifications" v-cloak>
+                                <a href="#!" @click.prevent.stop="showNotifications">
+                                    <img src="{{ asset('assets/images/notify-ico.png') }}" class="img-responsive" alt="">
+                                    <div class="notifiCount">
+                                        <p class="gasper">0</p>
+                                        <p>@{{ unRead }}</p>
+                                        {{--@include('front-end.partials.fields-Totalnotificaciones')--}}
+                                    </div>
+                                </a>
+                                <div :class="clases" :style="{ 'display': display }" style="min-width: 250px;">
+                                    @include('components.notifications')
                                 </div>
-                            </a>
-                            <div :class="clases" :style="{ 'display': display }" style="min-width: 250px;">
-                                @include('components.notifications')
                             </div>
-                        </div>
-
+                            <div>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
+                                <a href="{{ url('/logout') }}"
+                                   onclick="disconnect(event)">
+                                    Salir
+                                </a>
+                            </div>
                             <ul class="dropdown-menu" role="menu">
-                                asdad
                                 <li>
                                     <a href="{{ url('profile/'. Auth::user()->username) }}">Perfil</a>
                                     <a href="{{ url('/logout') }}"
@@ -240,6 +249,7 @@
 
 <!-- Semantic Ui CSS -->
 <script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}" type="text/javascript" ></script>
 <script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
 <script>    
     var authId = '{{ Auth::id() }}'
