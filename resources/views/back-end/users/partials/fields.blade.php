@@ -142,7 +142,7 @@
             <label for="">Area</label>
             <select name="area_id" required>
                 @forelse($areas as $key => $area)
-                    <option value="{{ $key }}">Administrativa</option>
+                    <option value="{{ $key }}">{{ $area }}</option>
                 @empty
                     <option>No hay areas registradas</option>
                 @endforelse

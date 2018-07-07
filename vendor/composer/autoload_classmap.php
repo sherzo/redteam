@@ -1632,6 +1632,8 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+    'Jenssegers\\Date\\Date' => $vendorDir . '/jenssegers/date/src/Date.php',
+    'Jenssegers\\Date\\DateServiceProvider' => $vendorDir . '/jenssegers/date/src/DateServiceProvider.php',
     'Laracasts\\Flash\\Flash' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
     'Laracasts\\Flash\\FlashNotifier' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/FlashNotifier.php',
     'Laracasts\\Flash\\FlashServiceProvider' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/FlashServiceProvider.php',

@@ -136,10 +136,16 @@ const assistance = new Vue({
         console.log(err)
       })
     this.getWorkStatus()
-    $("#gn-menuData").click(function(){
+    $("#gn-menuData").click(function(e){
+        e.stopPropagation();
         $("nav.gn-menu-wrapper").toggleClass("gn-open-all");
         $("a.gn-icon.gn-icon-menu").toggleClass("gn-selected");
     });
-    
+
+    $('body').click(function() {
+      $("nav.gn-menu-wrapper").removeClass("gn-open-all");
+      $("a.gn-icon.gn-icon-menu").removeClass("gn-selected");
+      
+    })
   }
 })

@@ -89,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+
                 <ul id="gn-menuData" class="nav navbar-nav gn-menu-main">
                     <li class="gn-trigger">
                         <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
@@ -232,22 +233,22 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('js/app.js') }}"></script>
+{{--<script>
+</script>
+<script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}"></script>
+--}}
 <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
 
-<script>
-    //new gnMenu( document.getElementById( 'gn-menu' ) );
-</script>
-
 <!-- Semantic Ui CSS -->
-<script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}" type="text/javascript" ></script>
-<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
 <script>    
+    new gnMenu( document.getElementById( 'gn-menuData' ) );
     var authId = '{{ Auth::id() }}'
     
-    const socket = io.connect('http://18.219.62.126:6800',{
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -307,17 +308,18 @@
     ;
     
     function quitNotifications() {
+        $('#gn-menuData').removeClass('gn-open-all')
         if(notification.toggle) {
             notification.showNotifications()
         }
     }
 </script>
 
-<script src="{{ asset('assets/js/moment.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}" type="text/javascript" ></script>
-<script src="{{ asset('assets/js/main.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/moment.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" ></script>
+<script src="{{ asset('assets/js/datePicker/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/src/assistance.js') }}"></script>
 <script src="{{ asset('assets/js/src/notification.js') }}"></script>
 

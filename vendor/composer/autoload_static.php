@@ -81,6 +81,10 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
             'Laravel\\Tinker\\' => 15,
             'Laratrust\\' => 10,
         ),
+        'J' => 
+        array (
+            'Jenssegers\\Date\\' => 16,
+        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
@@ -248,6 +252,10 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'Laratrust\\' => 
         array (
             0 => __DIR__ . '/..' . '/santigarcor/laratrust/src',
+        ),
+        'Jenssegers\\Date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/date/src',
         ),
         'Intervention\\Image\\' => 
         array (
@@ -1980,6 +1988,8 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
+        'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
         'Laracasts\\Flash\\Flash' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
         'Laracasts\\Flash\\FlashNotifier' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashNotifier.php',
         'Laracasts\\Flash\\FlashServiceProvider' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashServiceProvider.php',

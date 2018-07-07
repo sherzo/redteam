@@ -41,6 +41,9 @@ class CalendarController extends Controller
 
     public function renderMonth(Request $request)
     {
+        Carbon::setLocale(config('app.locale'));
+        setlocale(LC_TIME, 'es_ES');
+
         $date = new Carbon($request->date);
         $calendar = collect();
 
@@ -97,7 +100,23 @@ class CalendarController extends Controller
             }
         }
 
-        $month = $date->format('F');
+        $months = [
+            'Enero',
+            'Febrero',
+            'Marzo',
+            'Abril',
+            'Mayo',
+            'Junio',
+            'Julio',
+            'Agosto',
+            'Septiembre',
+            'Octubre',
+            'Noviembre',
+            'Diciembre'
+        ];
+
+        $month = (int) $date->format('m');
+        $month = $months[$month-1];
 
         return [
             'month' => $month,

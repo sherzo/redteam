@@ -1182,15 +1182,16 @@ $(".fileInputImageChat1").change(function(){
 
 
   // ACTIVE DESPLACE MENU
- /*
-  $("#gn-menuData").click(function(){
+ 
+/*  $("#gn-menuData").click(function(){
       $("nav.gn-menu-wrapper").toggleClass("gn-open-all");
       $("a.gn-icon.gn-icon-menu").toggleClass("gn-selected");
   });
+$("body").click(function(){
+	if($('nav.gn-menu-wrapper').hasClass("gn-open-all")){
+		$("nav.gn-menu-wrapper").removeClass("gn-open-all");
+	    $("a.gn-icon.gn-icon-menu").removeClass("gn-selected");
+	}
+
+});
 */
-  /*  $("body").click(function(){
-    	if($('nav.gn-menu-wrapper').hasClass("gn-open-all")){
-    		$("nav.gn-menu-wrapper").removeClass("gn-open-all");
-  	    $("a.gn-icon.gn-icon-menu").removeClass("gn-selected");
-    	});
-    });*/
