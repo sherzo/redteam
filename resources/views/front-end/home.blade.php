@@ -322,9 +322,9 @@
                         </div>
                     </div>
 
+                    @include('components.users-online-external')
                     {{-- CAPTION USER LIVES --}}
                     {{--
-                    @include('components.users-online')
                     <div class="captionUsersInLive">
                         <div class="ui accordion">
                             <h3 class="fontMiriamProRegular">Usuarios</h3>
@@ -489,7 +489,6 @@
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
     --}} 
 <script src="{{ asset('assets/js/src/publication.js') }}"></script>
-<script src="{{ asset('assets/js/src/online.js') }}"></script>
 <script>
     publication.getUser({{Auth::user()->id}})
 </script>

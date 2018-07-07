@@ -21,7 +21,10 @@ const publication = new Vue({
       success: '',
       user_id: 0,
       offset: 0,
-      offsetOld: 0
+      offsetOld: 0,
+
+      // Online
+      online: []
   },
   directives: { infiniteScroll },
    filters: {
@@ -34,6 +37,9 @@ const publication = new Vue({
     },
     showDay(date) {
       return moment(date).format('DD')
+    },
+    showImage (image) {
+      return axios.defaults.baseURL + '/storage/' + image
     } 
    },
    methods: {
@@ -246,6 +252,8 @@ const publication = new Vue({
         autoclose: true
       });
     }, 100) 
-
+    socket.on('users-online', (users) => {
+      this.online = users
+    })
    } 
 });
