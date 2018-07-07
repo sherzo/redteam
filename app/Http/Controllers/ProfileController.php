@@ -48,7 +48,7 @@ class ProfileController extends Controller
     {
         $user = User::find($request->id);
         
-        $publications = $user->publications()->whereNull('color')->orderBy('id', 'desc')->take(4)->get();
+        $publications = $user->publications()->whereNull('color')->orderBy('id', 'desc')->take(2)->get();
         
         $publications->load('user', 'comments.user', 'likes');
         

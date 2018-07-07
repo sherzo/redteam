@@ -271,15 +271,16 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-2 captionRecordNotas SecCalendar">
-                <!-- BLOQUE CALENDAR -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 " id="calendar">
+            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-2 captionRecordNotas SecCalendar" >
+                <!-- BLOQUE CALENDAR 
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
+                -->
                     <!-- SECTION CALENDAR AND ADD EVENT CALENDAR -->
-                    <div class="captionCalendar">
+                    <div class="captionCalendar" id="calendar">
                         <div class="dayMonth" >
                             <p class="fontMiriamProSemiBold">Agenda</p>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
-                                <p class="DayAgenda">{{ now()->format('F') }}</p>
+                                <p class="DayAgenda">Sabado</p>
                                 <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
@@ -323,10 +324,10 @@
                     </div>
                     {{--
                     @include('front-end.partials.fields-lateral-calendar')
+                </div>
                         --}}
 
                 <!-- GALERIA DE FOTOS -->
-                </div>
                 @include('components.galeries')
             </div>
         </div>

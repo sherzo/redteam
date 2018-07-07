@@ -315,7 +315,7 @@
                     <div class="dayMonth">
                         <p class="fontMiriamProSemiBold">Agenda</p>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
-                            <p class="DayAgenda">{{ now()->format('l') }}</p>
+                            <p class="DayAgenda">Sabado</p>
                             <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">

@@ -223,7 +223,7 @@
                         <div class="dayMonth">
                             <p class="fontMiriamProSemiBold">Agenda</p>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
-                                <p class="DayAgenda">{{ now()->format('l') }}</p>
+                                <p class="DayAgenda">Sabado</p>
                                 <p class="DayNumberAgenda">{{ now()->format('d') }}</p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData fechType">
@@ -323,6 +323,8 @@
                     </div>
 
                     {{-- CAPTION USER LIVES --}}
+                    {{--
+                    @include('components.users-online')
                     <div class="captionUsersInLive">
                         <div class="ui accordion">
                             <h3 class="fontMiriamProRegular">Usuarios</h3>
@@ -376,13 +378,13 @@
                             </div>
                         </div>
                     </div>
-                    {{--
 
                         --}}
                     <div class="captionActivitiesRecientes">
                         <h3 class="fontMiriamProSemiBold">Actividades recientes</h3>
                         <div class="notficiActivitie">
                             <div class="ui relaxed divided list">
+                               {{--
                                 @foreach($recents as $recent)
                                     <div class="item  NewFotos @if($recent->type > 1) icoFotos @else PublicatiOn @endif">
                                         @if($recent->type == 0)
@@ -413,6 +415,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                --}} 
                             </div>
                         </div>
                     </div>
@@ -486,6 +489,7 @@
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
     --}} 
 <script src="{{ asset('assets/js/src/publication.js') }}"></script>
+<script src="{{ asset('assets/js/src/online.js') }}"></script>
 <script>
     publication.getUser({{Auth::user()->id}})
 </script>
