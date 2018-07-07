@@ -71,7 +71,7 @@
                             <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
                                 <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
                             </a>
-                            <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
+                            <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive"  style="width: 100%;">
                             <div class="ui feed uifeedActions">
                                 <div class="event">
                                     <div class="label">
@@ -152,7 +152,7 @@
                             <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
                                 <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
                             </a>
-                            <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive">
+                            <img :src="p.image" v-show="p.image" alt="post-user" style="width: 100%;" class="img-responsive">
                             <div class="ui feed uifeedActions">
                                 <div class="event">
                                     <div class="label">

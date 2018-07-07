@@ -74,7 +74,9 @@
     <script src="{{ asset('assets/js/semantic.js') }}" ></script>
     <script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
     <script>    
-
+    
+    var authId = '{{ Auth::id() }}'
+    
     const socket = io.connect('http://18.219.62.126:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
