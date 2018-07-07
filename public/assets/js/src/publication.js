@@ -21,6 +21,7 @@ const publication = new Vue({
       success: '',
       user_id: 0,
       offset: 0,
+      oldOffset: 0,
       offsetOld: 0,
 
       // Online
@@ -103,7 +104,9 @@ const publication = new Vue({
     getPublications () {
       axios.get(`publications?offset=${this.offset}`)
         .then(res => {
-          if(res.data.length > 0 && this.offset > 0) {
+          //if(res.data.length > 0 && this.offset > 0) {
+          if(this.offset > this.oldOffset || this.offset == 0) {
+
             res.data.forEach(e => {
               e.comment = ''
               if(this.count % 2 == 0) {
@@ -113,7 +116,11 @@ const publication = new Vue({
               }
               this.count++;
             })
+            console.log('pasa')
+            console.log(this.offset, this.oldOffset)
           }
+          //}
+          this.oldOffset = this.offset
           this.offset += 4
         })
         .catch(err => {
@@ -243,7 +250,7 @@ const publication = new Vue({
    },
    mounted() {
     moment.locale('es')
-    this.getPublications()
+    //this.getPublications()
     this.getEventsMonth()
     this.getCalendar()
     setTimeout(() => {
