@@ -6,6 +6,7 @@ const assistance = new Vue({
       width: 200,
       height: 0
     },
+    mysuccess: '',
     capture: 0
   },
   methods: {
@@ -94,9 +95,9 @@ const assistance = new Vue({
       const data = new FormData()
       data.append('photo', foto)
 
-      publication.success = '¡Bienvenido! se marco su entrada correctamente, recuerde marcar su salida'
+      this.mysuccess = '¡Bienvenido! se marco su entrada correctamente, recuerde marcar su salida'
       setTimeout(() => {
-        publication.success = ''
+        this.mysuccess = ''
       }, 4000)
       
       axios.post('mark-entry', data)  
@@ -109,10 +110,10 @@ const assistance = new Vue({
     },
     markExit (){
       this.isWorking = false
-      publication.success = '¡Hasta la próxima! se marco su salida correctamente'
+      this.mysuccess = '¡Hasta la próxima! se marco su salida correctamente'
 
       setTimeout(() => {
-        publication.success = ''
+        this.mysuccess = ''
       }, 4000)
       axios.post('mark-exit')  
         .then(res => {

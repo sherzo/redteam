@@ -236,9 +236,9 @@
 <script src="{{ asset('js/app.js') }}"></script>
 {{--<script>
 </script>
-<script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/admin/colorpicker/spectrum.js') }}"></script>
 --}}
+<script src="{{ asset('assets/js/semantic.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/classie.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
 
