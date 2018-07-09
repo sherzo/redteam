@@ -4,7 +4,8 @@
     
     @include('components.header-admin', [
         'title' => 'Usuarios',
-        'placeholder' => 'Buscar usuarios por su nombre'
+        'placeholder' => 'Buscar usuarios por su nombre',
+        'action' => 'users.search'
     ])
 
 <div id="publications">

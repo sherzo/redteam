@@ -779,7 +779,7 @@ function drop(contenedor, evento) {
 
 
 // view more horarios
-/*
+
 jQuery(document).ready(function($) {
 	$('.newHorario').click(function(event) {
 		if($('.block2').hasClass('active2Hcom')){
@@ -801,7 +801,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 });
-*/
+
 
 // FILTER BUSQUEDAS
 

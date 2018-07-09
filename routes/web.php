@@ -56,6 +56,8 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::get('documents/{id}/subdocuments', 'DocumentController@getSubdocuments');
     Route::get('ranking/all', 'RankingController@all');
     Route::post('ranking/add', 'RankingController@addADP');
+    
+    Route::get('users/search', 'UserController@search')->name('users.search');
     Route::resources([
         'users' => 'UserController',
         'documents' => 'DocumentController',
