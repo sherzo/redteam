@@ -19,7 +19,7 @@
             <p>ADP</p>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1">
-            <p>Nota</p>
+            <p>Puntaje</p>
         </div>
     </div>
     @forelse($users as $user)
@@ -35,7 +35,7 @@
                             <a href="{{ route('users.edit', $user->id) }}">Editar información</a>
                         </li>
                         <li>
-                            <a href="{{ route('users.schedule', $user->id) }}">Editar horario</a>
+                            {{--<a href="{{ route('users.schedule', $user->id) }}">Editar horario</a>--}}
                         </li>
                         <li>
                             {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'DELETE'])}}
@@ -68,7 +68,7 @@
                 <p>0</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 NotUses topDatasUser">
-                <p>0</p>
+                <p>{{ $user->score != null ? $user->score : 0 }}</p>
             </div>
         </div>
     </div>

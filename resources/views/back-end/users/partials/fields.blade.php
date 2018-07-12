@@ -157,7 +157,7 @@
             <label for="">Jefe Inmediato</label>
             <select name="boss_id" required>
                 @forelse($bosses as $key => $boss)
-                    <option value="{{ $key }}">{{ $boss }}</option>
+                    <option value="{{ $boss->id }}">{{ $boss->full_name }}</option>
                 @empty
                     <option>No hay jefes registradas</option>
                 @endforelse

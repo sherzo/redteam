@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Area;
-use App\Branch;
-use App\Mark;
-use App\Role;
 use App\PersonalInformation;
 use App\AcademicInformation;
-use App\Schedule;
-use App\ScheduleDay;
 use App\WorkInformation;
+use App\ScheduleDay;
 use Carbon\Carbon;
+use App\Schedule;
+use App\Branch;
+use App\User;
+use App\Area;
+use App\Mark;
+use App\Role;
+use Auth;
 
 class UserController extends Controller
 {
@@ -58,7 +59,7 @@ class UserController extends Controller
         $areas = Area::pluck('name', 'id');
         $marks = Mark::pluck('name', 'id');
         $branches = Branch::pluck('name', 'id');
-        $bosses = User::pluck('name', 'id');
+        $bosses = User::where('id', '!=', Auth::user()->id)->get();
         $roles = Role::pluck('display_name', 'id');
 
         return view('back-end.users.create', [
