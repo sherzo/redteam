@@ -104,20 +104,37 @@ const publication = new Vue({
     getPublications () {
       axios.get(`publications?offset=${this.offset}`)
         .then(res => {
-          //if(res.data.length > 0 && this.offset > 0) {
           if(this.offset > this.oldOffset || this.offset == 0) {
-
             res.data.forEach(e => {
               e.comment = ''
+              let exists = false
               if(this.count % 2 == 0) {
-                this.publications.push(e)
+
+                this.publications.forEach(p => {
+                  if(p.id == e.id) {
+                    exists = true
+                  }
+                })
+                
+                if(!exists) {
+                  this.publications.push(e)
+                }
+
               }else {
-                this.publicationsTwo.push(e)
+                this.publicationsTwo.forEach(p => {
+                  if(p.id == e.id) {
+                    exists = true
+                  }
+                })
+                
+                if(!exists){
+                  this.publicationsTwo.push(e)
+                }
+              
               }
               this.count++;
             })
-            console.log('pasa')
-            console.log(this.offset, this.oldOffset)
+
           }
           //}
           this.oldOffset = this.offset
