@@ -104,6 +104,7 @@ const publication = new Vue({
     getPublications () {
       axios.get(`publications?offset=${this.offset}`)
         .then(res => {
+          console.log(this.offset)
           if(this.offset > this.oldOffset || this.offset == 0) {
             res.data.forEach(e => {
               e.comment = ''
@@ -136,7 +137,6 @@ const publication = new Vue({
             })
 
           }
-          //}
           this.oldOffset = this.offset
           this.offset += 4
         })
