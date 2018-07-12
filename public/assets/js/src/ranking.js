@@ -24,6 +24,7 @@ const ranking = new Vue({
         .then(res => {
           this.employees = res.data.employees
           this.first = res.data.first
+          console.log(this.employees)
         })
         .catch(err => {
           console.log(err)
@@ -55,6 +56,7 @@ const ranking = new Vue({
       }
       axios.post('admin/ranking/add', data)
         .then(res => {
+
           res.data.index = index
           res.data.select = ""
           if (select_user > 0) {
@@ -66,7 +68,8 @@ const ranking = new Vue({
           setTimeout(()=>{
             this.adp_exito = false
             this.puntos_exito = false
-          }, 3000)
+            location.reload();
+          }, 2000)
         })
     }
   },

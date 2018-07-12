@@ -105,6 +105,7 @@ const emergency = new Vue({
       }
 
       this.success = true
+      this.message = 'Se envio el comentario'
       
       let formData = new FormData()
       formData.append('description', description) 
