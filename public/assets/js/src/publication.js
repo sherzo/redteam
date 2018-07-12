@@ -139,6 +139,7 @@ const publication = new Vue({
           }
           this.oldOffset = this.offset
           this.offset += 4
+          console.log(this.oldOffset, this.offset)
         })
         .catch(err => {
           console.log(err)
