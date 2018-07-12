@@ -168,7 +168,7 @@ const publication = new Vue({
 
       let user_id = null
       if(typeNotification == 2) {
-        data = `<strong class='nameUserNotifique'> ${user.name} </strong> Ha realizado publicado una nueva <span class='typeAccionNotifi'>foto</span>`
+        data = `<strong class='nameUserNotifique'> ${user.name} </strong> Ha publicado una nueva <span class='typeAccionNotifi'>foto</span>`
       } else if (typeNotification == 3) {
         data = `<strong class='nameUserNotifique'> ${user.name} </strong> Ha publicado una nuevo <span class='typeAccionNotifi'>documento</span>`
       } else if(typeNotification == 5) {

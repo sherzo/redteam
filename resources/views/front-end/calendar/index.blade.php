@@ -21,7 +21,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="captionCalendar">
                             <div class="dayMonth">
-                                <p class="fontMiriamProSemiBold dyaGeneralClanedar">Sabado</p>
+                                <p class="fontMiriamProSemiBold dyaGeneralClanedar">Jueves</p>
                                 <h1 class="DayNumberAgenda">{{ now()->format('d') }}</h1>
                             </div>
                         </div>
