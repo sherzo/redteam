@@ -226,8 +226,23 @@
         </div>
     </nav>
     
-    <div class="col-md-12">
+    <div class="col-md-12" >
         @include('flash::message')
+        <span id="messages" v-cloak>
+            
+            <transition name="fade">
+                <p class="alert alert-success" v-show="success != ''">
+                    @{{ success }}
+                </p>
+            </transition>
+
+            <transition name="fade">
+                <p class="alert alert-danger" v-show="err != ''">
+                    @{{ err }}
+                </p>
+            </transition>
+        </span>
+
     </div>
     @yield('content')
 </div>
@@ -322,6 +337,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/src/assistance.js') }}"></script>
 <script src="{{ asset('assets/js/src/notification.js') }}"></script>
+<script src="{{ asset('assets/js/src/message.js') }}"></script>
 
 @yield('js')
 </body>

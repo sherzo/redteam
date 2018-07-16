@@ -5,8 +5,8 @@ const publication = new Vue({
       emergency: false,
       featured: false,
       comment: '',
-      file: [],
-      image: '',
+      file: {},
+      image: {},
       success: false,
       user_id: 0,
       alert: ''
@@ -23,6 +23,8 @@ const publication = new Vue({
       form.append('featured', this.featured)
       form.append('emergency', this.emergency)
       this.description = ''
+      this.file = {}
+      this.image = {}
       axios.post('publications', form)
         .then(res => {
           this.success = true

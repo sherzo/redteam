@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Publication;
 use Auth;
+use App\Like;
 
 class PublicationController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
+
     	$publications = Publication::with(['user', 'likes', 'comments.user'])
             ->orderBy('id', 'DESC');
 
@@ -18,6 +21,10 @@ class PublicationController extends Controller
         }
 
         $publications = $publications->limit(4)->get();
+
+        $publications->each(function($publication) use ($user){
+            $publication->liked = $publication->usersLikes->contains($user);
+        });
 
     	return $publications;
     }
@@ -53,15 +60,22 @@ class PublicationController extends Controller
     public function like(Request $request)
     {
     	$user = Auth::user();
+        if($request->liked) {
+            $like = Like::where('publication_id', $request->publication_id)
+                        ->where('user_id', $user->id)
+                        ->first();
 
-    	$publication = Publication::find($request->publication_id);
+            $like->delete();
 
-    	$publication->likes()->create([
-    		'user_id' => $user->id
-    	]);
+        }else {
 
-        $publication->load('comments', 'likes');
-    	
+    	   $publication = Publication::find($request->publication_id);
+    	   $publication->likes()->create([
+    		  'user_id' => $user->id
+    	   ]);
+        
+        }
+
         return $user;
     }
 

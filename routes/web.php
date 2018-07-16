@@ -42,6 +42,7 @@ Route::get('/hom', function () {
 Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
 
     Route::get('home', 'Admin\AdminController@Home');
+    Route::post('mark-read-notifications', 'Admin\AdminController@markReadNotifications');
     Route::get('homedefault', function(){
         return view('back-end.homedefault');
     });

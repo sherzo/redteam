@@ -66,7 +66,9 @@ class RankingController extends Controller
             $employee->score += $performance->operation;                
             
         }
-        $employee->stars = round($employee->score / 20);
+
+        $employee->stars = round($employee->score / 20) > 5 ? 5 : round($employee->score / 20);
+
         $employee->save();
         
         $employee->adp = Performance::where('user_id', $request->user_id)->where('performance', 2)->count();

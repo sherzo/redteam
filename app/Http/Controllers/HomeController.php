@@ -28,10 +28,60 @@ class HomeController extends Controller
     {
         $recents = Notification::orderBy('id','desc')->take(8)->get();
 
+        $recents->each(function($recent) {
+            $recent->class = 'NewFotos';
+            
+            if($recent->type == 0) {
+                
+                $recent->class = 'PublicatiOn';
+                $recent->icon = 'icoPubli';
+
+            }else if($recent->type == 1){
+                
+                $recent->class = 'ActivitiPago';
+                $recent->icon = 'icoPagos';
+
+            
+            } else if($recent->type == 2){
+                
+                $recent->class = 'Profilesa';
+                $recent->icon = 'icoProFile';
+            
+            } else if($recent->type == 3){
+                
+                $recent->icon = 'icoFotos';
+            
+            } else if($recent->type == 4){
+                
+                $recent->icon = 'icoCumple';
+            
+            } else if($recent->type == 5){
+                
+                $recent->icon = 'icoLikes';
+            
+            } else if($recent->type == 6){
+                
+                $recent->icon = 'icoComentarios';
+
+            } else if($recent->type == 7) {
+
+                $recent->icon = 'icoUrgente'; 
+
+            } else if($recent->type == 8) {
+
+                $recent->icon = 'icoProFile'; 
+
+            } else {
+
+                $recent->icon = 'icoCalendar'; 
+            
+            }
+        });
+
         $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
 
         $ranking = User::orderBy('stars', 'desc')->take(8)->get();
-        
+
         return view('front-end.home', [
             'today' => $today, 
             'ranking' => $ranking,

@@ -68,7 +68,7 @@
                             <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
                                 @{{ p.description }}
                             </p>
-                            <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
+                            <a :href="p.file" class="dataDpcuCl" download="" v-show="p.file">
                                 <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
                             </a>
                             <img :src="p.image" v-show="p.image" alt="post-user" class="img-responsive"  style="width: 100%;">
@@ -79,8 +79,8 @@
                                     </div>
                                     <div class="content contLike">
                                         <div class="summary">
-                                            <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                                @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
+                                            <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
                                             </a>
                                             <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
                                                 <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
@@ -160,8 +160,8 @@
                                     </div>
                                     <div class="content contLike">
                                         <div class="summary">
-                                            <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                                @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
+                                            <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
                                             </a>
                                             <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
                                                 <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
@@ -384,38 +384,15 @@
                         <h3 class="fontMiriamProSemiBold">Actividades recientes</h3>
                         <div class="notficiActivitie">
                             <div class="ui relaxed divided list">
-                               {{--
                                 @foreach($recents as $recent)
-                                    <div class="item  NewFotos @if($recent->type > 1) icoFotos @else PublicatiOn @endif">
-                                        @if($recent->type == 0)
-                                            <i class="large github middle aligned icoPubli" ></i>
-                                        @elseif($recent->type == 1)
-                                            <i class="large github middle aligned icoPagos"></i>
-                                        @elseif($recent->type == 2)
-                                            <i class="large github middle aligned icoFotos"></i>
-                                        @elseif($recent->type == 3)
-                                            <i class="large github middle aligned icoDocumn"></i>
-                                        @elseif($recent->type == 4)
-                                            <i class="large github middle aligned icoCumple"></i>
-                                        @elseif($recent->type == 5)
-                                            <i class="large github middle aligned icoLikes"></i>
-                                        @elseif($recent->type == 6)
-                                            <i class="large github middle aligned icoComentarios"></i>
-                                        @elseif($recent->type == 7)
-                                            <i class="large github middle aligned icoUrgente" ></i>
-                                        @elseif($recent->type == 8)
-                                            <i class="large github middle aligned icoProFile" ></i>
-                                        @else($recent->type == 9)
-                                            <i class="large github middle aligned icoCalendar"></i>
-                                        @endif
-                                        <div class="content">
-                                            <a class="header">
-                                                {!!  $recent->data !!}
-                                            </a>
-                                        </div>
+                                <div class="item {{ $recent->class }}">
+                                    <i class="large github middle aligned {{ $recent->icon }}"></i>
+
+                                    <div class="content">
+                                        <a class="header">{!! $recent->data !!}</a>
                                     </div>
-                                @endforeach
-                                --}} 
+                                </div> 
+                                @endforeach 
                             </div>
                         </div>
                     </div>
@@ -442,7 +419,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 continPublish">
                             <form class="sectionPublichUser" accept-charset="utf-8" @submit.prevent="addPublication" enctype="multipart/form-data">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <textarea name="" v-model="description" placeholder="Escribe un comentario"></textarea>
+                                    <textarea name="" required="" v-model="description" placeholder="Escribe un comentario"></textarea>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 bloquesActions">
                                     <div class="col-md-6 actionpuBlish">
@@ -450,15 +427,20 @@
                                         <div class="col-md-2 Adjuntar">
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarIco.png') }}" alt="" onclick="document.getElementById('fileInput').click()">
                                             <input type="file" id="fileInput" ref="myFile" style="display: none" @change="getFile">
+                                            
+                                            <div v-show="file.name" style="height: 5px; background-color: #39b54a;"></div>
                                         </div>
 
                                         <div class="col-md-2 AdjuntarFoto" onclick="document.getElementById('imageInput').click()">
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/adjuntarFoto.png') }}" alt="">
                                             <input type="file" id="imageInput" ref="myImage" style="display: none" @change="getImage">
+                                            
+                                            <div v-show="image.name" style="height: 5px; background-color: #39b54a;"></div>
                                         </div>
                                         
                                         <div class="col-md-2 DestacarPuslish" @click="selectFeatured" >
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/destacarIco.png') }}" alt="">
+                                            
                                         </div>
                                         <div class="col-md-2 AlertPublish" @click="selectEmergency">
                                             <img class="img-responsive" src="{{ asset('assets/images/avatar/alertIco.png') }}" alt="">
@@ -469,6 +451,7 @@
                                         <button type="button" class="btn btn-default close-modal hide" data-dismiss="modal" id="close-modal">Close</button>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>

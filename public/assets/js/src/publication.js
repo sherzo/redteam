@@ -16,8 +16,8 @@ const publication = new Vue({
       emergency: false,
       featured: false,
       comment: '',
-      file: '',
-      image: '',
+      file: [],
+      image: [],
       success: '',
       user_id: 0,
       offset: 0,
@@ -82,7 +82,11 @@ const publication = new Vue({
     },
     addEvent () {
       let day = document.getElementById('day').value
-
+      let event = {
+        title: this.title,
+        day: day
+      }
+      
       this.calendar.forEach(e => {
         if(e.day == day) {
           e.events.push(event)
@@ -90,6 +94,7 @@ const publication = new Vue({
       })
 
       this.title = ''
+      let eva
       document.getElementById('day').value = ''
 
       axios.post('calendar/store', event) 
@@ -160,6 +165,8 @@ const publication = new Vue({
       form.append('featured', this.featured)
       form.append('emergency', this.emergency)
       this.description = ''
+      this.file = []
+      this.image = []
 
       document.getElementById('close-modal').click()
 
@@ -226,14 +233,27 @@ const publication = new Vue({
         })
     },
     like (publication) {
-      publication_id = publication.id
+      
+      let publication_id = publication.id
+      let liked = publication.liked
+      if(publication.liked) {
 
-      publication.likes.push({
-        publication_id: publication_id,
-        user_id: this.user_id
-      });
+        publication.liked = false
+        let index = publication.likes.findIndex(e => {
+          return e.user_id == this.user_id
+        })
+        publication.likes.splice(index, 1)
+      
+      }else {        
+        publication.liked = true
+        publication.likes.push({
+          publication_id: publication_id,
+          user_id: this.user_id
+        });
+      }
 
-      axios.post('publications/like', { publication_id })
+
+      axios.post('publications/like', { publication_id, liked })
         .then(res => {
           this.sendSocket(5, res.data) // Aqui ya va el user
         })
@@ -246,6 +266,7 @@ const publication = new Vue({
     },
     getFile () {
       this.file = this.$refs.myFile.files[0]
+      console.log(this.file)
     },
     getImage () {
       this.image = this.$refs.myImage.files[0]

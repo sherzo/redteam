@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Application;
 use App\Emergency;
 use App\Publication;
+use App\Notification;
 use App\Event;
 use App\Message;
 
@@ -34,9 +35,47 @@ class AdminController extends Controller
     {
         $user = Auth::user();
 
+        $notifications = Notification::where('user_id', $user->id)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->orWhere(function($query) use ($user) {
+                $query->whereNull('user_id')
+                ->whereDoesntHave('users', function ($q) use ($user) {
+                    $q->where('user_id', $user->id);
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $notifications = $this->addClass($notifications);
+
         $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
 
-        return view('back-end.home', ['today' => $today]);      
+        return view('back-end.home', ['today' => $today, 'notifications' => $notifications]);      
+    }
+
+    public function markReadNotifications()
+    {
+        $user = Auth::user();
+
+        $notifications = Notification::where('user_id', $user->id)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->orWhere(function($query) use ($user) {
+                $query->whereNull('user_id')
+                ->whereDoesntHave('users', function ($q) use ($user) {
+                    $q->where('user_id', $user->id);
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $notifications->each(function($notification) use ($user){
+            $user->notifications()->attach($notification->id);
+        });
+
     }
 
     public function dashboard()
@@ -44,10 +83,23 @@ class AdminController extends Controller
         $user = Auth::user();
 
         $today = now()->format('Y-m-d');
+        $notifications = Notification::where('user_id', $user->id)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->orWhere(function($query) use ($user) {
+                $query->whereNull('user_id')
+                ->whereDoesntHave('users', function ($q) use ($user) {
+                    $q->where('user_id', $user->id);
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
         $emergencies = Emergency::whereDate('created_at', $today)->count();
         $applications = Application::whereDate('created_at', $today)->count();
-        $notifications = Publication::whereDate('created_at', $today)->count();
-        $notifications += Event::whereDate('created_at', $today)->count();
+        
+
         $lates = 0;
 
         //$chats = $user->chats()->
@@ -144,6 +196,61 @@ class AdminController extends Controller
         }
         
         return $countYesterday;
+    }
+
+    private function addClass($notifications) 
+    {
+         $notifications->each(function($recent) {
+            $recent->class = 'NewFotos';
+            
+            if($recent->type == 0) {
+                
+                $recent->class = 'PublicatiOn';
+                $recent->icon = 'icoPubli';
+
+            }else if($recent->type == 1){
+                
+                $recent->class = 'ActivitiPago';
+                $recent->icon = 'icoPagos';
+
+            
+            } else if($recent->type == 2){
+                
+                $recent->class = 'Profilesa';
+                $recent->icon = 'icoProFile';
+            
+            } else if($recent->type == 3){
+                
+                $recent->icon = 'icoFotos';
+            
+            } else if($recent->type == 4){
+                
+                $recent->icon = 'icoCumple';
+            
+            } else if($recent->type == 5){
+                
+                $recent->icon = 'icoLikes';
+            
+            } else if($recent->type == 6){
+                
+                $recent->icon = 'icoComentarios';
+
+            } else if($recent->type == 7) {
+
+                $recent->icon = 'icoUrgente'; 
+
+            } else if($recent->type == 8) {
+
+                $recent->icon = 'icoProFile'; 
+
+            } else {
+
+                $recent->icon = 'icoCalendar'; 
+            
+            }
+        });
+
+        return $notifications;
     }
  
 

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
+use Auth;
 
 class Publication extends Model
 {
@@ -40,6 +41,17 @@ class Publication extends Model
     public function allLike()
     {
         return $this->likes->count();
+    }
+
+    public function usersLikes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function isLikeBy()
+    {
+        $user = Auth::user();
+        return $this->usersLikes->contains($user);
     }
 
     /*

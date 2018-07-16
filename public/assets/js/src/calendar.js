@@ -95,11 +95,14 @@ const calendar = new Vue({
         })
     },
     addEvent () {
+      let user_id = authId
+      let data = `<span class='typeAccionNotifi'> ${user.name} </span> comento tu publicacion`
       let day = document.getElementById('day').value
       let event = {
         title: this.title,
         day: day
       }
+      console.log(event)
 
       this.calendar.forEach(e => {
         if(e.day == day) {

@@ -46,7 +46,7 @@
             <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido" id="home">
                 <div v-cloak>
-                <p class="alert alert-success" v-show="success != ''" >@{{ success }}</p>
+                    <p class="alert alert-success" v-show="success != ''" >@{{ success }}</p>
                     
                 </div>
 
@@ -75,15 +75,12 @@
                             </form>
 
                             <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="markAsRead()">
                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                 </button>
                                 <ul class="dropdown-menu dropDetallNotify" aria-labelledby="dLabel">
-                                    {{--<li>
-                                        <a href="#" data-daynext="">Detalles</a>
-                                    </li>--}}
                                     <div class="menu" style="width: 300px;">
-                                        @include('components.notifications')
+                                        @include('components.notifications_admin')
                                     </div>
                                 </ul>
                             </div>
@@ -427,5 +424,16 @@
     <script src="{{ asset('assets/js/src/admin_home.js') }}"></script>
     <script>
         calendar.getPhotoStatus()
+
+        function markAsRead() {
+            axios.post('admin/mark-read-notifications')
+                .then(res => {
+                    console.log(res)
+                })
+                .cacth(err => {
+                    console.log(err)
+                })
+
+        }
     </script>
 @endsection

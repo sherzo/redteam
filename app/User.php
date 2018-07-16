@@ -116,6 +116,11 @@ class User extends Authenticatable
         return $this->hasMany(Publication::class);
     }
 
+    public function notifications()
+    {
+        return $this->belongsToMany(Notification::class);
+    }
+
     /*
     *   Magis methods
     */
