@@ -64,8 +64,11 @@ class EvaluationController extends Controller
 			$newScore = $evaluation->score;
 		}
 
-		
-		$newStars = round($employee->score / 20) > 5 ? 5 : round($employee->score / 20);
+		$newStars = round($employee->score / 20);
+		if($newStars > 5) {
+			$newStars = 5;
+		}
+
 		$employee->score = $newScore;
 		$employee->stars = $newStars;
 		$employee->save();

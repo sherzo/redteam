@@ -2,6 +2,7 @@ const myPublication = new Vue({
   el: '#myPublications',
   data: {
     publications: [],
+    publicationsTwo: []
   },
   filters: {
     humanize(d) {
@@ -49,13 +50,49 @@ const myPublication = new Vue({
     getMyPublications (id) {
       axios.get(`profile/${id}/my-publications`)
         .then(res => {
+          let count = 0
           this.publications = res.data
-          this.publications.forEach(e => {
+          res.data.forEach(e => {
             e.comment = ''
+            if(count % 2 == 0) {
+              this.publications.push(e)
+            }else {
+              this.publicationsTwo.push(e)
+            }
+            count++
           })
         })
         .catch(err => {
           console.log(err)
+        })
+    },
+    like (publication) {
+      
+      let publication_id = publication.id
+      let liked = publication.liked
+      if(publication.liked) {
+
+        publication.liked = false
+        let index = publication.likes.findIndex(e => {
+          return e.user_id == this.user_id
+        })
+        publication.likes.splice(index, 1)
+      
+      }else {        
+        publication.liked = true
+        publication.likes.push({
+          publication_id: publication_id,
+          user_id: this.user_id
+        });
+      }
+
+
+      axios.post('publications/like', { publication_id, liked })
+        .then(res => {
+          this.sendSocket(5, res.data) // Aqui ya va el user
+        })
+        .catch(err => {
+            console.log(err)
         })
     },
     addComment (publication_id, i, type) {

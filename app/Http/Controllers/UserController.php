@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('score', 'desc')->get();
 
         return view('back-end.users.index', [
             'users' => $users
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $users = User::where('name', 'like', '%' . $request->q . '%')->orWhere('second_name', 'like', '%' . $request->q . '%')
-        ->orWhere('lastname', 'like', '%' . $request->q  . '%')->get();
+        ->orWhere('lastname', 'like', '%' . $request->q  . '%')->orderBy('score', 'desc')->get();
 
 
         return view('back-end.users.index', [

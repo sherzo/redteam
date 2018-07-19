@@ -4222,3 +4222,10 @@ a.loadUserJa {
 .col-xs-12.col-sm-7.col-md-11.col-lg-11.sectioForMEnsagen {
     width: 87%;
 }
+
+.personal-post { 
+    padding: 0;
+    background: white;
+    margin-bottom: 7%;
+    box-shadow: 0px 2px 10px 1px #e2e2e2;
+}

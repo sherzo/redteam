@@ -41,9 +41,6 @@ class CalendarController extends Controller
 
     public function renderMonth(Request $request)
     {
-        Carbon::setLocale(config('app.locale'));
-        setlocale(LC_TIME, 'es_ES');
-
         $date = new Carbon($request->date);
         $calendar = collect();
 
@@ -153,7 +150,7 @@ class CalendarController extends Controller
             'day' => $request->day
         ]);
 
-        return $event;
+        return $user;
     }
 
     private function getEvents($moth)

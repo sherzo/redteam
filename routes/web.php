@@ -62,7 +62,8 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::resources([
         'users' => 'UserController',
         'documents' => 'DocumentController',
-        'ranking' => 'RankingController'
+        'ranking' => 'RankingController',
+        'promotions' => 'PromotionController'
     ]);
     Route::get('all/suggestions', 'SuggestionController@all');
     Route::get('suggestions', 'SuggestionController@index');

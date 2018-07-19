@@ -96,7 +96,6 @@ const calendar = new Vue({
     },
     addEvent () {
       let user_id = authId
-      let data = `<span class='typeAccionNotifi'> ${user.name} </span> comento tu publicacion`
       let day = document.getElementById('day').value
       let event = {
         title: this.title,
@@ -115,6 +114,18 @@ const calendar = new Vue({
 
       axios.post('calendar/store', event) 
         .then(res => {
+          let u = res.data
+          let data = `<span class='typeAccionNotifi'> ${u.name} </span> agrego un evento al calendario`
+
+          let notification = {
+            user_id: user_id,
+            type: 9,
+            data: data,
+            propetary_id: authId
+          }
+      
+          socket.emit('sendNotification', notification)
+
           this.getEventsMonth()
         })
         .catch(err => {

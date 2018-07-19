@@ -27,7 +27,8 @@ class RankingController extends Controller
         $employees = User::all();
         foreach ($employees as $employee) {
             $employee->select = "";
-            $employee->adp = $adps = Performance::where('user_id', $employee->id)->where('performance', 2)->count();
+            $adps = Performance::where('user_id', $employee->id)->where('performance', 2)->count();
+            $employee->adp = $adps;
         }
         $count = $employees->count();
         
