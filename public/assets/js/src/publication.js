@@ -12,6 +12,7 @@ const publication = new Vue({
       count: 0,
       publicationsTwo: [],
       publications: [],
+      personals: [],
       description: '',
       emergency: false,
       featured: false,
@@ -109,42 +110,56 @@ const publication = new Vue({
     getPublications () {
       axios.get(`publications?offset=${this.offset}`)
         .then(res => {
-          console.log(this.offset)
-          //if(this.offset > this.oldOffset || this.offset == 0) {
-            res.data.forEach(e => {
-              e.comment = ''
-              let exists = false
-              if(this.count % 2 == 0) {
 
-                this.publications.forEach(p => {
-                  if(p.id == e.id) {
-                    exists = true
-                  }
-                })
-                
-                if(!exists) {
-                  this.publications.push(e)
-                }
+          res.data.publications.forEach(e => {
+            e.comment = ''
+            let exists = false
+            if(this.count % 2 == 0) {
 
-              }else {
-                this.publicationsTwo.forEach(p => {
-                  if(p.id == e.id) {
-                    exists = true
-                  }
-                })
-                
-                if(!exists){
-                  this.publicationsTwo.push(e)
+              this.publications.forEach(p => {
+                if(p.id == e.id) {
+                  exists = true
                 }
+              })
               
+              if(!exists) {
+                this.publications.push(e)
               }
-              this.count++;
-            })
 
-          //}
+            }else {
+              this.publicationsTwo.forEach(p => {
+                if(p.id == e.id) {
+                  exists = true
+                }
+              })
+              
+              if(!exists){
+                this.publicationsTwo.push(e)
+              }
+            
+            }
+            this.count++;
+          })
+
+          res.data.personals.forEach(e => {
+            e.comment = ''
+            let exists = false
+
+            this.personals.forEach(p => {
+              if(p.id == e.id) {
+                exists = true
+              }
+            })
+            
+            if(!exists) {
+              this.personals.push(e)
+            }
+            
+            this.personals.push(e)
+          })
+
           this.oldOffset = this.offset
           this.offset += 4
-          console.log(this.oldOffset, this.offset)
         })
         .catch(err => {
           console.log(err)

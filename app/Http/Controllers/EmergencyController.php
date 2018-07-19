@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Emergency;
 use App\Discussion;
 use Auth;
+use App\Notification;
+use App\User;
 
 class EmergencyController extends Controller
 {
@@ -22,11 +24,25 @@ class EmergencyController extends Controller
             return redirect('/emergency');
         }
 
+        $notifications = Notification::where('user_id', $user->id)
+            ->where('type', 11)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->get();
+
+        foreach ($notifications as $key => $notification) {
+            $user->notifications()->attach($notification->id);
+        }
+
+
         return view('back-end.emergencies.index');
     }
 
     public function emergency()
     {
+        
+
         return view('front-end.emergencies.emergency');
     }
 
@@ -51,7 +67,6 @@ class EmergencyController extends Controller
      */
     public function discussion(Request $request)
     {
-        //return $request->all();
         $user = Auth::user();
 
         $emergency = Emergency::find($request->id);
@@ -132,6 +147,20 @@ class EmergencyController extends Controller
         }
 
         $emergency->save();
+
+        $data = "$user->full_name a tenido una</span> <span class='typeAccionNotifi'> emergencia</span>";
+        
+        $users = User::join('role_user', 'role_user.user_id', '=', 'users.id')  
+            ->where('role_id', 1)
+            ->get();
+      
+        foreach($users as $user) {
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'data' => $data,
+                'type' => 11
+            ]);
+        }
 
         return $emergency->load('user');
     }

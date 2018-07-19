@@ -1,5 +1,10 @@
 @extends('layouts.public')
 
+@section('css')
+<style>
+   
+</style>
+@endsection
 @section('content')
 <div id="publications"> 
     <div class="container continerWithSite" v-cloak>
@@ -28,15 +33,26 @@
                                 </div>
                             </a>
                             <div class="menu">
+                                {{-- _____________________________________________________________
+
+                                                    NOTIFICACIONES
+                                     _____________________________________________________________
+                                --}}
                                 @include('front-end.partials.fields-notificaciones')
                             </div>
                         </div>
                     @endif
                  </ul>
             </div>
+
+            {{-- 
+            ___________________________________________________________________________________________
+    
+                                                INFINY SCROLL
+            ___________________________________________________________________________________________
+            --}}
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 captionPosteos" v-infinite-scroll="getPublications" infinite-scroll-disabled="busy" infinite-scroll-distance="5">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                    {{-- BLOCK TEXT --}}
 
                     {{--     INICIO DE V-FOR--}}   
                     <div class="col-md-12" v-for="(p, i) in publications" :class="{ 'typeAvisosPost': p.color }" >
@@ -197,7 +213,13 @@
                     {{--    FIN DE V-FOR --}}
                 </div>
             </div>
+            {{-- _________________________________ END INFINY SCROLL _______________________________________ --}}
 
+
+            {{-- ___________________________________________________________________________________________ 
+
+                                                  RECORDATORIOS
+                ____________________________________________________________________________________________ --}}
             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 captionRecordNotas">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 bloqueRecordatorios">
                     <h1 class="fontMiriamProRegular">Recordatorios</h1>
@@ -209,12 +231,99 @@
                         <p class="fontMiriamProSemiBold">Promociones de hoy</p>
                         <img class="img-responsive" src="{{ asset('assets/images/promo-public-2.jpg') }}">
                     </div>
+                    
+                    {{-- ___________________________________________________________________________________________ 
 
+                                                  POST PERSONALIZADOS
+                        ____________________________________________________________________________________________ --}}
                     <div class="captionPostGuardadosText">
                         <p class="fontMiriamProRegular">Post personalizados</p>
                     </div>
-                    <div class="captionPostGuardados">
+                    <div class="">
+                        <div v-for="(p, i) in personals" :class="{ 'typeAvisosPost': p.color }" class="personal-post col-md-12">
+                            {{--  Notificaciones de admin si existe color  --}}
+                            <div>
+                                <div class="ui icon message" v-if="p.color" :style="{ 'background': p.color }">
+                                    <div class="content">
+                                        <p class="fontMiriamProRegular">@{{ p.description }} </p>
+                                    </div>
+                                </div>
+
+                                <div v-else>
+                                <div class="ui feed uifeedAvatar">
+                                    <div class="event">
+                                        <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
+                                        </div>
+                                        <div class="content">
+                                            <div class="summary">
+                                                <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                    @{{ p.user.name }}
+                                                </a>
+                                                <div class="date fontMiriamProRegular colorGrisMediumSuave">
+                                                    @{{ p.created_at | humanize }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
+                                    @{{ p.description }}
+                                </p>
+                                <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
+                                    <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
+                                </a>
+                                <img :src="p.image" v-show="p.image" alt="post-user" style="width: 100%;" class="img-responsive">
+                                <div class="ui feed uifeedActions">
+                                    <div class="event">
+                                        <div class="label">
+                                            <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
+                                        </div>
+                                        <div class="content contLike">
+                                            <div class="summary">
+                                                <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                    @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
+                                                </a>
+                                                <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
+                                                    <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="ui feed uifeedComnetUser" v-if="p.comments.length > 0">
+                                    <div class="event" v-for="c in p.comments">
+                                        <div class="label dataPrubeIm" :style="{ 'background-image': 'url(' + c.user.avatar + ')' }">
+                                        </div>
+                                        <div class="content">
+                                            <div class="summary">
+                                                <a :href="c.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                    @{{ c.user.name }}
+                                                </a>
+                                                <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
+                                                    @{{ c.description }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i, 'personals')">
+                                    <div class="field">
+                                        <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
+                                    </div>
+                                    <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i, 'personals')"><p>Comentar</p></a>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+                {{-- 
+                    ___________________________________________________________________________________________ 
+
+                                                 END POST PERSONALIZADOS
+                    ____________________________________________________________________________________________ 
+                --}}
+
                 </div>
 
                 {{-- BLOQUE CALENDAR --}}
@@ -266,9 +375,13 @@
                         </div>
                     </div>
 
-                    {{-- SECTION RANKING USERS --}}
+                    {{--
+                    ________________________________________________________________________ 
 
-
+                                                RANKING 
+                    _________________________________________________________________________ 
+                    --}}
+    
                     <div class="captionRankingUser">
                         <h3 class="fontMiriamProSemiBold">Ranking de empleados</h3>
                         <div id="carousel-example-genericRan" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -322,64 +435,21 @@
                         </div>
                     </div>
 
-                    @include('components.users-online-external')
-                    {{-- CAPTION USER LIVES --}}
+
                     {{--
-                    <div class="captionUsersInLive">
-                        <div class="ui accordion">
-                            <h3 class="fontMiriamProRegular">Usuarios</h3>
-                            <div class="title">
+                    ________________________________________________________________________ 
 
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-leo.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-donald.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-lise.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-leo.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-leo.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-donald.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-lise.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="captionCircleUser">
-                                    <a href="" class="userLive">
-                                        <img class="img-responsive" src="{{ asset('assets/images/user-leo.png') }}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                                USERS ONLINE 
+                    _________________________________________________________________________ 
+                    --}}
+                    @include('components.users-online-external')
+                    
+                    {{--
+                    ________________________________________________________________________ 
 
-                        --}}
+                                                RECENT ACTIVITIES 
+                    _________________________________________________________________________ 
+                    --}}
                     <div class="captionActivitiesRecientes">
                         <h3 class="fontMiriamProSemiBold">Actividades recientes</h3>
                         <div class="notficiActivitie">
@@ -396,22 +466,30 @@
                             </div>
                         </div>
                     </div>
+                    {{--
+                    ________________________________________________________________________ 
 
-                    {{-- <div class="captionGaleriFotos">
-                      <h3 class="fontMiriamProSemiBold">Galería de fotos</h3>
-                      <img class="img-responsive" src="{{ asset('assets/images/galeriFotos.jpg') }}" alt="">
-                      <img class="img-responsive" src="{{ asset('assets/images/galeriFotos.jpg') }}" alt="">
-                    </div> --}}
+                                                GALERY
+                    _________________________________________________________________________ 
+                    --}}
+                    
 
                 </div>
 
             </div>
+            {{-- _________________________________END RECORDATORIOS ________________________________________ --}}
         </div>
-
+        
+        {{--__________________________________________________________________________________________________
+        
+                                                    BOTON MODAL
+            __________________________________________________________________________________________________
+        --}} 
         <div class="col-md-12 datPublich">
             <img class="img-responsive" src="{{ asset('assets/images/avatar/IcoPublich.png') }}" alt="" data-toggle="modal" data-target="#myModal">
         </div>
 
+        
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog contPusblishDialogo" role="document">
                 <div class="modal-content">

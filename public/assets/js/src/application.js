@@ -50,6 +50,17 @@ const application = new Vue({
       this.modal.user = this.applications[i].user
       this.modal.discount = this.applications[i].discount
 
+      let res = status ? 'Han aceptado' : 'Han rechazado'
+
+      let notify = `Han ${res} tu <span class='typeAccionNotifi'>solicitud</span>`
+      let notification = {
+        user_id: this.applications[i].user.id,
+        type: 15,
+        data: notify,
+        propetary_id: authId
+      }
+      socket.emit('sendNotification', notification)
+
       axios.post('applications/acept-or-denied', { id, status})
         .then(res => {
           this.applications.splice(i, 1)
@@ -160,6 +171,17 @@ const application = new Vue({
       formData.append('id', this.applications[i].id) 
       
       this.applications[i].discussion = ''
+
+      this.applications[i].discussion = ''
+      
+      let notify = `Han repondido a tu <span class='typeAccionNotifi'>solicitud</span>`
+      let notification = {
+        user_id: this.applications[i].user.id,
+        type: 15,
+        data: notify,
+        propetary_id: authId
+      }
+      socket.emit('sendNotification', notification)
 
       axios.post('applications/discussion', formData)
         .then(res => {

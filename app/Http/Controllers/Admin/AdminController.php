@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request as facedesrequest;
-use Auth;
-use Carbon\Carbon;
+use App\Notification;
+use App\Publication;
 use App\Application;
 use App\Emergency;
-use App\Publication;
-use App\Notification;
-use App\Event;
+use Carbon\Carbon;
 use App\Message;
+use App\Event;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -84,6 +84,7 @@ class AdminController extends Controller
 
         $today = now()->format('Y-m-d');
         $notifications = Notification::where('user_id', $user->id)
+            ->whereDate('created_at', $today)
             ->whereDoesntHave('users', function ($q) use ($user) { 
                 $q->where('user_id', $user->id);
             })
@@ -94,28 +95,25 @@ class AdminController extends Controller
                 });
             })
             ->orderBy('id', 'desc')
-            ->get();
+            ->count();
 
-        $emergencies = Emergency::whereDate('created_at', $today)->count();
-        $applications = Application::whereDate('created_at', $today)->count();
-        
+        $emergencies = Notification::where('user_id', $user->id)
+            ->whereDate('created_at', $today)
+            ->where('type', 11)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->count();
+
+        $applications = Notification::where('user_id', $user->id)
+            ->whereDate('created_at', $today)
+            ->where('type', 12)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->count();       
 
         $lates = 0;
-
-        //$chats = $user->chats()->
-        /*
-        $messages = Message::where('messages.user_id', '!=', $user->id)
-            ->join('chats', 'chats.transmitter_id', '=', 'messages.user_id')
-            ->join('chats', 'chats.receiver_id', '=', 'messages.user_id')
-            ->where(function ($query) use ($user) {
-                $query->where('chats.receiver_id', $user->id)
-                ->orWhere('chats.transmitter_id', $user->id);
-            })
-            ->where('messages.seen', false)
-            ->orderBy('messages.created_at', 'desc')
-            ->take(5)
-            ->get();
-        */
 
         $messages = collect();
        
@@ -134,17 +132,6 @@ class AdminController extends Controller
                 $messages->push($message);
             }
         });
-
-        //return $chats;
-        /*
-        $chats = $user->chats()->with(['messages' => function($query) use ($user) {
-            $query->where('seen', false)
-            ->where('user_id', '!=', $user->id)
-            ->orderby('created_at', 'DESC')
-            ->with('user')
-            ->take(1);
-        }])->get();
-    */
 
         return [
             'notifications' => $notifications,
@@ -174,11 +161,22 @@ class AdminController extends Controller
     public function getYesterday($element) 
     {
         $yesterday = Carbon::yesterday()->format('Y-m-d');
+        $user = Auth::user();
 
         switch ($element) {
             case 'notifications':
-                $countYesterday = Publication::whereDate('created_at', $yesterday)->count();
-                $countYesterday += Event::whereDate('created_at', $yesterday)->count();
+                $countYesterday = Notification::where('user_id', $user->id)
+                ->whereDate('created_at', $yesterday)
+                ->whereDoesntHave('users', function ($q) use ($user) { 
+                    $q->where('user_id', $user->id);
+                })
+                ->orWhere(function($query) use ($user) {
+                    $query->whereNull('user_id')
+                    ->whereDoesntHave('users', function ($q) use ($user) {
+                        $q->where('user_id', $user->id);
+                    });
+                })
+                ->count();
                 break;
             
             case 'lates':
@@ -186,11 +184,22 @@ class AdminController extends Controller
                 break;
             
             case 'emergencies':
-                $countYesterday = Emergency::whereDate('created_at', $yesterday)->count();
+                $countYesterday = Notification::where('user_id', $user->id)
+                ->whereDate('created_at', $yesterday)
+                ->where('type', 11)
+                ->whereDoesntHave('users', function ($q) use ($user) { 
+                    $q->where('user_id', $user->id);
+                })
+                ->count();
                 break;
-        
             default:
-                $countYesterday = Application::whereDate('created_at', $yesterday)->count();
+                $countYesterday = Notification::where('user_id', $user->id)
+                ->whereDate('created_at', $yesterday)
+                ->where('type', 12)
+                ->whereDoesntHave('users', function ($q) use ($user) { 
+                    $q->where('user_id', $user->id);
+                })
+                ->count(); 
                 break;
  
         }

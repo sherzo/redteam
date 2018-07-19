@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Application;
 use Illuminate\Http\Request;
 use Auth;
+use App\Notification;
+use App\User;
 
 class ApplicationController extends Controller
 {
@@ -19,6 +21,17 @@ class ApplicationController extends Controller
 
         if($user->hasRole('employee')) {
             return redirect('/application');
+        }
+
+        $notifications = Notification::where('user_id', $user->id)
+            ->where('type', 12)
+            ->whereDoesntHave('users', function ($q) use ($user) { 
+                $q->where('user_id', $user->id);
+            })
+            ->pluck('id');
+
+        foreach ($notifications as $key => $notification) {
+            $user->notifications()->attach($notification->id);
         }
 
         return view('back-end.applications.index');
@@ -134,7 +147,6 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
         $user = Auth::user();
 
         $application = Application::create([
@@ -144,6 +156,21 @@ class ApplicationController extends Controller
             'complete' => $request->complete,
             'discount' => $request->discount
         ]);
+
+        $data = "$user->full_name a solicitado</span> <span class='typeAccionNotifi'> permiso</span>";
+        
+        // Todos los admin    
+        $users = User::join('role_user', 'role_user.user_id', '=', 'users.id')  
+            ->where('role_id', 1)
+            ->get();
+      
+        foreach($users as $user) {
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'data' => $data,
+                'type' => 12
+            ]);
+        }
 
         return $application->load('user');
     }

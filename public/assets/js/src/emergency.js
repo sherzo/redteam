@@ -117,6 +117,15 @@ const emergency = new Vue({
       this.emergencyFile = ''
       this.emergencies[i].discussion = ''
 
+      let notify = `Han repondido a tu <span class='typeAccionNotifi'>emergencia</span>`
+      let notification = {
+        user_id: this.emergencies[i].user.id,
+        type: 14,
+        data: notify,
+        propetary_id: authId
+      }
+      socket.emit('sendNotification', notification)
+
       axios.post('emergencies/discussion', formData)
         .then(res => {
           console.log(res.data)

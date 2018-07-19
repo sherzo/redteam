@@ -13,20 +13,34 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
 
-    	$publications = Publication::with(['user', 'likes', 'comments.user'])
+    	$publications = Publication::where('featured', 0)
+            ->with(['user', 'likes', 'comments.user'])
+            ->orderBy('id', 'DESC');
+        
+        $personals = Publication::where('featured', 1)
+            ->with(['user', 'likes', 'comments.user'])
             ->orderBy('id', 'DESC');
 
         if($request->offset) {
             $publications = $publications->offset($request->offset);
+            $personals = $personals->offset($request->offset);
         }
 
         $publications = $publications->limit(4)->get();
+        $personals = $personals->limit(4)->get();
 
         $publications->each(function($publication) use ($user){
             $publication->liked = $publication->usersLikes->contains($user);
         });
 
-    	return $publications;
+        $personals->each(function($personal) use ($user){
+            $personal->liked = $personal->usersLikes->contains($user);
+        });
+
+    	return [
+            'publications' => $publications,
+            'personals' => $personals
+        ];
     }
 
     public function store(Request $request)

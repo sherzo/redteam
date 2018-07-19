@@ -186,8 +186,8 @@
                                         </div>
                                         <div class="content contLike">
                                             <div class="summary">
-                                                <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                                    @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
+                                                <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                    @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
                                                 </a>
                                                 <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
                                                     <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
@@ -265,9 +265,9 @@
                                             </div>
                                             <div class="content contLike">
                                                 <div class="summary">
-                                                    <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)">
-                                                        @{{ p.likes.length }} Likes <p v-show="p.isLiked">Te gusta esta publicaión</p>
-                                                    </a>
+                                                   <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                    @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
+                                                </a>
                                                     <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
                                                         <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
                                                     </div>
@@ -313,10 +313,92 @@
                                 <p class="fontMiriamProRegular">Oportunidad de empleo para asesores. Interesados contactarse con Lic. Marta Hercúles</p>
                             </div>
                         </div>
+                         <div class="col-md-12 datPublich">
+                            <img class="img-responsive" src="{{ asset('assets/images/avatar/IcoPublich.png') }}" alt="" data-toggle="modal" data-target="#myModal">
+                        </div>
+                        <br>
+                        <div class="captionPostGuardadosText"><br>
+                            <p class="fontMiriamProRegular">Post personalizados</p>
+                        </div>
+                        <br>
+                        <div class="">
+                            <div v-for="(p, i) in personals" :class="{ 'typeAvisosPost': p.color }" class="personal-post col-md-12">
+                                {{--  Notificaciones de admin si existe color  --}}
+                                <div>
+                                    <div class="ui icon message" v-if="p.color" :style="{ 'background': p.color }">
+                                        <div class="content">
+                                            <p class="fontMiriamProRegular">@{{ p.description }} </p>
+                                        </div>
+                                    </div>
 
-                       <div class="col-md-12 datPublich">
-                        <img class="img-responsive" src="{{ asset('assets/images/avatar/IcoPublich.png') }}" alt="" data-toggle="modal" data-target="#myModal">
-                    </div>
+                                    <div v-else>
+                                    <div class="ui feed uifeedAvatar">
+                                        <div class="event">
+                                            <div class="label dataPrubeIm" :style="{ 'background-image': 'url('+ p.user.avatar + ')' }">
+                                            </div>
+                                            <div class="content">
+                                                <div class="summary">
+                                                    <a :href="p.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                        @{{ p.user.name }}
+                                                    </a>
+                                                    <div class="date fontMiriamProRegular colorGrisMediumSuave">
+                                                        @{{ p.created_at | humanize }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="textCOment fontMiriamProRegular colorGrisMediumSuave">
+                                        @{{ p.description }}
+                                    </p>
+                                    <a href="" class="dataDpcuCl" :download="p.file" v-show="p.file">
+                                        <img class="img-responsive claa__cupo" src="{{ asset('assets/images/bogIcoDocuments.png') }}" />
+                                    </a>
+                                    <img :src="p.image" v-show="p.image" alt="post-user" style="width: 100%;" class="img-responsive">
+                                    <div class="ui feed uifeedActions">
+                                        <div class="event">
+                                            <div class="label">
+                                                <img class="img-responsive" src="{{ asset('assets/images/etiqueta-ico.png') }}">
+                                            </div>
+                                            <div class="content contLike">
+                                                <div class="summary">
+                                                    <a class="user colorGrisMediumSuave fontMiriamProSemiBold" @click="like(p)" style="font-size: 13px;">
+                                                        @{{ p.likes.length }} Likes<span v-show="p.liked">, Te gusta esta publicacicón</span>
+                                                    </a>
+                                                    <div class="date datePint fontMiriamProRegular colorGrisMediumSuave" v-show="p.featured">
+                                                        <img class="img-responsive" src="{{ asset('assets/images/pines-ico.png') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="ui feed uifeedComnetUser" v-if="p.comments.length > 0">
+                                        <div class="event" v-for="c in p.comments">
+                                            <div class="label dataPrubeIm" :style="{ 'background-image': 'url(' + c.user.avatar + ')' }">
+                                            </div>
+                                            <div class="content">
+                                                <div class="summary">
+                                                    <a :href="c.user.username | profileUrl" class="user colorGrisMediumSuave fontMiriamProSemiBold">
+                                                        @{{ c.user.name }}
+                                                    </a>
+                                                    <div class="date fontMiriamProRegular colorGrisMediumSuave comentUser">
+                                                        @{{ c.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form class="ui form formComentUser" @submit.prevent="addComment(p.id, i, 'personals')">
+                                        <div class="field">
+                                            <textarea name="comentario_post"  placeholder="Comentario" required v-model="p.comment"></textarea>
+                                        </div>
+                                        <a href="" class="dataComenyt" @click.prevent="addComment(p.id, i, 'personals')"><p>Comentar</p></a>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
 
@@ -365,8 +447,8 @@
             </div>
         </div>
             --}}
-    </div>
         </div>
+    </div>
 
     </div>
 

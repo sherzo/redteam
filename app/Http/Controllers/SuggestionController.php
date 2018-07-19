@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Suggestion;
 use App\Discussion;
 use Auth;
+use App\Notification;
+use App\User;
 
 class SuggestionController extends Controller
 {
@@ -117,6 +119,21 @@ class SuggestionController extends Controller
             'user_id' => $user->id,
             'description' => $request->description
         ]);
+
+        $data = "$user->full_name A realizado una</span> <span class='typeAccionNotifi'> sugerencia</span>";
+        
+        // Todos los admin    
+        $users = User::join('role_user', 'role_user.user_id', '=', 'users.id')  
+            ->where('role_id', 1)
+            ->get();
+      
+        foreach($users as $user) {
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'data' => $data,
+                'type' => 10
+            ]);
+        }
 
         return $sugestion->load('user');
     }

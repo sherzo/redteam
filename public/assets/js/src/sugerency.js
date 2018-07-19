@@ -116,8 +116,20 @@ const sugerency = new Vue({
         description: description,
         id: this.suggestions[i].id 
       }
-      this.suggestions[i].discussion = ''
 
+      
+      this.suggestions[i].discussion = ''
+      let notify = `Han repondido tu <span class='typeAccionNotifi'>sugerencia</span>`
+      
+      let notification = {
+        user_id: this.suggestions[i].user.id,
+        type: 13,
+        data: notify,
+        propetary_id: authId
+      }
+  
+      socket.emit('sendNotification', notification)
+      
       axios.post('suggestions/discussion', data)
         .then(res => {
           console.log(res.data)
