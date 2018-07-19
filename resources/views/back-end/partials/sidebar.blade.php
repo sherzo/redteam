@@ -22,6 +22,9 @@
         <li>
             <a href="{{ url('admin/documents') }}" class="documentIco">  Documentos</a>
         </li>
+        <li>
+            <a href="{{ url('admin/promotions') }}" class="calendarIco"> Promociones</a>
+        </li>
 
         <!-- 2 BLOQUE SUBmENU -->
         <li class="lineDivide">
@@ -85,6 +88,11 @@
             </li>
             <li>
                 <a href="{{ url('admin/documents') }}">
+                    <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin/promotions') }}">
                     <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
