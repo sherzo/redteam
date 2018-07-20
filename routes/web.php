@@ -65,6 +65,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
         'ranking' => 'RankingController',
         'promotions' => 'PromotionController'
     ]);
+    Route::get('user/{username}', 'UserController@profile')->name('users.profile');
     Route::get('all/suggestions', 'SuggestionController@all');
     Route::get('suggestions', 'SuggestionController@index');
     Route::get('all/emergencies', 'EmergencyController@all');
@@ -99,6 +100,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::post('assistances/adp', 'AssistanceController@adp');
     Route::get('assistances/{id}/individual', 'AssistanceController@individual');
     Route::get('assistances/all-users', 'AssistanceController@allUsers');
+    Route::get('assistances/{id}/export', 'AssistanceController@export')->name('export');
     
     Route::post('configs/set', 'ConfigController@set');
     Route::get('configs/{type}/get', 'ConfigController@get');

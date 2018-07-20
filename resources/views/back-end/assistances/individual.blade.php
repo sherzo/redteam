@@ -127,8 +127,17 @@
                         </a>
                     </div>
                 </div>
-
             </div>
+        </div>
+        <div class="col-md-12"><br>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 actionAllUsers text-rigth" style="margin-left: 3%;">
+                <a href="{{ route('export', $user->id) }}">
+                    <p>
+                        Exportar Excel
+                    </p>
+                </a>
+            </div> 
+            
         </div>
     </section>
 

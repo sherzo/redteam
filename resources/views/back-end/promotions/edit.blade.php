@@ -32,15 +32,22 @@
         'placeholder' => 'Buscar por nombre de usuario',
         'action' => 'users.search'
     ])
-	
     {{-- SECTION BLOQUE NOTIFICACION Y MENSAJES --}}
-    <form action="{{ route('promotions.store') }}" method="post"  class="formEditUser" enctype="multipart/form-data"  ref="myForm">
+    @if(!isset($promotion))
+    	<form action="{{ route('promotions.store') }}" method="post"  class="formEditUser" enctype="	multipart/form-data"  ref="myForm">
+    @endif
+
+	@isset($promotion)
+    	<form action="{{ route('promotions.update', $promotion->id) }}" method="post"  class="formEditUser" enctype="	multipart/form-data"  ref="myForm">
+
+    @endisset
     <section class="container-fluid sectionAdminNotifiMensa">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
 
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 OtherUserEdit">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sectionCenterContenido sectionCenEdituser" id="schedules">
+            	<h3></h3>
                 {{--
                 <p class="alert alert-success">El usuario se creo con exito</p>
 

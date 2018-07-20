@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Event;
+use App\Promotion;
 use App\Notification;
 
 class HomeController extends Controller
@@ -82,10 +83,13 @@ class HomeController extends Controller
 
         $ranking = User::orderBy('stars', 'desc')->take(8)->get();
 
+        $promotions = Promotion::whereDate('created_at', now()->format('Y-m-d'))->orderBy('id', 'desc')->get();
+        
         return view('front-end.home', [
             'today' => $today, 
             'ranking' => $ranking,
-            'recents' => $recents
+            'recents' => $recents,
+            'promotions' => $promotions
         ]);
     }
 

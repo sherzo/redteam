@@ -33,7 +33,6 @@ class ProfileController extends Controller
         }
 
         //dd($firstHoliday, $sendcondHoliday);
-
         return view('front-end.profile.index', [
         	'user' => $user,
         	'bosses' => $bosses,
@@ -135,4 +134,6 @@ class ProfileController extends Controller
     
         return $images;
     }
+
+    
 }

@@ -35,6 +35,9 @@
                             <a href="{{ route('users.edit', $user->id) }}">Editar información</a>
                         </li>
                         <li>
+                            <a href="{{ route('users.profile', $user->username) }}">Ver perfil</a>
+                        </li>
+                        <li>
                             {{--<a href="{{ route('users.schedule', $user->id) }}">Editar horario</a>--}}
                         </li>
                         <li>

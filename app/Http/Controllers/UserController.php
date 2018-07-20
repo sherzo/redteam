@@ -10,6 +10,7 @@ use App\ScheduleDay;
 use Carbon\Carbon;
 use App\Schedule;
 use App\Branch;
+use App\Event;
 use App\User;
 use App\Area;
 use App\Mark;
@@ -343,6 +344,35 @@ class UserController extends Controller
                 'midday' => $midday
             ];
     }
+
+    public function profile($username) // Profle Admin
+    {
+        $user = User::where('username', $username)->first();
+        $areas = Area::pluck('name', 'id');
+        $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
+        $bosses = User::where('id', '!=', $user->id)->pluck('name', 'id');
+            
+        $holidays = $user->holidays;
+
+        if($holidays < 10) {
+            $firstHoliday = 0;
+            $sendcondHoliday = $holidays;
+        }else {
+            $holidays = str_split($holidays);
+            $firstHoliday = $holidays[0];
+            $sendcondHoliday = $holidays[1];
+        }
+
+        return view('back-end.users.profile', [
+            'user' => $user,
+            'bosses' => $bosses,
+            'areas' => $areas,
+            'firstHoliday' => $firstHoliday,
+            'sendcondHoliday' => $sendcondHoliday,
+            'today' => $today
+        ]);
+    }
+
 
     /**
      * Update schedule for users.

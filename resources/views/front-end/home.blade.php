@@ -228,8 +228,10 @@
                         <p class="fontMiriamProRegular">Oportunidad de empleo para asesores. Interesados contactarse con Lic. Marta Hercúles</p>
                     </div>
                     <div class="captionPromos">
-                        <p class="fontMiriamProSemiBold">Promociones de hoy</p>
-                        <img class="img-responsive" src="{{ asset('assets/images/promo-public-2.jpg') }}">
+                        <p class="fontMiriamProSemiBold">Promociones de hoy</p>                            
+                        @foreach($promotions as $promotion)
+                            <img class="img-responsive" src="{{ $promotion->image }}">
+                        @endforeach
                     </div>
                     
                     {{-- ___________________________________________________________________________________________ 

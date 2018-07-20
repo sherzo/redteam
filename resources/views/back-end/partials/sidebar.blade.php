@@ -43,7 +43,7 @@
             <a href="ranking" class="rannkingIco"> Ranking</a>
         </li>
         <li class="2TwoBlow">
-            <a href="evaluaciones-mensuales" class="evalucionIco"> Evaluaciones</a>
+            <a href="" class="evalucionIco"> Evaluaciones</a>
         </li>
     </ul>
 </div>
@@ -114,23 +114,16 @@
                     <img src="{{ asset('assets/images/icons/users.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
-           {{-- <li>
-                <a href="usuarios">
-                    <img src="{{ asset('assets/images/icons/ranking.png') }}" class="img- responsive" alt="">
-                </a>
-            </li> --}}
             <li>
-                <a href="ranking">
+                <a href="{{ url('ranking') }}">
                     <img src="{{ asset('assets/images/icons/evaluation.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
-
             <li class="topChangeColor">
                 <a href="evaluaciones-mensuales">
                     <img src="{{ asset('assets/images/icons/changeCOlor.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
-
         </ul>
     </div>
 </div>

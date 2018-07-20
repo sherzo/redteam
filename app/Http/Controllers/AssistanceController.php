@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Auth;
 use App\Assistance;
@@ -167,6 +168,32 @@ class AssistanceController extends Controller
         $user->save();
 
         return $assistance;
+    }
+
+    public function export(Request $request)
+    {
+
+        $assistances = Assistance::selectRaw("assistances.id, CONCAT(users.name, ' ', users.lastname) AS empleado, assistances.entry AS fecha, assistances.entry AS entrada, assistances.exit AS salida")
+            ->join('users', 'users.id', '=', 'assistances.user_id')
+            ->where('assistances.user_id', $request->id)
+            ->get();
+
+        foreach ($assistances as $assistance) {
+            $entrada = new Carbon($assistance->entrada);
+            $salida = new Carbon($assistance->salida);
+            
+            $assistance->fecha = $entrada->format('Y-m-d');
+            $assistance->entrada = $entrada->format('H:m:s');
+            $assistance->salida = $salida->format('H:m:s');
+        }
+          
+        Excel::create('Laravel Excel', function($excel) use ($assistances) {
+            $name = 'assistances';
+            $excel->sheet($name, function($sheet) use ($assistances){
+                $sheet->fromArray($assistances);
+            });
+
+        })->export('xls');
     }
 
 }
