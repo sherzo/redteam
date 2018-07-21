@@ -457,6 +457,7 @@ class ComposerStaticInitcb7ad9eb7dad70cbf61031b5c676cb3d
         'App\\Schedule' => __DIR__ . '/../..' . '/app/Schedule.php',
         'App\\ScheduleDay' => __DIR__ . '/../..' . '/app/ScheduleDay.php',
         'App\\Suggestion' => __DIR__ . '/../..' . '/app/Suggestion.php',
+        'App\\Task' => __DIR__ . '/../..' . '/app/Task.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\WorkInformation' => __DIR__ . '/../..' . '/app/WorkInformation.php',
         'AreasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AreasTableSeeder.php',

@@ -11,6 +11,7 @@ jQuery(document).ready(function($) {
 		$('.nonnePapletaUser').toggleClass('activePalteUser');
 	});
 
+	/*
 	$('.col-xs-12.col-sm-12.col-md-12.captionSelectColorPlat>.col-xs-12.col-sm-12.col-md-12>.bloqCOlors').click(function(event) {
 		var dataColor = $(this).data('color');
 		var dataIdChangeColor = $('.userLogiColo').val();
@@ -37,7 +38,7 @@ jQuery(document).ready(function($) {
 		    }
 		});
 
-	});
+	});*/
 });
 
 // chats
@@ -985,7 +986,7 @@ $(".fileInputAdmin").change(function(){
 
 
 // Ajax view Solicitud sugerencia
-jQuery(document).ready(function($) {
+/*jQuery(document).ready(function($) {
 	$('.dataClicDEsplace').click(function(event) {
 		var findIco = $(this).find('div.accordion>div.title>i').data('idsolicitud');
 
@@ -1008,7 +1009,7 @@ jQuery(document).ready(function($) {
 		});
 	});
 });
-
+*/
 
 
 

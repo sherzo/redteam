@@ -3377,8 +3377,8 @@ form.formReturnMennsage>div {
 
 .dataClicDEsplace.deplaceDatSolictudes.col-xs-12.col-sm-12.col-md-12.col-lg-12>div>div>i {
   position: absolute;
-  bottom: 150%;
-  left: 93%;
+  right: 10px;
+  top: -40px;
 }
 
 .dataClicDEsplace.deplaceDatSolictudes.col-xs-12.col-sm-12.col-md-12.col-lg-12>.ui.accordion>.content.conFormularioReturnMenSage>.col-xs-12.col-sm-12.col-md-8.col-lg-8.formsActions {

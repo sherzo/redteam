@@ -359,7 +359,7 @@
                     <span  id="calendar">
                         
                         <div class="captionCalendar">
-                            <div class="dayMonth" >
+                            <div class="dayMonth bg-selected" >
                                 <p class="fontMiriamProSemiBold">Agenda</p>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
                                     <p class="DayAgenda">Sabado</p>
@@ -380,7 +380,7 @@
                         <div class="captionAddEvento">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" ><a href="#profile" class="fontMiriamProRegular" aria-controls="profile" role="tab" data-toggle="tab" >Agregar evento a calendario</a></li>
+                                <li role="presentation" ><a href="#profile" class="fontMiriamProRegular bg-selected" aria-controls="profile" role="tab" data-toggle="tab" >Agregar evento a calendario</a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabconteAddComent">

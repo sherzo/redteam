@@ -38,10 +38,19 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <style>
+        @auth
+            @if(!is_null(Auth::user()->color))
+            .bg-selected {
+                background-color: {{ Auth::user()->color }} !important;
+            }
+            @endif
+        @endauth
+    </style>
 </head>
 <body class="bgUser" onclick="quitNotifications()">
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top navbarHome BgYellow" >
+    <nav class="navbar navbar-default navbar-static-top  bg-selected navbarHome BgYellow" >
         <div class="container">
             <div class="navbar-header">
 
@@ -57,38 +66,41 @@
             <div class="collapse navbar-collapse collapseMenuUser" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <img class="paleytaIco" src="{{ asset('assets/images/ico-paleta.png') }}" alt="Paleta-Colores">
+                <form action="{{ route('profile.color') }}" method="POST" id="form-color">
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 captionSelectColorPlat nonnePapletaUser">
-                    <input type="hidden" class="userLogiColo" name="id_userLo" value="{{ Auth::user()->id }}">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div data-color="#d9e021" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors greensuaveBlock">
+                        {{ csrf_field() }}
+                        <input type="hidden" value="" id="color-selected" name="color">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div data-color="#d9e021" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors greensuaveBlock">
 
+                            </div>
+                            <div data-color="#b2b2b2" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors grisBlock">
+
+                            </div>
+                            <div data-color="#ffcd00" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors yelowBlock">
+
+                            </div>
+                            <div data-color="#ff8a00" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors orangeBlock">
+
+                            </div>
                         </div>
-                        <div data-color="#b2b2b2" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors grisBlock">
 
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div data-color="#e54e53" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors rojosuaveBlock">
+
+                            </div>
+                            <div data-color="#1abc9c" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors verdeAcuaBlock">
+
+                            </div>
+                            <div data-color="#1abac8" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors celesteBlock">
+
+                            </div>
+                            <div data-color="#1a1a1a" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors blackBlock">
+                            </div>
                         </div>
-                        <div data-color="#ffcd00" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors yelowBlock">
-
-                        </div>
-                        <div data-color="#ff8a00" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors orangeBlock">
-
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div data-color="#e54e53" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors rojosuaveBlock">
-
-                        </div>
-                        <div data-color="#1abc9c" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors verdeAcuaBlock">
-
-                        </div>
-                        <div data-color="#1abac8" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors celesteBlock">
-
-                        </div>
-                        <div data-color="#1a1a1a" class="col-xs-12 col-sm-3 col-md-3 bloqCOlors blackBlock">
-
-                        </div>
-                    </div>
                 </div>
+                </form>
 
                 <ul id="gn-menuData" class="nav navbar-nav gn-menu-main">
                     <li class="gn-trigger">
@@ -105,12 +117,12 @@
                                         <p class="colorBlack fontMiriamProSemiBold">{{ Auth::user()->full_name }}</p>
                                     </li>
                                     <li class="bloquesMarca marEntrada" v-if="isWorking == null">
-                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" @click.prevent="markEntry">Marcar entrada</a>
+                                        <a class="BgYellow bg-selected fontMiriamProSemiBold colorBlackSuave" @click.prevent="markEntry">Marcar entrada</a>
                                         <div class='secEntrada'>
                                         </div>
                                     </li>
                                     <li class="bloquesMarca marSalida" v-else-if="isWorking">
-                                        <a class="BgYellow fontMiriamProSemiBold colorBlackSuave" @click.prevent="markExit">Marcar salida</a>
+                                        <a class="BgYellow bg-selected fontMiriamProSemiBold colorBlackSuave" @click.prevent="markExit">Marcar salida</a>
                                         <div class='secEntrada'>
                                         </div>
                                     </li>
@@ -124,6 +136,9 @@
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                         <a href="{{ url('chats') }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Mensajes privados</a>
+                                    </li>
+                                     <li class="bloquesMarca accionesPerfil">
+                                        <a href="{{ url('tasks') }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify">Tareas</a>
                                     </li>
                                     <li class="bloquesMarca accionesPerfil">
                                     <a href="{{ url('profile/' . Auth::user()->username ) }}" class="fontMiriamProRegular colorGrisMediumSuave lineJustify borderLineGris">Ver galerias</a>
@@ -258,12 +273,12 @@
 <script src="{{ asset('assets/js/menu/gnmenu.js') }}" type="text/javascript" ></script>
 
 <!-- Semantic Ui CSS -->
-<script src="http://18.219.62.126:6800/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:6800/socket.io/socket.io.js"></script>
 <script>    
     new gnMenu( document.getElementById( 'gn-menuData' ) );
     var authId = '{{ Auth::id() }}'
     
-    const socket = io.connect('http://18.219.62.126:6800',{
+    const socket = io.connect('http://127.0.0.1:6800',{
         'reconnection': true,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10
@@ -328,6 +343,12 @@
             notification.showNotifications()
         }
     }
+
+    $('.bloqCOlors').on('click', function(e){
+
+        $('#color-selected').val($(this).data('color')) 
+        $('#form-color').submit()
+    })
 </script>
 
 <script src="{{ asset('assets/js/moment.js') }}"></script>

@@ -132,6 +132,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     } 
 
+    public function tasks() // Los like que he dado
+    { 
+        return $this->hasMany(Task::class);
+    } 
+
     /*
     *   Magis methods
     */

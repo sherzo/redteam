@@ -207,11 +207,6 @@ const application = new Vue({
       this.description = ''
       this.file = ''
       this.image = ''
-      /*
-      $('#myModal').modal('hide')
-      $('body').removeClass('modal-open');
-      $('.modal-backdrop').remove();
-      */
       axios.post('publications', form)
         .then(res => {
           window.location = axios.defaults.baseURL + '/admin/board';

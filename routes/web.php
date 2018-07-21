@@ -77,6 +77,7 @@ Route::group(['middleware' =>  'auth', 'prefix' => 'admin'], function() {
     Route::post('users/schedules', 'UserController@updateSchedules')->name('update.schedule');
     Route::get('chats', 'ChatController@index');
     Route::get('calendar', 'CalendarController@index');
+    Route::get('tasks', 'TaskController@index');
     /*
     *   Home admin
     */
@@ -122,10 +123,14 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::post('applications/mark-as-read', 'ApplicationController@markAsRead');
     Route::post('applications/discussion', 'ApplicationController@discussion');
     Route::post('applications/acept-or-denied', 'ApplicationController@aceptOrDenied');
+    Route::get('tasks/employees', 'TaskController@employees');
+    Route::get('my-tasks', 'TaskController@myTasks');
+    Route::post('tasks/complete', 'TaskController@complete');
     Route::resources([
         'suggestions' => 'SuggestionController',
         'emergencies' => 'EmergencyController',
-        'applications' => 'ApplicationController'
+        'applications' => 'ApplicationController',
+        'tasks' => 'TaskController'
     ]);
     Route::get('buzon', 'SuggestionController@buzon');
     Route::get('emergency', 'EmergencyController@emergency');
@@ -184,6 +189,7 @@ Route::group(['middleware' =>  'auth'], function() {
     Route::get('profile/{id}/my-publications', 'ProfileController@myPublications');
     Route::post('profile', 'ProfileController@update')->name('profile.update');
     Route::get('galeries/{id}', 'ProfileController@galeries');
+    Route::post('profile/color', 'ProfileController@color')->name('profile.color');
 });
 
 /*

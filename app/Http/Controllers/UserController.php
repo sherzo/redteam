@@ -475,6 +475,22 @@ class UserController extends Controller
         return $text;
     }
 
-    
+    public function employeesTaks()
+    {
+        $boss = Auth::user();
 
+        $employees = $boss->employees;
+
+        $employees->each(function($employee) {
+
+            $today = now()->format('Y-m-d');
+            $tasks = $employees->tasks()->whereDate('created_at', $today)->get();
+            if($tasks->count() == 10) {
+                
+            }
+
+        });
+
+        return $employees;
+    }
 }

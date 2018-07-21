@@ -77,6 +77,7 @@ return array(
     'App\\Schedule' => $baseDir . '/app/Schedule.php',
     'App\\ScheduleDay' => $baseDir . '/app/ScheduleDay.php',
     'App\\Suggestion' => $baseDir . '/app/Suggestion.php',
+    'App\\Task' => $baseDir . '/app/Task.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\WorkInformation' => $baseDir . '/app/WorkInformation.php',
     'AreasTableSeeder' => $baseDir . '/database/seeds/AreasTableSeeder.php',

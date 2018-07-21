@@ -1,9 +1,7 @@
 @extends('layouts.public')
 
 @section('css')
-<style>
-   
-</style>
+
 @endsection
 @section('content')
 <div id="publications"> 
@@ -331,7 +329,7 @@
                 {{-- BLOQUE CALENDAR --}}
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <div class="captionCalendar">
-                        <div class="dayMonth">
+                        <div class="dayMonth bg-selected">
                             <p class="fontMiriamProSemiBold">Agenda</p>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
                                 <p class="DayAgenda">Jueves</p>
@@ -354,7 +352,7 @@
                     <div class="captionAddEvento">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation"><a href="#profile" class="fontMiriamProRegular" aria-controls="profile" role="tab" data-toggle="tab">Agregar evento a calendario</a></li>
+                            <li role="presentation" class="bg-selected"><a href="#profile" class="bg-selected fontMiriamProRegular" aria-controls="profile" role="tab" data-toggle="tab">Agregar evento a calendario</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content tabconteAddComent">
@@ -385,7 +383,7 @@
                     --}}
     
                     <div class="captionRankingUser">
-                        <h3 class="fontMiriamProSemiBold">Ranking de empleados</h3>
+                        <h3 class="fontMiriamProSemiBold bg-selected">Ranking de empleados</h3>
                         <div id="carousel-example-genericRan" class="carousel slide" data-ride="carousel" data-interval="false">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">

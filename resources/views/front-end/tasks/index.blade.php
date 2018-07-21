@@ -1,5 +1,14 @@
 @extends('layouts.public')
 
+@section('css')
+<style>
+    .taskComplete {
+        text-decoration: line-through;
+        color: #39b54a;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="container continerWithSite" >
         <div class="row">
@@ -26,21 +35,18 @@
 
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest" v-cloak id="requests">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 sectionProfiles sectionPermissionRequest" v-cloak id="tasks">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 remenber">
-                    <h3>¡Detalles del proceso de solicitudes!</h3>
+                    <h3>¡Completa tus tareas, y asigna las tareas a los que esten a bajo tu cargo!</h3>
                 </div>
                 <br><br>
                 <p class="alert alert-success" v-show="success">Tu comentario fue publicado con exito</p>
+                {{-- Lis tareas del día --}}
+                @include('front-end.tasks.partials.mytasks')
 
-                {{-- SOLICITUDES DE PERMISOS --}}
-                @include('front-end.profile.partials.applications')
+                {{-- Agregar tareas a mis empleados --}}
+                @include('front-end.tasks.partials.addtasks')
 
-                {{-- SOLICITUDES DE EMERGENCIAS --}}
-                @include('front-end.profile.partials.emergencies')
-
-                {{-- SOLICITUDES DE SUGERENCIAS --}}
-                @include('front-end.profile.partials.suggestions')
             </div>
 
             
@@ -50,7 +56,7 @@
                 <!-- BLOQUE CALENDAR -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                     <!-- SECTION CALENDAR AND ADD EVENT CALENDAR -->
-                     <div class="captionCalendar" v-cloaks id="calendar">
+                     <div class="captionCalendar" v-cloak id="calendar">
                         <div class="dayMonth bg-selected">
                             <p class="fontMiriamProSemiBold">Agenda</p>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 fechaData">
@@ -119,7 +125,7 @@
 
 
 @section('js')
-<script src="{{ asset('assets/js/src/process.js') }}"></script>
+<script src="{{ asset('assets/js/src/tasks.js') }}"></script>
 <script src="{{ asset('assets/js/src/calendar.js') }}"></script>
 <script src="{{ asset('assets/js/src/online.js') }}"></script>
 <script src="{{ asset('assets/js/src/galery.js') }}"></script>

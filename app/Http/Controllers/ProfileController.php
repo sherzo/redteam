@@ -135,5 +135,15 @@ class ProfileController extends Controller
         return $images;
     }
 
+    public function color(Request $request)
+    {
+        $user = Auth::user();
+
+        $user->color = $request->color;
+
+        $user->save();
+
+        return redirect()->back();
+    }
     
 }

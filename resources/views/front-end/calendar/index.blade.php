@@ -20,7 +20,7 @@
                     <!-- BLOQUE CALENDAR -->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="captionCalendar">
-                            <div class="dayMonth">
+                            <div class="dayMonth bg-selected">
                                 <p class="fontMiriamProSemiBold dyaGeneralClanedar">Jueves</p>
                                 <h1 class="DayNumberAgenda">{{ now()->format('d') }}</h1>
                             </div>
@@ -31,7 +31,7 @@
                         <div class="captionAddEvento addEventeGenral">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#profile" class="fontMiriamProRegular" aria-controls="profile" role="tab" data-toggle="tab">Agregar evento a calendario</a></li>
+                                <li role="presentation" class="active bg-selected"><a href="#profile" class="fontMiriamProRegular bg-selected" aria-controls="profile" role="tab" data-toggle="tab">Agregar evento a calendario</a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabconteAddComent">
@@ -46,8 +46,8 @@
                                             </div>
                                             <h4 class="colorGrisMediumSuave fontMiriamProRegular">Seleccionar fecha</h4>
                                             <input type="hidden" name="id_user_evento" value="5">
-                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 captioNFehcFina">
-                                                <input type="submit" class="form-control Submit" value="Aceptar">
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 captioNFehcFina bg-selected">
+                                                <input type="submit" class="form-control Submit bg-selected" value="Aceptar">
                                             </div>
                                         </div>
                                     </form>

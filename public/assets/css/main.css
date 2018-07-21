@@ -1001,7 +1001,7 @@ img.img-responsive.clImgView {
   text-align: center;
   font-size: 11px;
   color: #000000;
-  background-color: #ffd00b !important;
+  background-color: #ffd00b;
 }
 
 .captionAddEvento>ul>li>a:hover {
@@ -3178,8 +3178,10 @@ div#datetimepicker12>.bootstrap-datetimepicker-widget.timepicker-sbs>div>.timepi
 
 .dataClicDEsplace.deplaceDatSolictudes.col-xs-12.col-sm-12.col-md-12.col-lg-12 > div > div > i {
   position: absolute;
-  bottom: 150%;
-  left: 93%;
+  right: 10px;
+  top: -50px;
+  /*bottom: 150%;
+  left: 93%;*/
 }
 
 .dataClicDEsplace > div > div > i {

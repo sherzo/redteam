@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-sm-12 col-md-12 HorariosUser">
     <div class="col-xs-12 col-sm-12 col-md-12 sectionHorarios">
-        <p id='titleHorrarios'>Horarios</p>
+        <p id='titleHorrarios' class="bg-selected">Horarios</p>
         <div class="col-xs-12 col-sm-12 col-md-12 dtsss">
             <p class="ListDays fontMiriamProSemiBold">Lunes,Martes</p>
             <p class="ListHours fontMiriamProRegular">8:00am a 3:00pm</p>
