@@ -5,6 +5,6 @@ module.exports = {
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'intranet',
+  database: 'e216*',
   port_db: 3306
 }
