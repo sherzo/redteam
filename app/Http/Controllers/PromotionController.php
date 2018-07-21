@@ -48,6 +48,8 @@ class PromotionController extends Controller
             'image' => $url
         ]);
 
+        flash()->success('Se guardo la promoción correctamente');
+
         return redirect('/admin/promotions');
     }
 
@@ -84,7 +86,16 @@ class PromotionController extends Controller
      */
     public function update(Request $request, Promotion $promotion)
     {
+        $image = $request->file('image');
+
+        $url = $image->store('promotions', 'public');
+
         $promotion->image = $url;
+
+        $promotion->save();
+
+        flash()->success('Se registro actualizó la promocióncorrectamente');
+        return redirect('/admin/promotions');
     }
 
     /**

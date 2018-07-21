@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-sm-4"><br><br>
                             <div class="form-group">
-                               <p><strong>Correo personal:</strong> {{ $user->personal->email }}</p>
+                               <p><strong>Correo personal:</strong> {{ $user->personal->personal_email }}</p>
                             </div>
                             <div class="form-group">
                                 <p><strong>Télefono:</strong> {{ $user->work->phone }}</p>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 DataformPersonales">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
-                            <h3>Assitencias asistencias </h3>
+                            <h3>Assitencias </h3>
                             <small class="text-muted"><span class="llegadaTarde">Rojo</span>: Llegada tarde y <span class="horaSalidaAntes">Verde</span>: Salida antes de tiempo</small><br>
                             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 actionAllUsers text-rigth" style="margin-left: 3%;">
                                 <a href="{{ route('export', $user->id) }}">
@@ -118,7 +118,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formInputsDats inputEditDatps">
                             <h3 style="padding-top: 8px;">Desempeño de empleado</h3>
                             <small class="text-muted">Historial del desempeños del empleado</small>
-
+                            <br><br>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -133,6 +133,21 @@
                                             <td>{{ $performance->created_at }}</td>
                                         </tr>
                                     @endforeach
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Total inasistencias</th>
+                                        <th class="text-center">Total APDS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $user->performances()->where('performance', 0)->count() }}</td>
+                                        <td>{{ $user->performances()->where('performance', 8)->count() }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

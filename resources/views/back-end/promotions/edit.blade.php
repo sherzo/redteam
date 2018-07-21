@@ -38,8 +38,8 @@
     @endif
 
 	@isset($promotion)
-    	<form action="{{ route('promotions.update', $promotion->id) }}" method="post"  class="formEditUser" enctype="	multipart/form-data"  ref="myForm">
-
+    	<form action="{{ route('promotions.update', $promotion->id) }}" method="post"  class="formEditUser" enctype="multipart/form-data"  ref="myForm">
+        <input type="hidden" name="_method" value="PUT">
     @endisset
     <section class="container-fluid sectionAdminNotifiMensa">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">

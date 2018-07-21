@@ -186,8 +186,9 @@ class AssistanceController extends Controller
             $assistance->entrada = $entrada->format('H:m:s');
             $assistance->salida = $salida->format('H:m:s');
         }
+
           
-        Excel::create('Laravel Excel', function($excel) use ($assistances) {
+        Excel::create('Reporte_assitencias', function($excel) use ($assistances) {
             $name = 'assistances';
             $excel->sheet($name, function($sheet) use ($assistances){
                 $sheet->fromArray($assistances);

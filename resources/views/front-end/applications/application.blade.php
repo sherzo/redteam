@@ -5,8 +5,14 @@
         <div class="row">
             <div class="col-xs-12 hidden-xs col-sm-6 col-md-3 col-lg-3  captionPosteos captionProfiles">
 
-            <!-- CAPTION USER LIVES -->
-            @include('components.users-online')
+             {{--
+            ________________________________________________________________________ 
+
+                                        USERS ONLINE 
+            _________________________________________________________________________ 
+            --}}
+            @include('components.users-online-external')
+                
 
             <!-- SOLICITUD EN PROCESO -->
             @include('front-end.partials.fields-solicitud-proceso')

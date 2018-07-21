@@ -165,9 +165,9 @@
                                 <div class="label dataPrubeIm dataProfileAllUsersListChat" :style="{ 'background-image': 'url(' + c.receiver.avatar + ')' }" v-else></div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 blqueDatasUser">
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-if="user_id != c.transmitter_id">@{{ c.transmitter.name }} <span> dice: </span></p>
-                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-else> @{{ c.receiver.name }} <span> dice: </span></p>
-                                <p class="cont_previwMenSage">que hay...</p>
+                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-if="user_id != c.transmitter_id">@{{ c.transmitter.name }} <span> </span></p>
+                                <p class="colorBlack fontMiriamProSemiBold TitleUserMen" v-else> @{{ c.receiver.name }} <span>  </span></p>
+                                <p class="cont_previwMenSage"></p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 TimeSendMenssage">
                             </div>
