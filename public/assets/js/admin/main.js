@@ -674,8 +674,8 @@ jQuery(document).ready(function($) {
 });
 
 // For Admin Sugerencias
-
 jQuery(document).ready(function($) {
+/*
 	$('.col-xs-12.col-sm-1.col-md-1.col-lg-1.checkMEnsagge>form>input').click(function(event) {
 		// Si activan el cheebox
 		if($(this).is(':checked')) {  
@@ -697,7 +697,7 @@ jQuery(document).ready(function($) {
 
         }  
     });
-
+*/
 	$('.dataSguerenciaDCheck>form>input').click(function(event) {
 		if($(this).is(':checked')) { 
 			var parentBlockSolicitude = $(this).parent().parent().parent().parent();
@@ -864,7 +864,7 @@ $(".fileInputAdmin").change(function(){
 	$(varParenyDivg).append('<p class="nameValue">'+valDocument+'</p>');
 });
 
-
+/*
 // Ajax view Solicitud sugerencia
 jQuery(document).ready(function($) {
 	$('.dataClicDEsplace').click(function(event) {
@@ -985,7 +985,7 @@ jQuery(document).ready(function($) {
 		});
 
 	});
-});
+});*/
 
 
 

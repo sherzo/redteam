@@ -5,7 +5,7 @@
         <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 textAllsMensages">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fchaUisersMensage">
             </div>
-            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 secFotoUser" style="background-image: url({{ Auth::user()->avatar }})">
+            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 secFotoUser" style="background-image: url({{ Auth::user()->avatar }}); margin-left: 30px;">
             </div>
             <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 sectioForMEnsagen secdataTextMensage">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nameUisersMensage">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div  class="dataClicDEsplace deplaceDatSolictudes col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div style="padding: 10px;" class="dataClicDEsplace deplaceDatSolictudes col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="">
                 <div class="title">
                     <i class="fa fa-angle-up correct" v-show="accordion" aria-hidden="true" data-idsolicitud="7" @click="toggleTasks"></i>

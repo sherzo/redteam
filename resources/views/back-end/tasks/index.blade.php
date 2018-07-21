@@ -21,12 +21,12 @@
     {{-- containe Sugerencias --}}
     <section class="container-fluid sectionAdminNotifiMensa containSugerencias" id="tasks">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sectionSugerenciasData" v-cloak>
-            
+            <div class="alert alert-success" v-show="success !='' ">@{{ success }}</div>
 			 {{-- Lis tareas del día --}}
-			@include('front-end.tasks.partials.mytasks')
+			@include('back-end.tasks.partials.mytasks')
 
             {{-- Agregar tareas a mis empleados --}}
-            @include('front-end.tasks.partials.addtasks')
+            @include('back-end.tasks.partials.addtasks')
             {{--
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menssagesBloques">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 allTextMensages">

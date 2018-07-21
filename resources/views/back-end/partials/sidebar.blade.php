@@ -23,10 +23,10 @@
             <a href="{{ url('admin/documents') }}" class="documentIco">  Documentos</a>
         </li>
         <li>
-            <a href="{{ url('admin/promotions') }}" class="calendarIco"> Promociones</a>
+            <a href="{{ url('admin/promotions') }}" class="promotionIco"> Promociones</a>
         </li>
         <li>
-            <a href="{{ url('admin/tasks') }}" class="calendarIco"> Tareas</a>
+            <a href="{{ url('admin/tasks') }}" class="taskIco"> Tareas</a>
         </li>
 
         <!-- 2 BLOQUE SUBmENU -->
@@ -91,17 +91,17 @@
             </li>
             <li>
                 <a href="{{ url('admin/documents') }}">
-                    <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
+                    <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="nota" >
                 </a>
             </li>
             <li>
                 <a href="{{ url('admin/promotions') }}">
-                    <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
+                    <img src="{{ asset('assets/images/icons/ico-promocion.png') }}" class="img- responsive" alt="nota" width="20" height="20">
                 </a>
             </li>
             <li>
                 <a href="{{ url('admin/tasks') }}">
-                    <img src="{{ asset('assets/images/icons/documentos.png') }}" class="img- responsive" alt="">
+                    <img alt="no esta" src="{{ asset('assets/images/icons/ico-task.png') }}" width="20" height="20" class="img- responsive" alt="">
                 </a>
             </li>
 
@@ -125,11 +125,6 @@
             <li>
                 <a href="{{ url('admin/ranking') }}">
                     <img src="{{ asset('assets/images/icons/evaluation.png') }}" class="img- responsive" alt="">
-                </a>
-            </li>
-            <li class="topChangeColor">
-                <a href="evaluaciones-mensuales">
-                    <img src="{{ asset('assets/images/icons/changeCOlor.png') }}" class="img- responsive" alt="">
                 </a>
             </li>
         </ul>

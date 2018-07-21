@@ -45,7 +45,7 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                                     <li>
-                                        <form action="" @submit.prevent="deletes" method="post" accept-charset="utf-8" class="formGrupoCheckData">
+                                        <form action="" @submit.prevent="markAsRead" method="post" accept-charset="utf-8" class="formGrupoCheckData">
                                             <input type="submit" value="Eliminar">
                                         </form>
                                     </li>
@@ -109,12 +109,12 @@
                                                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 textAreaReturn">
                                                             <textarea v-model="s.discussion"></textarea>
                                                         </div>
-                                                        <div class="contenMoreDocuments">
+                                                        {{--<div class="contenMoreDocuments">
                                                             <input type="file" class="fileInputAdmin" name="fileinputdocuemnt">
                                                         </div>
                                                         <div class="contenMoreImages">
                                                             <input type="file" class="fileInputAdminImage" name="fileinputimage">
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 submitSendSugerencia">
                                                             <input type="submit" value="Enviar">
                                                         </div>

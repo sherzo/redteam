@@ -19,11 +19,15 @@ const task = new Vue({
     toggleAccordion (i) {
       this.employees[i].accordion = !this.employees[i].accordion
     },
-    store () {
+    store (i) {
       axios.post('tasks', this.employees)
         .then(res => {
           console.log(res)
+          this.employees[i].accordion = false
           this.success = 'Se actualizarón las tareas de los empleados';
+          setTimeout(() => {
+            this.success = ''
+          },3000)
         })  
         .catch(err => {
           console.log(err)

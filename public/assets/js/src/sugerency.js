@@ -42,9 +42,10 @@ const sugerency = new Vue({
       this.success = true
       console.log(this.checkeds)
       let data = { 
-        suggestions_ids: this.checkeds 
+        suggestions_ids: this.checkeds,
       }
-      axios.delete('suggestions', data)
+
+      axios.delete('suggestions/1', data)
         .then(res => {
           console.log(res)
           this.getSuggestions()

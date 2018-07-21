@@ -180,8 +180,9 @@ class SuggestionController extends Controller
      */
     public function destroy(Request $request)
     {
+        return $request->all();
         $suggestions = Suggestion::whereIn('id', $request->suggestions_ids)
-            ->delete();
+            ->get();
         
         return [
             'result' => true

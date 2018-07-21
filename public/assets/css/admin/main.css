@@ -487,7 +487,7 @@ div#sidebar3>ul>li.topHome {
 }
 
 div#sidebar3>ul>li.top2Bloque {
-  padding-top: 85%;
+  padding-top: 70%;
 }
 
 div#sidebar3>ul>li.topChangeColor {
@@ -567,6 +567,28 @@ div#sidebar>ul>li>a.calendarIco::before{
   width: 20px;
   height: 20px;
   background: url('../../images/icons/calendar.png') no-repeat;
+  top: 3px;
+  right: 9%;
+  position: relative;
+  display: inline-block;
+}
+
+div#sidebar>ul>li>a.promotionIco::before{
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url('../../images/icons/ico-promocion.png') no-repeat;
+  top: 3px;
+  right: 9%;
+  position: relative;
+  display: inline-block;
+}
+
+div#sidebar>ul>li>a.taskIco::before{
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url('../../images/icons/ico-task.png') no-repeat;
   top: 3px;
   right: 9%;
   position: relative;
@@ -5934,6 +5956,32 @@ p.Aceptado {
 
 .icoDocumn {
   background: url('../../images/avatar/ico-documento.png');
+  background-size: cover;
+  width: 9%;
+  height: 21px;
+  display: block;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  margin-right: 4%;
+  margin-left: 4%;
+}
+
+.icoPromotion {
+  background: url('../../images/avatar/ico-promotion.png');
+  background-size: cover;
+  width: 9%;
+  height: 21px;
+  display: block;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  margin-right: 4%;
+  margin-left: 4%;
+}
+
+.icoTask {
+  background: url('../../images/avatar/ico-task.png');
   background-size: cover;
   width: 9%;
   height: 21px;
