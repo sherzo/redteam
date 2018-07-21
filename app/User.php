@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->hasMany(Evaluation::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
@@ -122,6 +127,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Notification::class);
     }
 
+    public function likes() // Los like que he dado
+    { 
+        return $this->hasMany(Like::class);
+    } 
+
     /*
     *   Magis methods
     */
@@ -159,4 +169,5 @@ class User extends Authenticatable
 
         return '';
     }
+
 }

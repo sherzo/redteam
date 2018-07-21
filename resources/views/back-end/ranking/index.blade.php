@@ -53,14 +53,14 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 editerRabling">
                                         <form>
                                             <select v-model="employee.select" :key="employee.id">
-                                                <option value="" selected disabled>Colocar ADP</option>
-                                                <option value="15">Ascenso</option>
-                                                <option value="10">Aumento de Sueldo</option>
-                                                <option value="8">Trabajo Extraordinario</option>
+                                                <option value="1" selected>Colocar ADP</option>
+                                                <option value="2">Ascenso</option>
+                                                <option value="3">Aumento de Sueldo</option>
+                                                <option value="4">Trabajo Extraordinario</option>
                                                 <option value="5">Horas Extras</option>
-                                                <option value="-10">Falsedad material</option>
-                                                <option value="-10">Amonestación escrita</option>
-                                                <option value="-15">Ausencia sin permiso</option>
+                                                <option value="6">Falsedad material</option>
+                                                <option value="7">Amonestación escrita</option>
+                                                <option value="8">Ausencia sin permiso</option>
                                             </select>
                                             <button type="button" class="btn btn-primary" @click="enviar(employee.id,employee.select,employee.index)" style="margin-left: 2vw;">Aceptar</button>
                                         </form>

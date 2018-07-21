@@ -40,10 +40,10 @@
             <a href="{{ route('users.index') }}" class="UseIco"> Usuarios</a>
         </li>
         <li class="2TwoBlow">
-            <a href="ranking" class="rannkingIco"> Ranking</a>
+            <a href="{{ url('admin/ranking') }}" class="rannkingIco"> Ranking</a>
         </li>
         <li class="2TwoBlow">
-            <a href="" class="evalucionIco"> Evaluaciones</a>
+            <a href="{{ url('evaluations') }}" class="evalucionIco"> Evaluaciones</a>
         </li>
     </ul>
 </div>
@@ -115,7 +115,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('ranking') }}">
+                <a href="{{ url('admin/ranking') }}">
                     <img src="{{ asset('assets/images/icons/evaluation.png') }}" class="img- responsive" alt="">
                 </a>
             </li>

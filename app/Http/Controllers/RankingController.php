@@ -40,20 +40,17 @@ class RankingController extends Controller
 
     public function addADP(Request $request)
     {
+        $performances = [-10, 15, 10, 8, 5, -10, -10, -15];
+        $operation = $performances[$request->select];
+
         $employee = User::find($request->user_id);
         $total = 0;
-        if ($request->select > 0) {
-            $type = 1;
-        } else {
-            $type = 2;
-        }
 
         $performance = new Performance();
             $performance->user_id = $request->user_id;
-            $performance->performance = $type;
-            $performance->operation = $request->select;
+            $performance->performance = $request->select;
+            $performance->operation = $operation;
         $performance->save();
-
 
         /*
         * CALCULO DEL SCORE DE LOS USUARIOS
@@ -68,8 +65,12 @@ class RankingController extends Controller
             
         }
 
-        $employee->stars = round($employee->score / 20) > 5 ? 5 : round($employee->score / 20);
+        $newStars = round($employee->score / 20);
+        if($newStars > 5) {
+            $newStars = 5;
+        }
 
+        $employee->stars = $newStars;
         $employee->save();
         
         $employee->adp = Performance::where('user_id', $request->user_id)->where('performance', 2)->count();

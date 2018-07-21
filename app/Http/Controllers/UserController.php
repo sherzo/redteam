@@ -7,6 +7,8 @@ use App\PersonalInformation;
 use App\AcademicInformation;
 use App\WorkInformation;
 use App\ScheduleDay;
+use App\Performance;
+use App\Assistance;
 use Carbon\Carbon;
 use App\Schedule;
 use App\Branch;
@@ -348,28 +350,21 @@ class UserController extends Controller
     public function profile($username) // Profle Admin
     {
         $user = User::where('username', $username)->first();
-        $areas = Area::pluck('name', 'id');
-        $today = Event::whereDate('day', now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
-        $bosses = User::where('id', '!=', $user->id)->pluck('name', 'id');
-            
-        $holidays = $user->holidays;
+        
+        $assistances = Assistance::where('user_id', $user->id)
+            ->take(50)
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        if($holidays < 10) {
-            $firstHoliday = 0;
-            $sendcondHoliday = $holidays;
-        }else {
-            $holidays = str_split($holidays);
-            $firstHoliday = $holidays[0];
-            $sendcondHoliday = $holidays[1];
-        }
-
+        $performances = Performance::where('user_id', $user->id)
+            ->take(50)
+            ->orderBy('id', 'DESC')
+            ->get();
+        
         return view('back-end.users.profile', [
             'user' => $user,
-            'bosses' => $bosses,
-            'areas' => $areas,
-            'firstHoliday' => $firstHoliday,
-            'sendcondHoliday' => $sendcondHoliday,
-            'today' => $today
+            'assistances' => $assistances,
+            'performances' => $performances
         ]);
     }
 
